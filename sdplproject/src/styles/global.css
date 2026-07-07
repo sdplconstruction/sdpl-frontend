@@ -1,0 +1,36 @@
+:root {
+  --primary-red: #D62828;
+  --dark-red: #B71C1C;
+  --white: #FFFFFF;
+  --black: #1F1F1F;
+  --light-gray: #F8F8F8;
+  --border: #EAEAEA;
+  --gold: #D4AF37;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  /* Removed overflow-x: hidden from here */
+  background: #fff;
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}

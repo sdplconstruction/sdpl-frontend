@@ -1,0 +1,176 @@
+/* ===========================
+   HEADER
+=========================== */
+
+.header {
+  width: 100%;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  box-shadow: 0 2px 18px rgba(0,0,0,.08);
+
+  overflow: visible;   /* Add this */
+}
+
+.header-container {
+    width: 90%;
+    max-width: 1400px;
+    height: 90px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    overflow: visible;   /* Add this */
+}
+
+/* ===========================
+   LOGO
+=========================== */
+
+.logo img{
+    height:60px;
+    object-fit:contain;
+}
+
+/* ===========================
+   NAVIGATION
+=========================== */
+
+.nav{
+
+    display:flex;
+    align-items:center;
+    gap:45px;
+}
+
+.nav a,
+.dropbtn{
+
+    font-size:16px;
+    font-weight:500;
+    color:#222;
+
+    text-decoration:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.nav a:hover,
+.dropbtn:hover{
+
+    color:#D62828;
+}
+
+/* Active page */
+
+.nav a.active{
+
+    color:#D62828;
+    font-weight:600;
+}
+
+/* ===========================
+   DROPDOWN
+=========================== */
+
+.dropdown{
+    position: relative;
+}
+
+.dropbtn{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* arrow */
+.arrow{
+    transition: .3s;
+}
+
+.arrow.rotate{
+    transform: rotate(180deg);
+}
+
+/* dropdown card */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    
+    /* Start slightly higher and hidden */
+    transform: translateX(-50%) translateY(-10px); 
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Prevents clicking links when hidden */
+
+    width: 260px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.18);
+    z-index: 10000;
+    
+    transition: all .3s ease-in-out; /* Smooth fade & slide slide down */
+}
+
+/* Active State */
+.dropdown-menu.show{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Re-enable clicks */
+    transform: translateX(-50%) translateY(0);
+}
+
+/* links */
+/* links inside dropdown */
+.dropdown-menu a {
+    display: block;
+    padding: 16px 24px;
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+    transition: .3s;
+}
+
+/* Change ONLY the text color on hover */
+.dropdown-menu a:hover {
+    background: none;       /* Removes the full red background block */
+    color: #D62828;         /* Changes text to your primary red */
+    padding-left: 28px;     /* Optional: subtly shifts text to the right on hover for a nice interactive feel */
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.enquire-btn{
+
+    padding:13px 28px;
+
+    background:#D62828;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.enquire-btn:hover{
+
+    background:#B71C1C;
+}
