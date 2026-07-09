@@ -59,7 +59,7 @@ export default function Header() {
 
           <NavLink to="/gallery">Gallery</NavLink>
 
-          <NavLink to="/contact">Contact Us</NavLink>
+          <NavLink to="/contact-us">Contact Us</NavLink>
 
         </nav>
 

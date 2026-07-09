@@ -1,0 +1,801 @@
+:root {
+  --brand-red: #cc1b1b;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --bg-light: #f9fbfd;
+  --border-color: #ebf0f5;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* Base Wrapper Optimization */
+.planner-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fcfdfe;
+  box-sizing: border-box;
+}
+
+/* System Header Architecture */
+.planner-main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 24px 32px;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 30px;
+  border: 1px solid var(--border-color);
+  gap: 20px;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--brand-red);
+  font-weight: 700;
+}
+
+.header-left h1 span {
+  color: var(--brand-red);
+}
+
+.header-left p {
+  margin: 5px 0 0 0;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.header-right-badge {
+  text-align: right;
+  background: #fff8f8;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1px dashed #ffcccc;
+  flex-shrink: 0;
+}
+
+.badge-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-amount {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--brand-red);
+  margin: 2px 0;
+}
+
+.badge-status {
+  font-size: 0.8rem;
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.badge-status span {
+  font-size: 1.2rem;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+/* Structural Two Column Dashboard Layout Matrix */
+.planner-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 30px;
+  align-items: start;
+}
+
+.form-card-section {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+}
+
+.section-step-title {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: var(--brand-red);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* Grid Alignment Row for Details fields */
+.full-clean-dropdowns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 20px;
+  align-items: end;
+}
+
+.input-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.input-box-wrapper label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.input-with-unit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-with-unit input, .custom-select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: #fdfefe;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.unit-tag {
+  position: absolute;
+  right: 12px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* Dropdown Height & Direction constraint helpers */
+.unified-floor-dropdown {
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #dcdde1;
+  max-height: 44px;
+}
+
+.unified-floor-dropdown:focus {
+  border-color: var(--brand-red);
+}
+
+.unified-floor-dropdown option {
+  padding: 10px;
+  background-color: #ffffff;
+  color: var(--text-dark);
+}
+
+/* Binary Selection Header Tab Items */
+.toggle-tabs {
+  display: flex;
+  background: #f1f2f6;
+  padding: 4px;
+  border-radius: 8px;
+  height: 44px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.tab-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tab-btn.active {
+  background: var(--brand-red);
+  color: white;
+}
+
+/* Searchable Location Box styling components */
+.searchable-dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%237f8c8d' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 14px) center;
+  padding-right: 38px !important;
+}
+
+.dropdown-item-row {
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.dropdown-item-row:hover {
+  background-color: #fff2f2;
+  color: var(--brand-red);
+  font-weight: 600;
+}
+
+.dropdown-no-results {
+  padding: 16px;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* Package Framing cards architecture styles */
+.packages-premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.package-premium-card {
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.package-premium-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-red);
+}
+
+.package-premium-card.selected {
+  border-color: var(--brand-red);
+  background: #fffafa;
+}
+
+.package-image-frame {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: #f5f5f5;
+}
+
+.package-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.checked-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--brand-red);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  line-height: 20px;
+  z-index: 10;
+}
+
+.package-premium-card h3 {
+  margin: 10px 0 4px 0;
+  font-size: 1.05rem;
+  color: var(--text-dark);
+}
+
+.pkg-desc {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin: 0 0 12px 0;
+}
+
+.pkg-cost-range {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-red);
+}
+
+.pkg-unit {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+/* Quality Specification Layout sections */
+.quality-premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.quality-premium-card {
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  background: white;
+  box-sizing: border-box;
+}
+
+.quality-premium-card.selected {
+  border-color: var(--brand-red);
+  background: #fffafa;
+}
+
+.quality-premium-card h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+}
+
+.stars-row {
+  color: #f1c40f;
+  margin-bottom: 10px;
+}
+
+.quality-premium-card p {
+  margin: 0 0 12px 0;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.tier-badge {
+  font-size: 0.75rem;
+  background: #f1f2f6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.quality-premium-card.selected .tier-badge {
+  background: #ffebee;
+  color: var(--brand-red);
+}
+
+.visual-specifications-box {
+  margin-top: 30px;
+  background: #f8fafc;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.visual-specifications-box h4 {
+  margin: 0 0 16px 0;
+  font-size: 0.95rem;
+}
+
+.specifications-inline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.spec-inline-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #edf2f7;
+  box-sizing: border-box;
+}
+
+.spec-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.spec-sub {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+/* Addons Feature Panels mapping */
+.addons-premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.addon-premium-tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: white;
+  box-sizing: border-box;
+}
+
+.addon-premium-tile.active {
+  border-color: var(--brand-red);
+  background: #fffafa;
+}
+
+.addon-premium-tile input[type="checkbox"] {
+  accent-color: var(--brand-red);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.addon-tile-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 0.9rem;
+  gap: 10px;
+}
+
+.addon-tile-name {
+  font-weight: 600;
+}
+
+.addon-tile-price {
+  color: var(--brand-red);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Sticky Right-side calculation summary container styling */
+.premium-sticky-sidebar {
+  position: sticky;
+  top: 30px;
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  border-top: 5px solid var(--brand-red);
+  box-sizing: border-box;
+}
+
+.sidebar-header-branding {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-metrics-list {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.metric-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  gap: 10px;
+}
+
+.metric-item span {
+  color: var(--text-light);
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+  color: var(--text-dark);
+  text-align: right;
+}
+
+.sidebar-sub-heading {
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  color: var(--brand-red);
+  font-weight: 700;
+}
+
+.sidebar-breakdown-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  gap: 10px;
+}
+
+.breakdown-row span:last-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sidebar-total-block {
+  background: #fff5f5;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ffe3e3;
+}
+
+.total-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.total-val {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--brand-red);
+  margin: 6px 0;
+}
+
+.total-subtext {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+
+.sidebar-action-red-btn {
+  width: 100%;
+  background: var(--brand-red);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sidebar-action-red-btn:hover {
+  background: #b21818;
+}
+
+/* Dropdown downward alignment forced structural layers */
+.dropdown-downward-force-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-options-list {
+  position: absolute;
+  top: 100% !important;
+  bottom: auto !important;
+  left: 0;
+  width: 100%;
+  max-height: 220px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  overflow-y: auto;
+  z-index: 9999;
+}
+
+.unified-floor-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232c3e50' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 14px) center;
+  padding-right: 36px !important;
+  cursor: pointer;
+}
+
+.unified-floor-dropdown option {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.form-card-section:first-of-type {
+  padding-bottom: 40px !important;
+  margin-bottom: 24px !important;
+}
+
+.display-trigger-dropdown {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%237f8c8d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 16px) center;
+  padding-right: 40px !important;
+}
+
+.standard-forced-down {
+  position: absolute !important;
+  top: 100% !important;
+  bottom: auto !important;
+  margin-top: 4px;
+  z-index: 99999 !important;
+}
+
+.pdf-total-budget {
+  font-size: 24px;
+  line-height: 1.4 !important;
+  padding-bottom: 6px !important;
+  display: inline-block;
+}
+
+.your-budget-card-container {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.sidebar-total-block-fixed {
+  background: #fdf2f2;
+  border-left: 4px solid #b22222;
+  padding: 16px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  height: auto !important;
+  min-height: 90px;
+  overflow: visible !important;
+  box-sizing: border-box;
+}
+
+.total-val-fixed {
+  font-size: 26px;
+  font-weight: 800;
+  color: #b22222;
+  margin: 4px 0;
+  line-height: 1.4 !important;
+  padding-bottom: 4px !important;
+  letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   CROSS-SYSTEM RESPONSIVE MEDIA QUERIES (DESKTOP TO PHONE)
+   ========================================================================== */
+
+/* 1. Laptops and Standard Monitors */
+@media (max-width: 1200px) {
+  .planner-wrapper {
+    padding: 20px;
+  }
+  .planner-main-grid {
+    grid-template-columns: 1fr 360px;
+    gap: 20px;
+  }
+  .form-card-section {
+    padding: 24px;
+  }
+}
+
+/* 2. Tablets and Small Displays */
+@media (max-width: 992px) {
+  .planner-main-grid {
+    grid-template-columns: 1fr; /* Drop summary panel safely below form steps */
+  }
+
+  .premium-sticky-sidebar {
+    position: static; /* Unstick column flow so scrolling doesn't crowd content */
+    margin-top: 10px;
+  }
+
+  .planner-main-header {
+    padding: 20px;
+  }
+}
+
+/* 3. Micro-Tablets and Large Smartphones */
+@media (max-width: 768px) {
+  .planner-main-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 20px 16px;
+  }
+
+  .header-right-badge {
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 12px;
+  }
+
+  .full-clean-dropdowns {
+    grid-template-columns: 1fr !important; /* Stack input selections seamlessly */
+    gap: 16px;
+  }
+
+  .toggle-tabs {
+    height: 48px; /* Slightly taller for modern mobile touch targets */
+  }
+
+  .tab-btn {
+    font-size: 0.9rem;
+  }
+
+  .packages-premium-grid,
+  .quality-premium-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .specifications-inline-grid {
+    grid-template-columns: 1fr; /* Single column stack for material brands */
+  }
+}
+
+/* 4. Compact Smartphone Devices */
+@media (max-width: 480px) {
+  .planner-wrapper {
+    padding: 12px 8px;
+  }
+
+  .form-card-section {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .section-step-title {
+    font-size: 1.15rem;
+    margin-bottom: 16px;
+  }
+
+  .packages-premium-grid,
+  .quality-premium-grid {
+    grid-template-columns: 1fr; /* Full width option blocks */
+  }
+
+  .package-image-frame {
+    height: 140px; /* Enhanced focus aspect ratio for mobile view */
+  }
+
+  .addons-premium-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .addon-tile-content {
+    font-size: 0.85rem;
+  }
+
+  .premium-sticky-sidebar {
+    padding: 20px 16px;
+  }
+
+  .total-val-fixed {
+    font-size: 22px;
+  }
+}
+
+/* Print/PDF Utility System Configs */
+@media print {
+  .pdf-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
