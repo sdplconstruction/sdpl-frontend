@@ -1,0 +1,101 @@
+/* ===============================
+   CUSTOM DROPDOWN
+================================= */
+.custom-dropdown {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 24px;
+    border-right: 1px solid #ececec;
+    min-height: 88px;
+    overflow: visible !important; 
+}
+
+.custom-dropdown:focus-within,
+.custom-dropdown:hover {
+    z-index: 100;
+}
+
+.dropdown-trigger {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: #444;
+}
+
+.dropdown-trigger span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-arrow {
+    font-size: 13px;
+    color: #777;
+    transition: 0.3s;
+}
+
+.dropdown-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+/* CHANGED & RESET SELECTOR HERE */
+.search-dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    left: 0 !important;   
+    width: 100% !important; 
+    transform: none !important; /* Clears header center offset rule */
+    opacity: 1 !important;       /* Forces visibility override */
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    background: white;
+    border-radius: 0 0 14px 14px; 
+    box-shadow: 0 15px 45px rgba(0,0,0,.18);
+    border: 1px solid rgba(0,0,0,.05);
+    border-top: none;
+
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+    
+    z-index: 999999 !important; 
+    overflow: hidden; 
+
+    animation: dropdownAnimation .28s cubic-bezier(.22,.61,.36,1);
+}
+
+/* CHANGED SELECTOR HERE */
+.search-dropdown-menu li {
+    padding: 13px 18px;
+    cursor: pointer;
+    transition: .25s;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+/* CHANGED SELECTOR HERE */
+.search-dropdown-menu li:hover {
+    background: #D62828;
+    padding-left: 24px;
+    color: white;
+}
+
+@keyframes dropdownAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

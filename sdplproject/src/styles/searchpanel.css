@@ -1,0 +1,88 @@
+/* ===============================
+   SEARCH PANEL
+================================= */
+.search-panel {
+    position: absolute;
+    left: 50%;
+    bottom: 130px;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1500px;
+    background: #fff;
+    border-radius: 22px;
+    
+    /* 1. Setup CSS Grid layout tracks */
+    display: grid;
+    grid-template-columns: 1.6fr 1.1fr 1.3fr 1.5fr 1.5fr 220px;
+    align-items: center;
+    
+    box-shadow: 0 20px 60px rgba(0,0,0,.18);
+    
+    /* 2. CRUCIAL FIXES FOR DROPDOWN VISIBILITY */
+    overflow: visible !important; /* Forces grid row layout to let menus drop down */
+    z-index: 20000 !important;   /* Forces panel over lower homepage components */
+}
+
+.search-panel:hover {
+    /* Kept your smooth hover, but preserved the horizontal center positioning */
+    transform: translateX(-50%) translateY(-6px);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+}
+
+/* ===============================
+   INPUT FIELD
+================================= */
+.search-field {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 24px;
+    min-height: 88px;
+    border-right: 1px solid #ececec;
+    transition: .3s;
+}
+
+.search-field:hover,
+.custom-dropdown:hover {
+    background: #fafafa;
+    transform: translateY(-1px);
+    transition: .25s;
+}
+
+.field-icon {
+    font-size: 20px;
+    color: #D62828;
+    flex-shrink: 0;
+}
+
+.search-field input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    background: transparent;
+}
+
+.search-field input::placeholder {
+    color: #444;
+}
+
+/* ===============================
+   BUTTON
+================================= */
+.estimate-btn {
+    height: 88px;
+    border: none;
+    background: #D62828;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 0 22px 22px 0;
+}
+
+.estimate-btn:hover {
+    background: #b71c1c;
+}
