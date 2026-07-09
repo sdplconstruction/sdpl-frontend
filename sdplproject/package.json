@@ -18,11 +18,7 @@
     "react-icons": "^5.7.0",
     "react-router-dom": "^7.18.1",
     "react-typed": "^2.0.12",
-<<<<<<< HEAD
-    "swiper": "^14.0.1"
-=======
     "swiper": "^14.0.2"
->>>>>>> ef952a26fab7c8bbde1b2e461db8ff84b8b8c197
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
