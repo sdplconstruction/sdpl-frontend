@@ -1,0 +1,115 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 90px);
+    overflow-x: hidden;
+    overflow-y: visible;
+    z-index: 10; 
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1.2s ease-in-out;
+    z-index: 0;
+    filter: brightness(0.95); /* Slightly dims raw image slides for better depth */
+}
+
+.hero-image.active {
+    opacity: 1;
+    animation: heroZoom 5s linear forwards;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(10, 15, 24, 0.45) 0%,
+        rgba(10, 15, 24, 0.28) 28%,
+        rgba(10, 15, 24, 0.10) 50%,
+        rgba(10, 15, 24, 0.00) 72%
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    z-index: 2;
+}
+.hero-content {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 230px; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    position: relative;
+     
+    z-index: 3;
+}
+
+.hero-tag {
+    color: #FF4D4D; /* Vibrant neon red to pop perfectly over dark slate panels */
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 4vw, 64px);
+    line-height: 1.15;
+    color: #ffffff; /* Inverted back to crisp white for dark overlay readability */
+    font-weight: 700;
+    margin-bottom: 24px;
+    max-width: 750px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero h1 span {
+    color: #FF5A5A !important; /* Lighter, vibrant premium red for dark text overlays */
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    text-shadow: 0 2px 10px rgba(250, 80, 90, 0.2); /* Soft ambient glow to pop out more */
+    animation: typing 2.5s steps(23, end) 0.5s forwards;
+}
+
+.hero-text {
+    margin-top: 10px;
+    font-size: clamp(16px, 1.5vw, 19px);
+    color: #E2E8F0; /* Clean, premium off-white text color */
+    line-height: 1.6;
+    max-width: 620px;
+}
+
+/* =======================================
+   CLEAN LEFT-TO-RIGHT REVEAL (NO CURSOR)
+======================================= */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Force the absolute SearchPanel container to stay layered correctly */
+.hero > :last-child {
+    z-index: 20;
+}
+
+@keyframes heroZoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}

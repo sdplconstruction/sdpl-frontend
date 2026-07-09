@@ -8,10 +8,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/budget-planner" element={<BudgetPlanner />} />
-     {/* Both routes now map to your ContactUs page to handle any link click */}
       <Route path="/contact-us" element={<ContactUs />} />
     </Routes>
-
   );
 }
 
