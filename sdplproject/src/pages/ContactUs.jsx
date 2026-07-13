@@ -4,6 +4,9 @@ import Footer from '../components/Footer';
 import '../styles/ContactUs.css';
 import contactImg from '../assets/contactus.jpg';
 
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxsvuv33SGzuL92iMu2qf0o7bX7KXZZPhdwGvOxHMkgTx-GdsF0Kx5bfVmCEzzNPNJe/exec";
+
 export default function ContactUs() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [errors, setErrors] = useState({});
@@ -52,21 +55,46 @@ export default function ContactUs() {
     return Object.keys(currentErrors).length === 0;
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+const handleFormSubmit = async (e) => {
+  e.preventDefault();
 
-    if (validateForm()) {
-      // Form is fully validated and ready for backend deployment
-      alert(`Thank you ${form.name.trim()}. Your message regarding "${form.subject.trim()}" has been delivered to the Subharambha construction desk.`);
-      setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+  if (!validateForm()) return;
+
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+  method: "POST",
+  body: JSON.stringify(form),
+});
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert(
+        `Thank you ${form.name.trim()}. Your message has been sent successfully.`
+      );
+
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+
       setErrors({});
+    } else {
+      alert("Something went wrong.");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Unable to send message.");
+  }
+};
 
   return (
     <>
       {/* 1. Global Navigation Header */}
-      
+
 
       <div className="subha-contact-page">
         {/* Header Banner Hero Section */}
