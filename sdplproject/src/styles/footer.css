@@ -1,0 +1,289 @@
+/* ==========================================================================
+   SDPL PREMIUM DESIGN: LOGO-ENHANCED FOOTER SYSTEM
+   ========================================================================== */
+
+.sdpl-footer {
+  background-color: #1a222d; /* Lighter corporate dark slate */
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  width: 100%;
+  margin-top: auto;
+  border-top: 3px solid #c92525; /* Your signature brand red */
+}
+
+/* --------------------------------------------------------------------------
+   1. TOP CALL TO ACTION STRIP
+   -------------------------------------------------------------------------- */
+.footer-cta-strip {
+  background-color: #222b37; /* Distinct lighter layer for contrast */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 24px 60px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cta-react-icon {
+  font-size: 2.2rem;
+  color: #c92525;
+}
+
+.cta-text h3 {
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.cta-text p {
+  color: #a0aec0;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.cta-divider {
+  width: 1px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-quote-btn {
+  background-color: #c92525;
+  color: #ffffff;
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.footer-quote-btn:hover {
+  background-color: #ad1f1f;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   2. MAIN GRID & EXCLUSIVE LOGO CONTRAST BACKPLATE
+   -------------------------------------------------------------------------- */
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 0.8fr 1.1fr;
+  gap: 40px;
+  width: 100%;
+  max-width: 100%;
+  padding: 60px 60px;
+  box-sizing: border-box;
+}
+
+/* Brand Capsule Box: Makes dark corporate logos stand out beautifully */
+.footer-logo-block {
+  background-color: #ffffff; /* Crisp white background lets dark logos pop */
+  padding: 12px 24px;        /* Slightly wider padding for a clean badge look */
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.footer-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-description {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.footer-social-row {
+  display: flex;
+  gap: 12px;
+}
+
+.social-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.social-circle:hover {
+  background-color: #c92525;
+  color: #ffffff;
+  border-color: #c92525;
+}
+
+/* Links & Columns styling */
+.footer-links-col h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.red-underline {
+  width: 35px;
+  height: 3px;
+  background-color: #c92525;
+  margin-bottom: 20px;
+}
+
+.footer-links-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-col ul li {
+  margin-bottom: 14px;
+}
+
+.footer-links-col ul li a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.link-arrow {
+  color: #c92525;
+  font-size: 0.75rem;
+  margin-right: 10px;
+  transition: transform 0.2s ease;
+}
+
+.footer-links-col ul li a:hover {
+  color: #ffffff;
+}
+
+.footer-links-col ul li a:hover .link-arrow {
+  transform: translateX(3px);
+}
+
+/* Contact layout items */
+.contact-details-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.contact-react-icon {
+  color: #c92525;
+  font-size: 1.1rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.contact-details-list p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   3. BASE COPYRIGHT BAR
+   -------------------------------------------------------------------------- */
+.footer-bottom-bar {
+  background-color: #11161d;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 25px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.copyright-txt {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.bottom-legal-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s ease;
+}
+
+.bottom-legal-links a:hover {
+  color: #c92525;
+}
+
+.pipe-divider {
+  color: rgba(255, 255, 255, 0.1);
+  margin: 0 12px;
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. SYSTEM BREAKPOINTS RESPONSIVENESS
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-cta-strip {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 24px;
+  }
+  .cta-left {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cta-divider {
+    display: none;
+  }
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+    padding: 40px 24px;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 20px;
+  }
+}

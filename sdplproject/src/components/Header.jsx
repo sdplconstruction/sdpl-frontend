@@ -1,17 +1,33 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
-import { useState } from "react";
 import logo from "../assets/logo.png";
 import "../styles/header.css";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isProjectsActive = location.pathname.startsWith("/projects");
+
+  // Handler to process the main "Projects" text click
+  const handleProjectsClick = (e) => {
+    e.preventDefault(); // Stop default navigation jump
+
+    if (location.pathname === "/" || location.pathname === "/home") {
+      // If already home, find section by ID and slide down cleanly
+      const element = document.getElementById("homepage-projects-section");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If on another page, go home first but attach the target hash
+      navigate("/#homepage-projects-section");
+    }
+  };
 
   return (
     <header className="header">
-
       <div className="header-container">
-
         {/* Logo */}
         <div className="logo">
           <Link to="/">
@@ -21,55 +37,30 @@ export default function Header() {
 
         {/* Navigation */}
         <nav className="nav">
-
           <NavLink to="/">Home</NavLink>
-
           <NavLink to="/about">About Us</NavLink>
 
-          <div
-            className="dropdown"
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
-          >
-
-            <button className="dropbtn">
+          <div className={`dropdown ${isProjectsActive ? "active" : ""}`}>
+            {/* CHANGED FROM BUTTON TO DIV/LINK INTERCEPTOR FOR ACCESSIBILITY */}
+            <button className="dropbtn" onClick={handleProjectsClick}>
               Projects
-              <FaChevronDown
-                className={`arrow ${open ? "rotate" : ""}`}
-              />
+              <FaChevronDown className="arrow" />
             </button>
 
-            <div className={`dropdown-menu ${open ? "show" : ""}`}>
-
-              <Link to="/projects/ongoing">
-                Ongoing Projects
-              </Link>
-
-              <Link to="/projects/upcoming">
-                Upcoming Projects
-              </Link>
-
-              <Link to="/projects/completed">
-                Completed Projects
-              </Link>
-
+            <div className="dropdown-menu">
+              <Link to="/projects/ongoing">Ongoing Projects</Link>
+              <Link to="/projects/upcoming">Upcoming Projects</Link>
+              <Link to="/projects/completed">Completed Projects</Link>
             </div>
-
           </div>
 
           <NavLink to="/gallery">Gallery</NavLink>
-
           <NavLink to="/contact-us">Contact Us</NavLink>
-
         </nav>
 
         {/* Button */}
-        <button className="enquire-btn">
-          Enquire Now
-        </button>
-
+        <button className="enquire-btn">Enquire Now</button>
       </div>
-
     </header>
   );
 }

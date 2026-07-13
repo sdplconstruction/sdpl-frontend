@@ -1,0 +1,140 @@
+import React from 'react';
+import { Link } from "react-router-dom";
+import '../styles/footer.css';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaGlobe,
+  FaChevronRight,
+  FaBuilding
+} from 'react-icons/fa';
+
+import { FaHelmetSafety } from 'react-icons/fa6';
+import footerLogo from '../assets/logo.png';
+
+export default function Footer() {
+  return (
+    <footer className="sdpl-footer">
+
+      {/* --- TOP CTA BANNER STRIP --- */}
+      <div className="footer-cta-strip">
+        <div className="cta-left">
+          <div className="cta-icon-wrapper">
+            <FaHelmetSafety className="cta-react-icon" />
+          </div>
+          <div className="cta-text">
+            <h3>Have a project in mind?</h3>
+            <p>Let's build something great together.</p>
+          </div>
+        </div>
+
+        <div className="cta-divider"></div>
+
+        <div className="cta-right">
+          <Link to="/execution-plan" className="footer-quote-btn">
+            <FaBuilding /> EXPLORE OUR WORKFLOW
+          </Link>
+        </div>
+      </div>
+
+      {/* --- MAIN LINKS MATRIX --- */}
+      <div className="footer-main-grid">
+
+        {/* Column 1: Brand & Socials */}
+        <div className="footer-brand-col">
+          <div className="footer-logo-block">
+            <img src={footerLogo} alt="SDPL Construction Logo" className="footer-logo" />
+          </div>
+          <p className="brand-description">
+            SDPL Construction is committed to delivering high-quality construction solutions with integrity, innovation, and excellence. Building your dreams, brick by brick.
+          </p>
+
+          <div className="footer-social-row">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="Facebook">
+              <FaFacebookF />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="Instagram">
+              <FaInstagram />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="LinkedIn">
+              <FaLinkedinIn />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="YouTube">
+              <FaYoutube />
+            </a>
+          </div>
+        </div>
+
+        {/* Column 2: Quick Links */}
+        <div className="footer-links-col">
+          <h3>QUICK LINKS</h3>
+          <div className="red-underline"></div>
+          <ul>
+            <li><Link to="/"> <FaChevronRight className="link-arrow" /> Home</Link></li>
+            <li><Link to="/about"> <FaChevronRight className="link-arrow" /> About Us</Link></li>
+            <li><Link to="/services"> <FaChevronRight className="link-arrow" /> Our Services</Link></li>
+            <li><Link to="/projects"> <FaChevronRight className="link-arrow" /> Projects</Link></li>
+            <li><Link to="/budget-planner"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
+            <li><Link to="/contact-us"> <FaChevronRight className="link-arrow" /> Contact Us</Link></li>
+          </ul>
+        </div>
+
+        {/* Column 3: Our Services */}
+        <div className="footer-links-col">
+          <h3>OUR SERVICES</h3>
+          <div className="red-underline"></div>
+          <ul>
+            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Building Approvals</Link></li>
+            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Structural Design</Link></li>
+            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Layout Ideas</Link></li>
+            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Plan Approval</Link></li>
+            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Elevation <br />3D Model & Videos</Link></li>
+            {/* <li><Link to="#"> <FaChevronRight className="link-arrow" /> Project Management</Link></li> */}
+          </ul>
+        </div>
+
+        {/* Column 4: Contact Info */}
+        <div className="footer-links-col contact-info-col">
+          <h3>CONTACT US</h3>
+          <div className="red-underline"></div>
+          <ul className="contact-details-list">
+            <li>
+              <FaMapMarkerAlt className="contact-react-icon" />
+              <p>Plot No:- 82/2164, Patrapada<br />Bhubaneswar, Khorda, Odisha - 751019</p>
+            </li>
+            <li>
+              <FaPhoneAlt className="contact-react-icon" />
+              <p>+91 70087 11934<br />+91 82603 43676</p>
+            </li>
+            <li>
+              <FaEnvelope className="contact-react-icon" />
+              <p>info@sdplconstruction.com<br/>sdplconstruction1@gmail.com</p>
+            </li>
+            <li>
+              <FaGlobe className="contact-react-icon" />
+              <p>www.sdplconstruction.com</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      {/* --- BOTTOM RIGHTS PANEL --- */}
+      <div className="footer-bottom-bar">
+        <p className="copyright-txt">© 2026 SDPL Construction. All Rights Reserved.</p>
+        <div className="bottom-legal-links">
+          {/* FIXED LINK PATHS HERE */}
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <span className="pipe-divider">|</span>
+          <Link to="/terms-and-conditions">Terms & Conditions</Link>
+        </div>
+      </div>
+
+    </footer>
+  );
+}

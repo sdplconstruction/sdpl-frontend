@@ -1,0 +1,292 @@
+/* ==========================================================================
+   SDPL ARCHITECTURAL EXECUTION ROADMAP
+   ========================================================================== */
+
+.execution-plan-view {
+  background: #f8fafc;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.plan-hero-banner {
+  background: #0f172a; /* Branded Slate Black */
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.plan-badge {
+  color: #cc1b1b;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.plan-hero-banner h1 {
+  font-size: 3rem;
+  margin: 0 0 16px 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.plan-hero-banner p {
+  color: #94a3b8;
+  max-width: 700px;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  font-size: 1.1rem;
+}
+
+.budget-planner-btn {
+  background: #cc1b1b;
+  color: #ffffff;
+  border: none;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(204, 27, 27, 0.4);
+  transition: all 0.25s ease;
+}
+
+.budget-planner-btn:hover {
+  background: #b31414;
+  transform: translateY(-2px);
+}
+
+/* --- Content Layout Track --- */
+.plan-content-canvas {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 24px 90px 24px;
+  box-sizing: border-box;
+}
+
+.summary-flow-strip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 18px 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #475569;
+  font-size: 0.95rem;
+  margin-bottom: 45px;
+  box-shadow: 0 4px 6px rgba(15, 23, 42, 0.02);
+}
+
+.flow-arrow {
+  color: #cc1b1b;
+  font-size: 0.8rem;
+}
+
+.phases-vertical-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.phase-card-row {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 35px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: center;
+  gap: 40px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.phase-card-row:hover {
+  transform: translateY(-4px);
+  border-color: rgba(204, 27, 27, 0.25);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+/* --- Premium Icon Badge Design --- */
+.phase-left-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-badge-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 65px;
+  height: 65px;
+  background: rgba(204, 27, 27, 0.06);
+  color: #cc1b1b;
+  font-size: 1.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(204, 27, 27, 0.15);
+}
+
+.mini-num-tag {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #0f172a;
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.phase-left-meta h3 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* --- Right Side Checklist Items --- */
+.phase-center-content ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #475569;
+}
+
+.phase-center-content li {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  list-style-type: square;
+}
+
+.phase-center-content li::marker {
+  color: #cc1b1b;
+}
+
+.phase-center-content li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   ⚡ DYNAMIC GADGET RESPONSIVE BREAKPOINTS ⚡
+   ========================================================================== */
+
+/* 💻 --- LAPTOPS & SMALLER DESKTOPS (Max-Width: 1024px) --- */
+@media (max-width: 1024px) {
+  .phase-card-row {
+    grid-template-columns: 260px 1fr;
+    gap: 25px;
+    padding: 30px;
+  }
+
+  .plan-hero-banner h1 {
+    font-size: 2.6rem;
+  }
+}
+
+/* 📟 --- TABLETS & GADGETS (Max-Width: 900px) --- */
+@media (max-width: 900px) {
+  .plan-hero-banner {
+    padding: 60px 20px;
+  }
+
+  .plan-hero-banner h1 {
+    font-size: 2.2rem;
+  }
+
+  .phase-card-row {
+    /* Shifts grid layout from horizontal side-by-side to full stack */
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 25px;
+  }
+
+  .phase-left-meta {
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 15px;
+  }
+
+  .summary-flow-strip {
+    font-size: 0.88rem;
+    padding: 14px 20px;
+    gap: 8px;
+  }
+}
+
+/* 📱 --- SMARTPHONES & MOBILE ECOSYSTEMS (Max-Width: 480px) --- */
+@media (max-width: 480px) {
+  .plan-hero-banner {
+    padding: 50px 16px;
+  }
+
+  .plan-hero-banner h1 {
+    font-size: 1.75rem;
+  }
+
+  .plan-hero-banner p {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .budget-planner-btn {
+    width: 100%; /* Makes button perfectly finger-tappable full width */
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+
+  .plan-content-canvas {
+    padding: 30px 16px 60px 16px;
+  }
+
+  .phase-card-row {
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .icon-badge-box {
+    min-width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    border-radius: 8px;
+  }
+
+  .phase-left-meta h3 {
+    font-size: 1.1rem;
+  }
+
+  .phase-center-content ul {
+    padding-left: 16px;
+  }
+
+  .phase-center-content li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+}
+
+/* 🗃️ --- COMPACT WRIST / FOLDING GADGETS (Max-Width: 340px) --- */
+@media (max-width: 340px) {
+  .plan-hero-banner h1 {
+    font-size: 1.5rem;
+  }
+
+  .phase-left-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

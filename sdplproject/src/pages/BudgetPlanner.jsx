@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import html2pdf from 'html2pdf.js';
 import { CALCULATION_RATES, ADD_ON_PRICES } from '../data/rates';
 import './BudgetPlanner.css';
-import Header from '../components/Header';
 
 // Import local assets securely
 import coreImg from '../assets/core.jpg';
@@ -19,7 +18,12 @@ const ODISHA_DISTRICTS = [
   "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"
 ];
 
-const FLOOR_OPTIONS = ["G", ...Array.from({ length: 20 }, (_, i) => `G+${i + 1}`)];
+const FLOOR_OPTIONS = [
+  "G",
+  ...Array.from({ length: 20 }, (_, i) => `G+${i + 1}`),
+  "S+2", "S+3", "S+4",
+  "B+S+G+1", "B+S+G+2", "B+S+G+3", "B+S+G+4", "B+S+G+5", "B+S+G+6", "B+S+G+7"
+];
 
 const PACKAGE_DETAILS = {
   coreHouse: {
@@ -108,11 +112,12 @@ export default function BudgetPlanner() {
   const locationDropdownRef = useRef(null);
   const floorDropdownRef = useRef(null);
 
+  // States initialized empty to let placeholders show up cleanly
   const [formData, setFormData] = useState({
-    area: 0,
-    location: 'Khordha (Bhubaneswar)',
+    area: '',
+    location: '',
     buildingType: 'Residential',
-    numFloors: 'G+1',
+    numFloors: '',
     packageType: 'coreHouse',
     qualityTier: 'basic',
     addOns: {
@@ -147,13 +152,26 @@ export default function BudgetPlanner() {
 
   useEffect(() => {
     const baseRatePerSqFt = CALCULATION_RATES[formData.packageType]?.[formData.qualityTier] || 2100;
-
     let floorMultiplier = 1.0;
-    if (formData.numFloors !== 'G') {
-      const floorCount = parseInt(formData.numFloors.replace('G+', ''), 10) || 1;
-      if (floorCount > 3) {
-        floorMultiplier += (floorCount - 3) * 0.03;
+    const selectedFloorString = formData.numFloors;
+
+    if (selectedFloorString && selectedFloorString.startsWith('B+S+G+')) {
+      const upperFloorsCount = parseInt(selectedFloorString.replace('B+S+G+', ''), 10) || 1;
+      const equivalentTotalFloors = 1 + 0.6 + 1.4 + upperFloorsCount;
+      floorMultiplier = equivalentTotalFloors;
+    } else if (selectedFloorString && selectedFloorString.startsWith('S+')) {
+      const upperFloorsCount = parseInt(selectedFloorString.replace('S+', ''), 10) || 2;
+      const equivalentTotalFloors = 0.6 + upperFloorsCount;
+      floorMultiplier = equivalentTotalFloors;
+    } else if (selectedFloorString && selectedFloorString.startsWith('G+')) {
+      const upperFloorsCount = parseInt(selectedFloorString.replace('G+', ''), 10) || 1;
+      let calculatedMultiplier = 1.0 + upperFloorsCount;
+      if (upperFloorsCount > 3) {
+        calculatedMultiplier += (upperFloorsCount - 3) * 0.03;
       }
+      floorMultiplier = calculatedMultiplier;
+    } else {
+      floorMultiplier = 1.0;
     }
 
     const baseCost = Number(formData.area || 0) * baseRatePerSqFt * floorMultiplier;
@@ -239,7 +257,6 @@ export default function BudgetPlanner() {
     }
   };
 
-  // ADVANCED PREVIEW ENGINE WITH ANTI-CLIPPING SYSTEM
   const handleDownloadPDF = () => {
     setIsGeneratingPdf(true);
 
@@ -250,14 +267,13 @@ export default function BudgetPlanner() {
     const element = document.createElement('div');
     element.innerHTML = `
       <div style="font-family: 'Segoe UI', Helvetica, Arial, sans-serif; padding: 40px; color: #2c3e50; background-color: #fff;">
-
         <div style="border-bottom: 2px solid #b22222; padding-bottom: 20px; margin-bottom: 30px; display: block; overflow: hidden;">
           <div style="float: left; width: 70%;">
-            <h1 style="margin: 0; color: #111; font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">DREAM HOME PLANNER</h1>
-            <p style="margin: 5px 0 0 0; color: #7f8c8d; font-size: 13px;">Provisional Construction Budget Estimation Report</p>
+            <h1 style="margin: 0; color: #b22222; font-size: 32px; font-weight: 800; letter-spacing: -0.5px;">SDPL CONSTRUCTION</h1>
+            <p style="margin: 5px 0 0 0; color: #34495e; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Dream Home Planner • Cost Estimation Summary</p>
           </div>
-          <div style="float: right; width: 30%; text-align: right; margin-top: 5px;">
-            <div style="font-size: 12px; color: #7f8c8d;">Date Generated</div>
+          <div style="float: right; width: 30%; text-align: right; margin-top: 10px;">
+            <div style="font-size: 12px; color: #7f8c8d;">Report Date</div>
             <div style="font-size: 14px; font-weight: 600; color: #111;">${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
           </div>
           <div style="clear: both;"></div>
@@ -268,15 +284,15 @@ export default function BudgetPlanner() {
           <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
             <tr>
               <td style="padding: 6px 0; color: #7f8c8d; width: 25%;">Built-up Area:</td>
-              <td style="padding: 6px 0; font-weight: 600; color: #111; width: 25%;">${formData.area || 0} sq.ft</td>
+              <td style="padding: 6px 0; font-weight: 600; color: #111; width: 25%;">${formData.area || '—'} sq.ft</td>
               <td style="padding: 6px 0; color: #7f8c8d; width: 25%;">Building Type:</td>
               <td style="padding: 6px 0; font-weight: 600; color: #111; width: 25%;">${formData.buildingType}</td>
             </tr>
             <tr>
-              <td style="padding: 6px 0; color: #7f8c8d;">Total Floors:</td>
-              <td style="padding: 6px 0; font-weight: 600; color: #111;">${formData.numFloors === 'G' ? 'Ground Floor Only' : formData.numFloors}</td>
+              <td style="padding: 6px 0; color: #7f8c8d;">Structure Matrix:</td>
+              <td style="padding: 6px 0; font-weight: 600; color: #111;">${formData.numFloors ? (formData.numFloors === 'G' ? 'Ground Only (G)' : formData.numFloors) : '—'}</td>
               <td style="padding: 6px 0; color: #7f8c8d;">Site Location:</td>
-              <td style="padding: 6px 0; font-weight: 600; color: #111;">${formData.location}</td>
+              <td style="padding: 6px 0; font-weight: 600; color: #111;">${formData.location || '—'}</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; color: #7f8c8d;">Selected Package:</td>
@@ -356,18 +372,12 @@ export default function BudgetPlanner() {
 
     const options = {
       margin: [12, 12, 12, 12],
-      filename: `Budget_Estimate_${formData.location.split(' ')[0]}.pdf`,
+      filename: `SDPL_Estimate_${formData.location ? formData.location.split(' ')[0] : 'Plan'}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        letterRendering: true,
-        scrollY: 0
-      },
+      html2pdf: { scale: 2, useCORS: true, letterRendering: true, scrollY: 0 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    // Ensure all custom fonts render correctly before outputting binary blob
     document.fonts.ready.then(() => {
       html2pdf().from(element).set(options).output('bloburl').then((blobUrl) => {
         window.open(blobUrl, '_blank');
@@ -380,6 +390,18 @@ export default function BudgetPlanner() {
   };
 
   const displayedMaterials = getFilteredMaterials();
+
+  const getFloorDropdownLabel = (floorValue) => {
+    if (!floorValue) return 'Select number of floors';
+    if (floorValue === 'G') return 'Ground Floor Only (G)';
+    if (floorValue.startsWith('S+')) return `Stilt + ${floorValue.replace('S+', '')} Floors`;
+    if (floorValue.startsWith('B+S+G+')) return `Basement + Stilt + G + ${floorValue.replace('B+S+G+', '')} Floors`;
+    return `${floorValue} Floors`;
+  };
+
+  const handleContactRedirect = () => {
+    window.location.href = '/contact-us';
+  };
 
   return (
     <div className="planner-wrapper" ref={plannerRef}>
@@ -403,32 +425,65 @@ export default function BudgetPlanner() {
             <h2 className="section-step-title"><span>📋</span> 1. Project Details</h2>
             <div className="project-details-row full-clean-dropdowns">
 
+              {/* Construction Area Field with numeric placeholder */}
               <div className="input-box-wrapper">
                 <label>Construction Area</label>
                 <div className="input-with-unit">
-                  <input type="number" value={formData.area} onChange={handleInputChange} />
+                  <input
+                    type="number"
+                    value={formData.area}
+                    onChange={handleInputChange}
+                    placeholder="e.g. 1500"
+                  />
                   <span className="unit-tag">sq.ft</span>
                 </div>
               </div>
 
+              {/* Location Selector Input Field with placeholder */}
               <div className="input-box-wrapper" ref={locationDropdownRef}>
                 <label>Location (Odisha District)</label>
-                <div className="searchable-dropdown-container">
+                <div className="searchable-dropdown-container" style={{ position: 'relative' }}>
                   <input
                     type="text"
-                    placeholder={formData.location || "Search District..."}
+                    placeholder={formData.location || "Type district name (e.g. Khordha)"}
                     value={searchQuery}
                     onChange={(e) => { setSearchQuery(e.target.value); setIsLocationOpen(true); }}
                     onFocus={() => setIsLocationOpen(true)}
                     className="custom-select search-input"
+                    style={{ paddingRight: '35px' }}
                   />
+                  <svg
+                    className="search-input-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', width: '16px', height: '16px', color: '#a0aec0', pointerEvents: 'none' }}
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+
                   {isLocationOpen && (
                     <div className="dropdown-options-list standard-forced-down">
-                      {filteredDistricts.map(d => (
-                        <div key={d} className="dropdown-item-row" onClick={() => { handleSelect('location', d); setSearchQuery(''); setIsLocationOpen(false); }}>
-                          {d}
+                      {filteredDistricts.length > 0 ? (
+                        filteredDistricts.map(d => (
+                          <div key={d} className="dropdown-item-row" onClick={() => { handleSelect('location', d); setSearchQuery(''); setIsLocationOpen(false); }}>
+                            {d}
+                          </div>
+                        ))
+                      ) : (
+                        <div className="dropdown-no-results-row">
+                          <div className="no-location-found">
+                            <div className="no-location-icon">📍</div>
+                            <h4>No Location Found</h4>
+                            <p>We couldn't find <strong>"{searchQuery}"</strong>.</p>
+                            <small>Please select a district from Odisha.</small>
+                          </div>
                         </div>
-                      ))}
+                      )}
                     </div>
                   )}
                 </div>
@@ -445,17 +500,22 @@ export default function BudgetPlanner() {
                 </div>
               </div>
 
+              {/* No. of Floors Dropdown with empty initial placeholder state text support */}
               <div className="input-box-wrapper" ref={floorDropdownRef}>
                 <label>No. of Floors</label>
                 <div className="searchable-dropdown-container">
-                  <div className="custom-select search-input display-trigger-dropdown" onClick={() => setIsFloorOpen(!isFloorOpen)}>
-                    {formData.numFloors === 'G' ? 'Ground Floor Only (G)' : `${formData.numFloors} Floors`}
+                  <div
+                    className="custom-select search-input display-trigger-dropdown"
+                    onClick={() => setIsFloorOpen(!isFloorOpen)}
+                    style={{ color: formData.numFloors ? 'inherit' : '#a0aec0' }}
+                  >
+                    {getFloorDropdownLabel(formData.numFloors)}
                   </div>
                   {isFloorOpen && (
                     <div className="dropdown-options-list standard-forced-down">
                       {FLOOR_OPTIONS.map(f => (
                         <div key={f} className="dropdown-item-row" onClick={() => { handleSelect('numFloors', f); setIsFloorOpen(false); }}>
-                          {f === 'G' ? 'Ground Floor Only (G)' : `${f} Floors`}
+                          {getFloorDropdownLabel(f)}
                         </div>
                       ))}
                     </div>
@@ -491,7 +551,6 @@ export default function BudgetPlanner() {
           {/* Step 3: Building Quality */}
           <section className="form-card-section">
             <h2 className="section-step-title"><span>🛡️</span> 3. Building Quality</h2>
-
             <div className="quality-premium-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '25px' }}>
               {Object.keys(QUALITY_TIERS).map((key) => {
                 const tier = QUALITY_TIERS[key];
@@ -580,11 +639,11 @@ export default function BudgetPlanner() {
           <div className="premium-sticky-sidebar">
             <div className="sidebar-header-branding">Your Estimate Summary <span>📋</span></div>
             <div className="sidebar-metrics-list">
-              <div className="metric-item"><span>📐 Area</span><strong>{formData.area || 0} sq.ft</strong></div>
-              <div className="metric-item"><span>🪜 Floors</span><strong>{formData.numFloors}</strong></div>
+              <div className="metric-item"><span>📐 Area</span><strong>{formData.area ? `${formData.area} sq.ft` : '—'}</strong></div>
+              <div className="metric-item"><span>🪜 Structure</span><strong>{formData.numFloors || '—'}</strong></div>
               <div className="metric-item"><span>🏢 Type</span><strong>{formData.buildingType}</strong></div>
-              <div className="metric-item"><span>📍 Location</span><strong>{formData.location}</strong></div>
-              <div className="metric-item"><span>📦 Selected Package</span><strong className="capitalize-text">{currentPackage.name}</strong></div>
+              <div className="metric-item"><span>📍 Location</span><strong>{formData.location || '—'}</strong></div>
+              <div className="metric-item"><span>Box Selected Package</span><strong className="capitalize-text">{currentPackage.name}</strong></div>
               <div className="metric-item"><span>✨ Finish Tier</span><strong className="capitalize-text">{activeQualityData.name}</strong></div>
             </div>
 
@@ -595,11 +654,10 @@ export default function BudgetPlanner() {
               <div className="breakdown-row"><span>Other Charges (Tax/Approval)</span><span>{formatCurrency(summary.otherCharges)}</span></div>
             </div>
 
-            {/* SCREEN COMPONENT SAFETY BLOCK: Added layout safety safeguards */}
             <div className="sidebar-total-block-fixed">
               <div className="total-label">Total Estimated Cost</div>
               <div className="total-val-fixed">{formatCurrency(summary.totalCost)}</div>
-              <div className="total-subtext">(Inclusive of custom GST & architectural overheads)</div>
+              <div className="total-subtext">(Inclusive of custom GST &amp; architectural overheads)</div>
             </div>
 
             <button
@@ -618,22 +676,23 @@ export default function BudgetPlanner() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '8px',
-                boxShadow: '0 4px 12px rgba(178, 34, 34, 0.2)',
-                transition: 'all 0.2s ease'
+                marginBottom: '10px'
               }}
             >
-              <span>{isGeneratingPdf ? 'Opening Preview...' : '🖨️ Preview & Print Estimate →'}</span>
+              {isGeneratingPdf ? 'Generating PDF...' : 'Download Estimate PDF'}
+            </button>
+
+            <button
+              type="button"
+              className="sidebar-secondary-contact-btn"
+              onClick={handleContactRedirect}
+            >
+              <span>📞</span> Need Help? Contact Our Engineer
             </button>
           </div>
         </div>
+
       </div>
     </div>
   );
 }
-
-
-
-
-
-
