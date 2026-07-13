@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import html2pdf from 'html2pdf.js';
 import { CALCULATION_RATES, ADD_ON_PRICES } from '../data/rates';
 import './BudgetPlanner.css';
+
+
 
 // Import local assets securely
 import coreImg from '../assets/core.jpg';
@@ -108,10 +111,21 @@ const QUALITY_TIERS = {
 };
 
 export default function BudgetPlanner() {
-  const plannerRef = useRef(null);
+   const navigate = useNavigate();
+   const plannerRef = useRef(null);
   const locationDropdownRef = useRef(null);
   const floorDropdownRef = useRef(null);
 
+  useEffect(() => {
+    // Skip login check while running locally with npm run dev
+    if (import.meta.env.DEV) return;
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [navigate]);
   // States initialized empty to let placeholders show up cleanly
   const [formData, setFormData] = useState({
     area: '',

@@ -3,10 +3,9 @@ import { CheckCircle2 } from "lucide-react";
 export default function ServiceSection({ service }) {
   return (
     <section
-      className={`service-row ${
-        service.reverse ? "reverse" : ""
-      }`}
-    >
+  id={service.id}
+  className={`service-row ${service.reverse ? "reverse" : ""}`}
+>
       <div className="service-image">
 
         <img

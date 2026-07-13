@@ -79,24 +79,54 @@ export default function Footer() {
             <li><Link to="/about"> <FaChevronRight className="link-arrow" /> About Us</Link></li>
             <li><Link to="/services"> <FaChevronRight className="link-arrow" /> Our Services</Link></li>
             <li><Link to="/projects"> <FaChevronRight className="link-arrow" /> Projects</Link></li>
-            <li><Link to="/budget-planner"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
+            <li><Link to="/login"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
             <li><Link to="/contact-us"> <FaChevronRight className="link-arrow" /> Contact Us</Link></li>
           </ul>
         </div>
 
         {/* Column 3: Our Services */}
         <div className="footer-links-col">
-          <h3>OUR SERVICES</h3>
-          <div className="red-underline"></div>
-          <ul>
-            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Building Approvals</Link></li>
-            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Structural Design</Link></li>
-            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Layout Ideas</Link></li>
-            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Plan Approval</Link></li>
-            <li><Link to="#"> <FaChevronRight className="link-arrow" /> Elevation <br />3D Model & Videos</Link></li>
-            {/* <li><Link to="#"> <FaChevronRight className="link-arrow" /> Project Management</Link></li> */}
-          </ul>
-        </div>
+  <h3>OUR SERVICES</h3>
+  <div className="red-underline"></div>
+
+  <ul>
+    <li>
+      <Link to="/services#building-approvals">
+        <FaChevronRight className="link-arrow" />
+        Building Approvals
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/services#structural-design">
+        <FaChevronRight className="link-arrow" />
+        Structural Design
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/services#layout-ideas">
+        <FaChevronRight className="link-arrow" />
+        Layout Ideas
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/services#plan-approval">
+        <FaChevronRight className="link-arrow" />
+        Plan Approval
+      </Link>
+    </li>
+
+    <li>
+      <Link to="/services#elevation-3d">
+        <FaChevronRight className="link-arrow" />
+        Elevation <br />
+        3D Model & Videos
+      </Link>
+    </li>
+  </ul>
+</div>
 
         {/* Column 4: Contact Info */}
         <div className="footer-links-col contact-info-col">
