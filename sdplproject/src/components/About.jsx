@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import aboutImage from "../assets/about.png";
 import "../styles/about.css";
+import { Link } from "react-router-dom";
 
 export default function About() {
   // Counter States
@@ -113,9 +114,9 @@ if (y >= 7 && p >= 21 && c >= 100) {
 
         </div>
 
-        <button className="about-btn">
-          Know More
-        </button>
+        <Link to="/about" className="about-btn">
+  Know More
+</Link>
 
       </div>
 

@@ -1,0 +1,166 @@
+/* ==========================================================================
+   ABOUT US HERO BANNER - RESPONSIVE STYLES
+   ========================================================================== */
+
+.about-banner {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Perfect baseline height for standard desktops/laptops */
+    overflow: hidden;
+    margin-top: 90px; /* Smooth gap accommodating your absolute fixed Header */
+}
+
+.about-banner-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.about-banner-overlay {
+    position: absolute;
+    inset: 0;
+    /* Left-to-right dark gradient ensuring high text readability over complex hero graphics */
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+    z-index: 2;
+}
+
+.about-banner-content {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    z-index: 3;
+    max-width: 650px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.about-banner-tag {
+    color: #D62828;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.about-banner-content h1 {
+    font-size: 64px;
+    line-height: 1.08;
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.about-banner-content p:last-child {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #f2f2f2;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (DEVICES RESPONSIVENESS MATRIX)
+   ========================================================================== */
+
+/* 1. Laptops & Smaller Desktop Layout Screens */
+@media (max-width: 1200px) {
+    .about-banner {
+        height: 520px; /* Slightly compact depth for smaller laptops */
+    }
+    .about-banner-content {
+        left: 6%;
+        max-width: 580px;
+    }
+    .about-banner-content h1 {
+        font-size: 50px;
+    }
+    .about-banner-content p:last-child {
+        font-size: 18px;
+    }
+}
+
+/* 2. iPads & Medium Tablets (Landscape & Portrait Bounds) */
+@media (max-width: 992px) {
+    .about-banner {
+        height: 460px;
+        margin-top: 80px; /* Adapts to slightly thinner mobile headers */
+    }
+    
+    /* Rotate gradient to a vertical angle to support stacked center text elements */
+    .about-banner-overlay {
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.6) 0%,
+            rgba(0, 0, 0, 0.75) 100%
+        );
+    }
+
+    .about-banner-content {
+        left: 5%;
+        right: 5%;
+        max-width: 100%;
+        text-align: center; /* Center balances visual space beautifully on tablets */
+    }
+    
+    .about-banner-content h1 {
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+}
+
+/* 3. iPad Mini & Small Mobile Screen Architectures */
+@media (max-width: 576px) {
+    .about-banner {
+        height: auto;
+        min-height: 400px; /* Safe bounds to prevent layout squash */
+        padding: 80px 20px; /* Content naturally pushes the container open dynamically */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .about-banner-content {
+        position: relative; /* Release structural absolute offsets for auto-wrapping layout */
+        top: 0;
+        left: 0;
+        transform: none;
+        padding: 0;
+    }
+
+    .about-banner-tag {
+        font-size: 13px;
+        letter-spacing: 3px;
+        margin-bottom: 12px;
+    }
+
+    .about-banner-content h1 {
+        font-size: 32px; /* Scaled down perfectly for mobile viewport comfort zone */
+        line-height: 1.2;
+        margin-bottom: 16px;
+    }
+
+    .about-banner-content p:last-child {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
+.workflow-card {
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+.workflow-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(214, 40, 40, 0.12);
+}

@@ -1,0 +1,214 @@
+/* ==========================================================================
+   GLOBAL LAYOUT OVERRIDES (CRITICAL FIX FOR THE WHITE BAR)
+   ========================================================================== */
+html, 
+body, 
+#root {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100% !important; /* Changed from height to min-height to allow scrolling if content overflows */
+    width: 100% !important;
+    background-color: #f7f7f7 !important; 
+}
+
+/* ==========================================================================
+   PAGE CONTAINER STYLES
+   ========================================================================== */
+.verify-page {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f7f7f7; 
+    margin: 0;
+    padding: 24px; /* Slightly increased for better safety padding on mobile */
+    box-sizing: border-box;
+}
+
+.verify-card {
+    width: 100%;
+    max-width: 420px; /* Enhanced desktop footprint, scales down beautifully */
+    background: #fff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.lock-icon {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    border-radius: 50%;
+    background: #D62828;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.verify-card h2 {
+    font-size: 34px;
+    color: #222;
+    margin-top: 0; 
+    margin-bottom: 12px;
+}
+
+.verify-card p {
+    color: #666;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.verify-card h4 {
+    margin: 15px 0 35px;
+    color: #D62828;
+    font-size: 16px;
+}
+
+/* ==========================================================================
+   OTP / INPUT FIELD STYLES
+   ========================================================================== */
+.otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.otp-container input {
+    width: 52px;
+    height: 58px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.otp-container input:focus {
+    border-color: #D62828;
+    box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.15); /* Modern focus accent */
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.verify-btn {
+    width: 100%;
+    height: 55px;
+    background: #D62828;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.verify-btn:hover {
+    background: #b71c1c;
+}
+
+.action-buttons-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 18px;
+}
+
+.resend-btn,
+.change-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #D62828;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    padding: 6px 12px; /* Improves touch target size on mobile */
+}
+
+.resend-btn:hover,
+.change-btn:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Tablets, iPad, iPad Mini, and Small Laptops (Up to 900px) */
+@media (max-width: 900px) {
+    .verify-card {
+        padding: 35px 30px; /* Snugs content slightly to maximize viewport space */
+    }
+}
+
+/* Small & Medium Mobile Devices (Up to 480px) */
+@media (max-width: 480px) {
+    .verify-page {
+        padding: 16px; /* Extra space protection on tiny screens */
+    }
+
+    .verify-card {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .verify-card h2 {
+        font-size: 28px; /* Tapered down so text doesn't wrap aggressively */
+    }
+
+    .verify-card h4 {
+        margin-bottom: 25px;
+    }
+
+    /* Scaling OTP items slightly for standard mobile viewports */
+    .otp-container {
+        gap: 8px; 
+        margin-bottom: 25px;
+    }
+
+    .otp-container input {
+        width: 46px; 
+        height: 52px;
+        font-size: 20px;
+        border-radius: 10px;
+    }
+}
+
+/* Ultra-Small Mobile Devices (Up to 360px - e.g., Older iPhone SE, Galaxy Fold) */
+@media (max-width: 360px) {
+    .verify-card {
+        padding: 24px 15px;
+    }
+
+    .verify-card h2 {
+        font-size: 24px;
+    }
+
+    /* Minimum functional size for 4-6 digit OTP grids to avoid clipping */
+    .otp-container {
+        gap: 6px;
+    }
+
+    .otp-container input {
+        width: 40px;
+        height: 48px;
+        font-size: 18px;
+    }
+}

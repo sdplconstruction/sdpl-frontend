@@ -1,176 +1,275 @@
-/* ===========================
-   HEADER
-=========================== */
+/* ==========================================================================
+   HEADER FRAMEWORK
+   ========================================================================== */
 
 .header {
   width: 100%;
   background: #fff;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 99999 !important; /* Elevated to float clearly above all slider assets */
   box-shadow: 0 2px 18px rgba(0,0,0,.08);
-
-  overflow: visible;   /* Add this */
+  overflow: visible;
 }
 
 .header-container {
-    width: 90%;
-    max-width: 1400px;
-    height: 90px;
-    margin: auto;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    overflow: visible;   /* Add this */
+  width: 90%;
+  max-width: 1400px;
+  height: 90px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: visible;
 }
 
-/* ===========================
+/* ==========================================================================
    LOGO
-=========================== */
+   ========================================================================== */
 
-.logo img{
-    height:60px;
-    object-fit:contain;
+.logo img {
+  height: 60px;
+  object-fit: contain;
+  transition: height 0.3s ease;
 }
 
-/* ===========================
+/* ==========================================================================
    NAVIGATION
-=========================== */
+   ========================================================================== */
 
-.nav{
-
-    display:flex;
-    align-items:center;
-    gap:45px;
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 45px;
 }
 
 .nav a,
-.dropbtn{
-
-    font-size:16px;
-    font-weight:500;
-    color:#222;
-
-    text-decoration:none;
-    background:none;
-    border:none;
-    cursor:pointer;
-
-    transition:.3s;
+.dropbtn {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: .3s;
 }
 
 .nav a:hover,
-.dropbtn:hover{
-
-    color:#D62828;
+.dropbtn:hover {
+  color: #D62828;
 }
 
-/* Active page */
-
-.nav a.active{
-
-    color:#D62828;
-    font-weight:600;
+/* Active page highlighting link */
+.nav a.active {
+  color: #D62828;
+  font-weight: 600;
 }
 
 /* ===========================
-   DROPDOWN
+   Active Projects Menu
 =========================== */
 
-.dropdown{
-    position: relative;
+.dropdown.active .dropbtn {
+  color: #D62828;
+  font-weight: 600;
 }
 
-.dropbtn{
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.dropdown.active .arrow {
+  color: #D62828;
 }
 
-/* arrow */
-.arrow{
-    transition: .3s;
+
+/* ==========================================================================
+   DROPDOWN MENU MECHANICS (STABLE HOVER SYSTEM)
+   ========================================================================== */
+
+.dropdown {
+  position: relative;
+  /* Invisible padding bridge structure connects navigation link elements directly to options */
+  padding-bottom: 20px;
+  margin-bottom: -20px;
 }
 
-.arrow.rotate{
-    transform: rotate(180deg);
+.dropbtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* dropdown card */
+/* Dropdown indicator animation tracking */
+.arrow {
+  transition: transform .3s ease-in-out;
+}
+
+/* When parent container is focused, trigger micro rotation tracking mechanics */
+/* .dropdown:hover .arrow {
+  transform: rotate(180deg);
+  color: #D62828;
+} */
+.dropdown:hover .arrow,
+.dropdown.active .arrow {
+  transform: rotate(180deg);
+  color: #D62828;
+}
+
+
+/* Dropdown child list card box overlay definitions */
 .dropdown-menu {
-    position: absolute;
-    top: calc(100% + 15px);
-    left: 50%;
-    
-    /* Start slightly higher and hidden */
-    transform: translateX(-50%) translateY(-10px); 
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none; /* Prevents clicking links when hidden */
+  position: absolute;
+  top: 100%; /* Sits flush with your tracking padding block to stop focus drops */
+  left: 50%;
 
-    width: 260px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.18);
-    z-index: 10000;
-    
-    transition: all .3s ease-in-out; /* Smooth fade & slide slide down */
+  /* Hidden state baseline values */
+  transform: translateX(-50%) translateY(-15px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  width: 260px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.18);
+  z-index: 100000 !important;
+
+  transition: opacity .3s ease-in-out, transform .3s cubic-bezier(0.16, 1, 0.3, 1), visibility .3s;
 }
 
-/* Active State */
-.dropdown-menu.show{
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto; /* Re-enable clicks */
-    transform: translateX(-50%) translateY(0);
+/* Stable Pure CSS State Execution Engine */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
 
-/* links */
-/* links inside dropdown */
+/* Links inside dropdown overlay menus */
 .dropdown-menu a {
-    display: block;
-    padding: 16px 24px;
-    color: #333;
-    font-size: 15px;
-    font-weight: 500;
-    transition: .3s;
+  display: block;
+  padding: 16px 24px;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  transition: .3s;
 }
 
-/* Change ONLY the text color on hover */
+/* Interactive link hovering effects definitions */
 .dropdown-menu a:hover {
-    background: none;       /* Removes the full red background block */
-    color: #D62828;         /* Changes text to your primary red */
-    padding-left: 28px;     /* Optional: subtly shifts text to the right on hover for a nice interactive feel */
+  background: none;
+  color: #D62828;
+  padding-left: 28px;
 }
 
-/* ===========================
-   BUTTON
-=========================== */
 
-.enquire-btn{
 
-    padding:13px 28px;
+/* ==========================================================================
+   ACTION CTA CALLS
+   ========================================================================== */
 
-    background:#D62828;
-
-    color:#fff;
-
-    border:none;
-
-    border-radius:8px;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
+.enquire-btn {
+  padding: 13px 28px;
+  background: #D62828;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+  white-space: nowrap;
 }
 
-.enquire-btn:hover{
+.enquire-btn:hover {
+  background: #B71C1C;
+}
 
-    background:#B71C1C;
+/* ==========================================================================
+   RESPONSIVE LAYOUT FRAMEWORK
+   ========================================================================== */
+
+/* Laptop & Mid-size display bounds formatting rules */
+@media (max-width: 1200px) {
+  .nav {
+    gap: 24px; /* Compress content row padding dimensions */
+  }
+}
+
+/* Mobile responsive breakpoints mapping rules */
+@media (max-width: 992px) {
+  .header-container {
+    height: 75px; /* Shorter structural canvas height footprint for phones */
+  }
+
+  .logo img {
+    height: 48px; /* Scales down graphic proportions safely */
+  }
+
+  /* Hides horizontal list stream block layouts on smaller widths.
+     Prepares structural styling vectors for toggle interaction additions.
+  */
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 24px 0;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    gap: 16px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  /* Restructure dropdown parameters cleanly into block flows for responsive sizing modes */
+  .dropdown {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropbtn {
+    margin: 0 auto;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    box-shadow: none;
+    background: #f8fafc;
+    border-radius: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    transform: none;
+    height: auto;
+    padding: 8px 0;
+  }
+
+  .dropdown-menu a {
+    padding: 12px 24px;
+    text-align: center;
+  }
+
+  .dropdown-menu a:hover {
+    padding-left: 24px; /* Disables slide padding behaviors on lower view widths */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    width: 92%; /* Offers wider container spacing cushions on highly narrow phones */
+  }
+
+  .enquire-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
 }

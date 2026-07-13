@@ -1,0 +1,367 @@
+/* =========================
+   SERVICES PAGE
+========================= */
+
+.services-wrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* =========================
+   ANIMATIONS & KEYFRAMES
+========================= */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================
+   PREMIUM SERVICES HERO
+========================= */
+
+.services-hero {
+    min-height: 380px; 
+    padding-top: 140px; 
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.services-hero .overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.4)
+    );
+}
+
+.services-hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 650px;
+    padding-left: 40px; 
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.services-hero-content .hero-tag {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #d72638; 
+    margin-bottom: 12px;
+}
+
+.services-hero h1 {
+    font-size: 54px; 
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.services-hero h1 .red-dot {
+    color: #d72638;
+}
+
+.services-hero p {
+    font-size: 18px; 
+    line-height: 1.6;
+    color: #eeeeee;
+    max-width: 540px;
+}
+
+/* =========================
+   SERVICE ROW
+========================= */
+
+.service-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+    padding: 80px 0;
+    border-bottom: 1px solid #efefef;
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Modern semantic approach for alternating row orders */
+.reverse {
+    direction: rtl;
+}
+
+.reverse > * {
+    direction: ltr;
+}
+
+/* =========================
+   IMAGE HOVER ANIMATION
+========================= */
+
+.service-image {
+    position: relative;
+    width: 100%;
+}
+
+.service-image::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background: #d72638;
+    opacity: .06;
+    right: -20px;
+    bottom: -20px;
+    border-radius: 20px;
+    transition: transform 0.4s ease;
+}
+
+.service-image img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.08);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+}
+
+.service-image:hover img {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0,0,0,.15);
+}
+
+.service-image:hover::before {
+    transform: translate(5px, 5px);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.service-content {
+    position: relative;
+}
+
+.service-number {
+    position: absolute;
+    left: -15px;
+    top: -55px;
+    font-size: 95px; 
+    font-weight: 800;
+    color: #f1f1f1;
+    z-index: 1;
+    user-select: none;
+    transition: color 0.3s ease;
+    display: none; /* Kept hidden as per original code config */
+}
+
+.service-row:hover .service-number {
+    color: #e8e8e8;
+}
+
+.service-content h2 {
+    font-size: 34px; 
+    font-weight: 800;
+    color: #d72638; 
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.service-content h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #d72638;
+    margin-top: 12px;
+    transition: width 0.3s ease;
+}
+
+.service-row:hover .service-content h2::after {
+    width: 75px; 
+}
+
+.service-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555555;
+    max-width: 520px;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   SERVICE POINTS
+========================= */
+
+.service-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+.service-content li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 15px;
+    color: #333333;
+}
+
+.service-content li::before {
+    content: "✓";
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #d72638;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0; /* Prevents checkmark distortion on text wrap */
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+/* 1. Laptops & Small Desktops (1024px to 1200px) */
+@media (max-width: 1200px) {
+    .service-row {
+        gap: 40px; /* Reduces spacing to prevent squishing layout */
+        padding: 60px 0;
+    }
+    .services-hero h1 {
+        font-size: 46px;
+    }
+}
+
+/* 2. Tablets Landscape / Small Laptops (901px to 1023px) */
+@media (max-width: 1024px) {
+    .services-hero {
+        min-height: 340px;
+        padding-top: 120px;
+    }
+    .services-hero h1 {
+        font-size: 40px;
+    }
+    .service-content h2 {
+        font-size: 30px;
+    }
+}
+
+/* 3. Tablets Portrait & iPad Mini (481px to 900px) */
+@media (max-width: 900px) {
+    .service-row {
+        grid-template-columns: 1fr; /* Switch to single-column stacking */
+        gap: 40px;
+        padding: 50px 0;
+    }
+
+    .reverse {
+        direction: ltr; /* Resets row alternation layout for vertical scanning */
+    }
+
+    .services-hero {
+        min-height: 300px;
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+
+    .services-hero-content {
+        padding-left: 20px;
+    }
+
+    .services-hero h1 {
+        font-size: 36px;
+    }
+
+    .services-hero p {
+        font-size: 16px;
+    }
+
+    .service-image img {
+        max-width: 100%; /* Image dynamically scales inside container width */
+    }
+
+    .service-content h2 {
+        font-size: 28px;
+    }
+
+    .service-number {
+        left: 0;
+        top: -45px;
+        font-size: 75px;
+    }
+}
+
+/* 4. Small Mobile Phones (Up to 480px) */
+@media (max-width: 480px) {
+    .services-wrapper {
+        width: 88%; /* Slightly increases margin breathing room on tiny screens */
+    }
+
+    .services-hero {
+        min-height: 260px;
+        padding-top: 90px;
+        padding-bottom: 40px;
+    }
+
+    .services-hero-content {
+        padding-left: 0; /* Fully utilizes small widths */
+    }
+
+    .services-hero h1 {
+        font-size: 28px;
+        letter-spacing: -1px;
+    }
+
+    .services-hero p {
+        font-size: 15px;
+    }
+
+    .service-content h2 {
+        font-size: 24px;
+    }
+
+    .service-content p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .service-image::before {
+        right: -10px; /* Tapered offset depth elements so they don't clip off-screen */
+        bottom: -10px;
+    }
+}

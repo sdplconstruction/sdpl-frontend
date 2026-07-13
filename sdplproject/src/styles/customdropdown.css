@@ -1,6 +1,6 @@
-/* ===============================
-   CUSTOM DROPDOWN
-================================= */
+/* ==========================================================================
+   CUSTOM DROPDOWN - STYLES & RESPONSIVENESS Framework
+   ========================================================================== */
 .custom-dropdown {
     position: relative; 
     display: flex;
@@ -10,6 +10,8 @@
     border-right: 1px solid #ececec;
     min-height: 88px;
     overflow: visible !important; 
+    box-sizing: border-box;
+    background: #fff;
 }
 
 .custom-dropdown:focus-within,
@@ -38,21 +40,21 @@
 .dropdown-arrow {
     font-size: 13px;
     color: #777;
-    transition: 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .dropdown-arrow.rotate {
     transform: rotate(180deg);
 }
 
-/* CHANGED & RESET SELECTOR HERE */
+/* SEARCH DROPDOWN MENU PANEL LAYOUT */
 .search-dropdown-menu {
     position: absolute;
     top: 100%; 
     left: 0 !important;   
     width: 100% !important; 
-    transform: none !important; /* Clears header center offset rule */
-    opacity: 1 !important;       /* Forces visibility override */
+    transform: none !important; 
+    opacity: 1 !important;      
     visibility: visible !important;
     pointer-events: auto !important;
 
@@ -68,21 +70,20 @@
     
     z-index: 999999 !important; 
     overflow: hidden; 
+    box-sizing: border-box;
 
     animation: dropdownAnimation .28s cubic-bezier(.22,.61,.36,1);
 }
 
-/* CHANGED SELECTOR HERE */
 .search-dropdown-menu li {
     padding: 13px 18px;
     cursor: pointer;
-    transition: .25s;
+    transition: all .25s ease;
     font-size: 14px;
     color: #333;
     text-align: left;
 }
 
-/* CHANGED SELECTOR HERE */
 .search-dropdown-menu li:hover {
     background: #D62828;
     padding-left: 24px;
@@ -97,5 +98,62 @@
     to {
         opacity: 1;
         transform: translateY(0px);
+    }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (DEVICES RESPONSIVENESS MATRIX)
+   ========================================================================== */
+
+/* 1. Laptops & Small Desktops */
+@media (max-width: 1200px) {
+    .custom-dropdown {
+        padding: 0 16px;
+        min-height: 76px; /* Compact density sizing adjustment */
+        gap: 10px;
+    }
+    .dropdown-trigger {
+        font-size: 14px;
+    }
+}
+
+/* 2. iPads & Medium Tablets (Portrait & Landscape layouts) */
+@media (max-width: 992px) {
+    .custom-dropdown {
+        /* Remove the right border divider since items will now stack or wrap */
+        border-right: none;
+        border-bottom: 1px solid #ececec; 
+        min-height: 70px;
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    /* Rounded edges for structural clarity inside stacked panel containers */
+    .search-dropdown-menu {
+        border-radius: 12px;
+        top: calc(100% + 4px); /* Floating drop shadow gap layer */
+        box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+}
+
+/* 3. iPad Mini & Small Mobile Screen Frameworks */
+@media (max-width: 576px) {
+    .custom-dropdown {
+        min-height: 60px; /* Slimmer comfort profile for touch navigation targets */
+        padding: 0 15px;
+        gap: 8px;
+    }
+
+    .dropdown-trigger {
+        font-size: 14px;
+    }
+
+    .search-dropdown-menu li {
+        padding: 12px 16px; /* Optimized tap target spacing area */
+        font-size: 14px;
+    }
+
+    .search-dropdown-menu li:hover {
+        padding-left: 20px; /* Slight scale down to avoid text clipping on ultra-thin screens */
     }
 }

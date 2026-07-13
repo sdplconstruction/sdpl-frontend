@@ -1,15 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
-import { useState } from "react";
 import logo from "../assets/logo.png";
 import "../styles/header.css";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();   // <-- This line was missing
+
+  const isProjectsActive = location.pathname.startsWith("/projects");
 
   return (
     <header className="header">
-
       <div className="header-container">
 
         {/* Logo */}
@@ -21,55 +22,35 @@ export default function Header() {
 
         {/* Navigation */}
         <nav className="nav">
-
           <NavLink to="/">Home</NavLink>
+          <NavLink to="/services">Services</NavLink>
 
-          <NavLink to="/about">About Us</NavLink>
-
-          <div
-            className="dropdown"
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
-          >
-
+          <div className={`dropdown ${isProjectsActive ? "active" : ""}`}>
             <button className="dropbtn">
               Projects
-              <FaChevronDown
-                className={`arrow ${open ? "rotate" : ""}`}
-              />
+              <FaChevronDown className="arrow" />
             </button>
 
-            <div className={`dropdown-menu ${open ? "show" : ""}`}>
-
-              <Link to="/projects/ongoing">
-                Ongoing Projects
-              </Link>
-
-              <Link to="/projects/upcoming">
-                Upcoming Projects
-              </Link>
-
-              <Link to="/projects/completed">
-                Completed Projects
-              </Link>
-
+            <div className="dropdown-menu">
+              <Link to="/projects/ongoing">Ongoing Projects</Link>
+              <Link to="/projects/upcoming">Upcoming Projects</Link>
+              <Link to="/projects/completed">Completed Projects</Link>
             </div>
-
           </div>
 
-          <NavLink to="/gallery">Gallery</NavLink>
-
+          <NavLink to="/about">About Us</NavLink>
           <NavLink to="/contact-us">Contact Us</NavLink>
-
         </nav>
 
-        {/* Button */}
-        <button className="enquire-btn">
-          Enquire Now
+        {/* Enquire Button */}
+        <button
+          className="enquire-btn"
+          onClick={() => navigate("/login")}
+        >
+         Get Quote 
         </button>
 
       </div>
-
     </header>
   );
 }

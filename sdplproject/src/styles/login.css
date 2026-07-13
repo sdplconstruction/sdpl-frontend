@@ -1,0 +1,479 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, .login-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f8fafc;
+}
+
+.login-page {
+  display: flex;
+  height: 100vh; /* Takes full window height now that header is gone! */
+  width: 100vw;
+  overflow: hidden;
+  background-color: #f8fafc;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ==========================================================================
+   LEFT PANEL DESIGNS (HERO WRAPPER)
+   ========================================================================== */
+.login-left {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+}
+.login-left .bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: brightness(1.2) contrast(1.05);
+}
+
+.login-left .login-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Replaced heavy solid black with a smooth dark shadow gradient that starts light 
+     at the top and gently drops at the bottom just to support your white features text */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.45) 60%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.left-mini-logo {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  height: 45px;
+  z-index: 10;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.login-content {
+  position: relative;
+  z-index: 10;
+  color: #ffffff;
+  width: 100%;
+  max-width: 540px;
+  margin-bottom: 40px;
+}
+
+.welcome-tag {
+  color: #ff4d4d;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.accent-text {
+  color: #ff4d4d;
+}
+
+.hero-description {
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* Horizontal Features configuration layout */
+.login-features {
+  display: flex;
+  gap: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 30px;
+  margin-bottom: 40px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-icon-wrapper {
+  color: #ff4d4d;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.feature-item h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Helpline Badge style elements */
+.support-helpline {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  padding: 12px 20px;
+  border-radius: 12px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.phone-icon-circle {
+  background: #ff4d4d;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.help-label {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.help-number {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   RIGHT PANEL DESIGNS (INTERACTIVE FORM CONTAINER)
+   ========================================================================== */
+
+.back-to-home-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b; /* Clean Slate/Muted Blue Grey */
+  cursor: pointer;
+  margin-bottom: 20px; /* Gives perfect spacing before the Welcome text */
+  padding: 4px 0;
+  transition: color 0.2s ease-in-out;
+  width: fit-content;
+}
+
+.back-to-home-inline:hover {
+  color: #d62828; /* Changes to your brand red accent on hover */
+}
+.back-to-home-inline .back-arrow {
+  font-size: 11px;
+  transition: transform 0.2s ease;
+}
+.back-to-home-inline:hover .back-arrow {
+  transform: translateX(-3px); /* Micro-interaction nudges arrow left */
+}
+
+/* Ensures layout leaves clean space at the top for elements */
+.login-right {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+  background-color: #f8fafc; /* Beautiful premium contrast backdrop */
+}
+.login-card {
+  width: 100%;
+  max-width: 440px;       /* Sleeker max-width profile */
+  background: #ffffff;
+  padding: 35px 30px;     /* Snug inner cushioning */
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
+  border: 1px solid #edf2f7;
+  text-align: center;
+}
+/* Update your login-logo style to match this: */
+.login-logo {
+  height: 45px;
+  object-fit: contain;
+  display: block;      /* Crucial for centering block elements */
+  margin: 0 auto 30px; /* Centers horizontally and adds bottom spacing */
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.card-subtitle {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Dynamic Tab Elements Styling */
+.tab-container {
+  display: flex;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: #d62828;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Combined Input Wrapper Styles */
+.input-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 4px 14px;
+  background: #ffffff;
+  height: 56px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+.input-box:focus-within {
+  border-color: #d62828;
+  box-shadow: 0 0 0 4px rgba(214, 40, 40, 0.1);
+}
+
+.country-code-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 12px;
+  border-right: 1px solid #e2e8f0;
+  margin-right: 14px;
+  color: #1e293b;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.flag-img {
+  width: 20px;
+  height: auto;
+  border-radius: 2px;
+}
+
+.dropdown-arrow {
+  font-size: 9px;
+  color: #94a3b8;
+  margin-left: 2px;
+}
+
+.form-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1e293b;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.plain-input {
+  padding: 4px 16px;
+}
+
+/* Action OTP Button Layout Styling */
+.otp-btn {
+  width: 100%;
+  height: 54px;
+  background: #d62828;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.otp-btn:hover {
+  background: #b31d1d;
+}
+
+/* Horizontal line separator rule style */
+.divider-line {
+  position: relative;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.divider-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.divider-line span {
+  position: relative;
+  background: #ffffff;
+  padding: 0 15px;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* Social Google SSO Button elements */
+.google-sso-btn {
+  width: 100%;
+  height: 48px;
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: background 0.2s;
+  margin-bottom: 20px;
+}
+.google-sso-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.google-icon {
+  width: 18px;  /* Clean, crisp size formatting */
+  height: 18px;
+  display: inline-block;
+}
+
+/* Card Footer elements */
+.secure-data-info {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.terms-text {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.link-span {
+  color: #d62828;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.link-span:hover {
+  text-decoration: underline;
+}
+/* ==========================================================================
+   VALIDATION STYLES
+   ========================================================================== */
+.validation-error-msg {
+  color: #e63946;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: -10px;
+  margin-bottom: 14px;
+  text-align: left;
+  padding-left: 4px;
+  animation: fadeInError 0.2s ease-in-out;
+}
+
+.input-error-border {
+  border-color: #e63946 !important;
+  background-color: #fff5f5;
+}
+
+@keyframes fadeInError {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Adaptive CSS media rules configuration */
+@media (max-width: 1024px) {
+  .login-left {
+    display: none; /* Auto hides the large banner image row setup for cleaner tablet/mobile sizes */
+  }
+  .login-right {
+    width: 100%;
+    padding: 20px;
+  }
+  .back-to-home {
+    top: 30px;
+    right: 30px;
+  }
+}

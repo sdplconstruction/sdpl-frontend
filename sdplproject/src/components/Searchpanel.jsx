@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Imported the router hook
 
 import {
   FaMapMarkerAlt,
@@ -13,6 +14,8 @@ import CustomDropdown from "./CustomDropdown";
 import "../styles/searchpanel.css";
 
 export default function SearchPanel() {
+  const navigate = useNavigate(); // Initialized the navigator hook
+
   // Inputs
   const [location, setLocation] = useState("");
   const [builtUpArea, setBuiltUpArea] = useState("");
@@ -31,21 +34,23 @@ export default function SearchPanel() {
   ];
 
   const constructionOptions = [
-  "New Construction",
-  "Renovation",
-  "Under Construction",
-];
+    "New Construction",
+    "Renovation",
+    "Under Construction",
+  ];
+
   const propertyOptions = [
     "Apartment",
     "Simplex",
     "Duplex",
     "Triplex",
-  "Private Villa",
-  "Farm House",
-  
-];
+    "Private Villa",
+    "Farm House",
+  ];
+
   // Button Action
   const handleEstimate = () => {
+    // 1. Log the details for verification
     console.log({
       location,
       plotUnit,
@@ -53,6 +58,9 @@ export default function SearchPanel() {
       constructionType,
       propertyType,
     });
+
+    // 2. Redirect to the login page cleanly
+    navigate("/login");
   };
 
   return (
@@ -61,7 +69,6 @@ export default function SearchPanel() {
       {/* Location */}
       <div className="search-field">
         <FaMapMarkerAlt className="field-icon" />
-
         <input
           type="text"
           placeholder="Location"
@@ -70,19 +77,18 @@ export default function SearchPanel() {
         />
       </div>
 
-     {/* Plot Area */}
-<CustomDropdown
-  icon={<FaRulerCombined className="field-icon" />}
-  placeholder="Plot Area"
-  options={plotOptions}
-  value={plotUnit}
-  setValue={setPlotUnit}
-/>
+      {/* Plot Area */}
+      <CustomDropdown
+        icon={<FaRulerCombined className="field-icon" />}
+        placeholder="Plot Area"
+        options={plotOptions}
+        value={plotUnit}
+        setValue={setPlotUnit}
+      />
 
       {/* Built-up Area */}
       <div className="search-field">
         <FaBuilding className="field-icon" />
-
         <input
           type="text"
           placeholder="Built-up Area"
