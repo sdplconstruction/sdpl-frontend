@@ -34,7 +34,7 @@ export default function ServiceSection({ service }) {
 
           {service.points.map((item) => (
             <li key={item}>
-              
+
               {item}
             </li>
           ))}

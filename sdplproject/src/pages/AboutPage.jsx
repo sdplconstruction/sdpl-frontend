@@ -14,12 +14,13 @@ import {
 } from "react-icons/fa";
 
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function AboutPage() {
   const navigate = useNavigate();
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", color: "#222", background: "#fff", overflowX: "hidden" }}>
-      
+
       {/* GLOBAL ANIMATION STYLES */}
       <style>{`
         @keyframes fadeInUp {
@@ -228,8 +229,8 @@ export default function AboutPage() {
             flexWrap: "wrap",
           }}
         >
-          <div 
-            style={{ 
+          <div
+            style={{
               flexShrink: 0,
               width: "120px",
               height: "140px",
@@ -246,7 +247,7 @@ export default function AboutPage() {
             {/* <img src={founderImg} alt="Founder" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
             <span style={{ fontSize: "40px", opacity: 0.4 }}>👤</span>
           </div>
-          
+
           <div style={{ flex: "1", minWidth: "250px" }}>
             <h3 style={{ fontSize: "22px", fontWeight: "800", color: "#111", marginBottom: "2px" }}>
               Founder's Vision
@@ -692,7 +693,9 @@ export default function AboutPage() {
   Contact Us Today
 </button>
       </section>
+      <Footer/>
     </div>
+
   );
 }
 {/* GLOBAL ANIMATION STYLES */}
@@ -758,7 +761,7 @@ export default function AboutPage() {
           white-space: nowrap;
           border-right: 3px solid transparent;
           margin: 0 auto;
-          animation: 
+          animation:
             typing 1.5s steps(10, end) both,
             blink-caret 0.75s step-end 3;
         }

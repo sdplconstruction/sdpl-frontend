@@ -1,0 +1,263 @@
+/* ==========================================================================
+   SDPL AUTOMATIC TESTIMONIALS CAROUSEL STYLES
+   ========================================================================== */
+
+.testimonials-section {
+  background-color: #fcfaf7;
+  padding: 100px 24px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.testimonials-header .section-subtitle {
+  color: #cc1b1b;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.testimonials-header .section-subtitle::before,
+.testimonials-header .section-subtitle::after {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 1px;
+  background: #cbd5e1;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.testimonials-header h2 {
+  font-size: 2.75rem;
+  color: #0f172a;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+}
+
+.testimonials-header h2 span {
+  color: #cc1b1b;
+}
+
+.testimonials-header .section-desc {
+  color: #64748b;
+  font-size: 1.1rem;
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* --- Carousel Window Viewport Architecture --- */
+.carousel-viewport-wrapper {
+  position: relative;
+  max-width: 760px; /* Limits standard display down to single premium focus card width */
+  margin: 0 auto 30px auto;
+  min-height: 340px; /* Keeps layout height rigid while translating arrays */
+}
+
+.testimonials-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Slide Positioning States --- */
+.testimonial-card-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 40px;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.95) translateX(50px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s ease,
+              visibility 0.6s ease;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+}
+
+/* State: The active centered visible element card */
+.testimonial-card-slide.slide-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1) translateX(0);
+  position: relative; /* Allows it to organically maintain track scaling container box */
+  z-index: 5;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+}
+
+/* State: Buffered incoming/outgoing elements positioned out of visual frame */
+.testimonial-card-slide.slide-prev {
+  transform: scale(0.95) translateX(-100%);
+}
+
+.testimonial-card-slide.slide-next {
+  transform: scale(0.95) translateX(100%);
+}
+
+/* --- Graphic Elements Inside Cards --- */
+.quote-icon-box {
+  color: #cc1b1b;
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+}
+
+.review-text {
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 24px 0;
+}
+
+.accent-line {
+  width: 45px;
+  height: 2px;
+  background: #f1f5f9;
+  margin-bottom: 24px;
+}
+
+.client-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.client-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.client-meta h4 {
+  font-size: 1.1rem;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+}
+
+.client-loc {
+  font-size: 0.88rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pin-icon {
+  color: #94a3b8;
+}
+
+/* --- Visual Controller Arrow Elements --- */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.carousel-arrow:hover {
+  background: #cc1b1b;
+  color: #ffffff;
+  border-color: #cc1b1b;
+}
+
+.arrow-left {
+  left: -70px;
+}
+
+.arrow-right {
+  right: -70px;
+}
+
+/* --- Indicator Tracking Rows --- */
+.slider-dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.slider-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.dot-active {
+  background: #cc1b1b;
+  transform: scale(1.2);
+  width: 24px; /* Converts active item into modern sleek pill shape */
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   📱 RESPONSE GADGET SYSTEM OVERRIDES
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .carousel-arrow {
+    display: none; /* Hide standard side arrows on tablets to clear swipe lanes */
+  }
+  .carousel-viewport-wrapper {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-section {
+    padding: 60px 16px;
+  }
+
+  .testimonials-header h2 {
+    font-size: 1.85rem;
+  }
+
+  .testimonial-card-slide {
+    padding: 24px;
+  }
+
+  .review-text {
+    font-size: 0.95rem;
+  }
+}

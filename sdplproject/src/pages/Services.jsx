@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import ServiceHero from "../components/services/ServiceHero";
 import ServiceSection from "../components/services/ServiceSection";
 import { services } from "../data/serviceData";
@@ -16,6 +17,7 @@ export default function Services() {
           />
         ))}
       </div>
+      <Footer/>
     </>
   );
 }

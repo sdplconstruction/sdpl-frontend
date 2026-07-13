@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import ProjectSection from "../components/ProjectSection";
+import Testimonials from '../components/Testimonials';
 import Footer from "../components/Footer";
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <>
-     
+
 
       <Hero />
       <About />
@@ -48,7 +49,7 @@ function App() {
           category="completed"
         />
       </div>
-
+      <Testimonials />
       <Footer />
     </>
   );
