@@ -135,20 +135,20 @@ export default function AboutPage() {
           </p>
           <h1
             style={{
-              fontSize: "56px",
-              fontWeight: "800",
-              lineHeight: "1.2",
-              marginBottom: "20px",
-              maxWidth: "700px",
+              fontSize: "clamp(34px, 7vw, 56px)",
+    fontWeight: "800",
+    lineHeight: "1.1",
+    marginBottom: "20px",
+    maxWidth: "700px",
             }}
           >
             Building Excellence, <br />One Project at a Time.
           </h1>
           <p
             style={{
-              fontSize: "18px",
-              lineHeight: "1.6",
-              maxWidth: "600px",
+              fontSize: "clamp(15px, 3vw, 18px)",
+lineHeight: "1.7",
+maxWidth: "600px",
               opacity: "0.9",
             }}
           >
@@ -164,7 +164,7 @@ export default function AboutPage() {
           maxWidth: "1200px",
           margin: "100px auto",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "60px",
           alignItems: "center",
         }}

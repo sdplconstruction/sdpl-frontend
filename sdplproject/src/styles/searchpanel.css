@@ -86,3 +86,110 @@
 .estimate-btn:hover {
     background: #b71c1c;
 }
+/* ================================
+   Laptop
+================================ */
+
+@media(max-width:1200px){
+
+.search-panel{
+
+grid-template-columns:repeat(3,1fr);
+
+bottom:70px;
+
+}
+
+.search-field{
+
+border-right:none;
+
+border-bottom:1px solid #eee;
+
+}
+
+.estimate-btn{
+
+border-radius:0 0 22px 22px;
+
+grid-column:1/-1;
+
+}
+
+}
+
+/* ================================
+   Tablet
+================================ */
+
+@media(max-width:768px){
+
+.search-panel{
+
+width:92%;
+
+grid-template-columns:1fr 1fr;
+
+bottom:50px;
+
+}
+
+.search-field{
+
+min-height:75px;
+
+}
+
+.estimate-btn{
+
+height:75px;
+
+grid-column:1/-1;
+
+}
+
+}
+
+/* ================================
+   Mobile
+================================ */
+
+@media(max-width:576px){
+
+.search-panel{
+
+position:absolute;
+
+width:90%;
+
+grid-template-columns:1fr;
+
+bottom:20px;
+
+border-radius:18px;
+
+}
+
+.search-field{
+
+min-height:65px;
+
+padding:0 18px;
+
+border-right:none;
+
+border-bottom:1px solid #eee;
+
+}
+
+.estimate-btn{
+
+height:65px;
+
+font-size:16px;
+
+border-radius:0 0 18px 18px;
+
+}
+
+}

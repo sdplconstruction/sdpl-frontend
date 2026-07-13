@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import '../styles/footer.css';
 import {
   FaFacebookF,
@@ -18,6 +18,23 @@ import { FaHelmetSafety } from 'react-icons/fa6';
 import footerLogo from '../assets/logo.png';
 
 export default function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Scroll to projects section if already on Home, otherwise redirect with the hash tag
+  const handleProjectsClick = (e) => {
+    e.preventDefault();
+
+    if (location.pathname === "/" || location.pathname === "/home") {
+      const element = document.getElementById("homepage-projects-section");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/#homepage-projects-section");
+    }
+  };
+
   return (
     <footer className="sdpl-footer">
 
@@ -78,7 +95,14 @@ export default function Footer() {
             <li><Link to="/"> <FaChevronRight className="link-arrow" /> Home</Link></li>
             <li><Link to="/about"> <FaChevronRight className="link-arrow" /> About Us</Link></li>
             <li><Link to="/services"> <FaChevronRight className="link-arrow" /> Our Services</Link></li>
-            <li><Link to="/projects"> <FaChevronRight className="link-arrow" /> Projects</Link></li>
+            
+            {/* UPDATED PROJECTS LINK WITH INTERACTION METHOD */}
+            <li>
+              <a href="#homepage-projects-section" onClick={handleProjectsClick}>
+                <FaChevronRight className="link-arrow" /> Projects
+              </a>
+            </li>
+            
             <li><Link to="/login"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
             <li><Link to="/contact-us"> <FaChevronRight className="link-arrow" /> Contact Us</Link></li>
           </ul>
@@ -86,47 +110,47 @@ export default function Footer() {
 
         {/* Column 3: Our Services */}
         <div className="footer-links-col">
-  <h3>OUR SERVICES</h3>
-  <div className="red-underline"></div>
+          <h3>OUR SERVICES</h3>
+          <div className="red-underline"></div>
 
-  <ul>
-    <li>
-      <Link to="/services#building-approvals">
-        <FaChevronRight className="link-arrow" />
-        Building Approvals
-      </Link>
-    </li>
+          <ul>
+            <li>
+              <Link to="/services#building-approvals">
+                <FaChevronRight className="link-arrow" />
+                Building Approvals
+              </Link>
+            </li>
 
-    <li>
-      <Link to="/services#structural-design">
-        <FaChevronRight className="link-arrow" />
-        Structural Design
-      </Link>
-    </li>
+            <li>
+              <Link to="/services#structural-design">
+                <FaChevronRight className="link-arrow" />
+                Structural Design
+              </Link>
+            </li>
 
-    <li>
-      <Link to="/services#layout-ideas">
-        <FaChevronRight className="link-arrow" />
-        Layout Ideas
-      </Link>
-    </li>
+            <li>
+              <Link to="/services#layout-ideas">
+                <FaChevronRight className="link-arrow" />
+                Layout Ideas
+              </Link>
+            </li>
 
-    <li>
-      <Link to="/services#plan-approval">
-        <FaChevronRight className="link-arrow" />
-        Plan Approval
-      </Link>
-    </li>
+            <li>
+              <Link to="/services#plan-approval">
+                <FaChevronRight className="link-arrow" />
+                Plan Approval
+              </Link>
+            </li>
 
-    <li>
-      <Link to="/services#elevation-3d">
-        <FaChevronRight className="link-arrow" />
-        Elevation <br />
-        3D Model & Videos
-      </Link>
-    </li>
-  </ul>
-</div>
+            <li>
+              <Link to="/services#elevation-3d">
+                <FaChevronRight className="link-arrow" />
+                Elevation <br />
+                3D Model & Videos
+              </Link>
+            </li>
+          </ul>
+        </div>
 
         {/* Column 4: Contact Info */}
         <div className="footer-links-col contact-info-col">
@@ -158,7 +182,6 @@ export default function Footer() {
       <div className="footer-bottom-bar">
         <p className="copyright-txt">© 2026 SDPL Construction. All Rights Reserved.</p>
         <div className="bottom-legal-links">
-          {/* FIXED LINK PATHS HERE */}
           <Link to="/privacy-policy">Privacy Policy</Link>
           <span className="pipe-divider">|</span>
           <Link to="/terms-and-conditions">Terms & Conditions</Link>
