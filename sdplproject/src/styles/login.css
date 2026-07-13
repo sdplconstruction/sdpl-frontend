@@ -431,12 +431,15 @@ body, .login-page {
 }
 
 .link-span {
-  color: #d62828;
+  color: #D62828;
   font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
   cursor: pointer;
 }
 
 .link-span:hover {
+  color: #b71c1c;
   text-decoration: underline;
 }
 /* ==========================================================================

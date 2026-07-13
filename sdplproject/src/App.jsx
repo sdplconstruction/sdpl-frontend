@@ -26,8 +26,9 @@ function App() {
   const location = useLocation();
 
   const hideHeader =
-    location.pathname.toLowerCase() === "/login" ||
-    location.pathname.toLowerCase() === "/verify-otp";
+  location.pathname.toLowerCase() === "/login" ||
+  location.pathname.toLowerCase() === "/verify-otp" ||
+  location.pathname.toLowerCase() === "/budget-planner";
 
   return (
     <>

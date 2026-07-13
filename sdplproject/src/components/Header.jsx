@@ -54,10 +54,7 @@ export default function Header() {
           </div>
 
           <NavLink to="/about">About Us</NavLink>
-
-          <NavLink to="/gallery">Gallery</NavLink>
-
-          <NavLink to="/contact-us">Contact Us</NavLink>
+         <NavLink to="/contact-us">Contact Us</NavLink>
         </nav>
 
         {/* Get Quote Button */}

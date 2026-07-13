@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPhoneAlt, FaEnvelope, FaChevronRight, FaArrowLeft, FaShieldAlt, FaAward, FaTruck } from "react-icons/fa";
 import building from "../assets/login-building.png";
 import logo from "../assets/logo.png";
@@ -166,9 +166,17 @@ export default function Login() {
 
           <div className="login-footer">
             <p className="secure-data-info">🛡 Your data is safe with us.</p>
-            <p className="terms-text">
-              By continuing, you agree to our <span className="link-span">Terms</span> & <span className="link-span">Privacy Policy</span>.
-            </p>
+           <p className="terms-text">
+  By continuing, you agree to our{" "}
+  <Link to="/terms-and-conditions" className="link-span">
+    Terms
+  </Link>{" "}
+  &{" "}
+  <Link to="/privacy-policy" className="link-span">
+    Privacy Policy
+  </Link>
+  .
+</p>
           </div>
         </div>
 

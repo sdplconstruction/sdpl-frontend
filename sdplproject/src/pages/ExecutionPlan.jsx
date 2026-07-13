@@ -115,7 +115,7 @@ export default function ExecutionPlan() {
 
   return (
     <>
-      <Header />
+      
 
       <main className="execution-plan-view">
         {/* Banner Section */}

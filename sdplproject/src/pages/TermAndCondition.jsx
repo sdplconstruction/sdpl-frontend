@@ -15,7 +15,7 @@ const TermAndCondition = () => {
 
   return (
     <>
-      <Header />
+      
 
       {/* 2. PASS THE IMAGE AS A DYNAMIC CSS VARIABLE */}
       <div

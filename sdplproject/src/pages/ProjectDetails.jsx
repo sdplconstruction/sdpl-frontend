@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 export default function ProjectDetails() {
   return (
     <>
-      <Header />
+      
 
       <div
         style={{

@@ -2,9 +2,11 @@
     position: relative;
     width: 100%;
     height: calc(100vh - 90px);
-    /* overflow-x: hidden;
-    overflow-y: visible; */
-    overflow: hidden;
+    
+    /* CHANGE THIS: Keeps the hero images contained horizontally, but lets the dropdown display vertically */
+    overflow-x: clip; 
+    overflow-y: visible; 
+    
     z-index: 10;
 }
 

@@ -11,7 +11,7 @@ export default function CompletedProjects() {
 
   return (
     <>
-      <Header />
+     
 
       <section className="projects-section">
         <div className="projects-header">

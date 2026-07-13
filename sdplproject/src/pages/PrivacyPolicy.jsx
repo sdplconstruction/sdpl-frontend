@@ -22,7 +22,7 @@ import privacyBgImg from '../assets/hero.jpeg';
 const PrivacyPolicy = () => {
   return (
     <>
-      <Header />
+      
 
       {/* --- ASYMMETRIC MODERN HERO BANNER --- */}
       <div className="sdpl-privacy-hero-container">
