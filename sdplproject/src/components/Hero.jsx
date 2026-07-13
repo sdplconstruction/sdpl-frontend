@@ -17,7 +17,7 @@ export default function Hero() {
     hero2,
     hero3,
     hero4,
-    
+
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -74,6 +74,7 @@ export default function Hero() {
       </div>
 
       <SearchPanel />
+
 
     </section>
   );

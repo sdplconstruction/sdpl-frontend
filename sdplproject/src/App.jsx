@@ -1,38 +1,59 @@
 import React from "react";
-import Header from "./components/Header";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import AboutPage from "./pages/AboutPage";
+import Header from "./components/Header";
+import ScrollToTop from "./components/ScrollToTop";
+
 import Home from "./pages/Home";
+import AboutPage from "./pages/AboutPage";
 import BudgetPlanner from "./pages/BudgetPlanner";
 import ContactUs from "./pages/ContactUs";
 import Services from "./pages/Services";
 import Login from "./pages/Login";
 import VerifyOTP from "./pages/VerifyOTP";
 
+import TermAndCondition from "./pages/TermAndCondition";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+
+import OngoingProjects from "./pages/OngoingProjects";
+import UpcomingProjects from "./pages/UpcomingProjects";
+import CompletedProjects from "./pages/CompletedProjects";
+import ProjectDetails from "./pages/ProjectDetails";
+
+import ExecutionPlan from "./pages/ExecutionPlan";
+
 function App() {
   const location = useLocation();
 
-  // Ensuring lowercase paths match your navigate commands exactly
   const hideHeader =
     location.pathname.toLowerCase() === "/login" ||
     location.pathname.toLowerCase() === "/verify-otp";
-     
 
   return (
     <>
-      {/* Renders the header only if we are NOT on login or verify-otp */}
       {!hideHeader && <Header />}
+
+      <ScrollToTop />
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/budget-planner" element={<BudgetPlanner />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/about" element={<AboutPage />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
+
+        <Route path="/terms-and-conditions" element={<TermAndCondition />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
+        <Route path="/execution-plan" element={<ExecutionPlan />} />
+
+        <Route path="/projects/ongoing" element={<OngoingProjects />} />
+        <Route path="/projects/upcoming" element={<UpcomingProjects />} />
+        <Route path="/projects/completed" element={<CompletedProjects />} />
+        <Route path="/projects/:slug" element={<ProjectDetails />} />
       </Routes>
     </>
   );

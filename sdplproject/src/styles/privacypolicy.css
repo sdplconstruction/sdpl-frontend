@@ -1,0 +1,389 @@
+/* ==========================================================================
+   SDPL BRANDED ARCHITECTURAL PRIVACY LAYOUT
+   ========================================================================== */
+
+/* 1. Branded Asymmetric Hero Framework */
+.sdpl-privacy-hero-container {
+  background: #ffffff;
+  width: 100%;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.privacy-hero-inner-split {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+}
+
+.privacy-hero-text-block {
+  padding: 60px 40px 60px 20px;
+}
+
+.privacy-priority-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #cc1b1b; /* Branded Primary Red */
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.priority-icon {
+  font-size: 1rem;
+}
+
+/* --- ANIMATION: Typewriter effect on the h1 --- */
+.privacy-hero-text-block h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.5px;
+
+  /* Typewriter config */
+  overflow: hidden;
+  border-right:none;
+  white-space: nowrap;
+  width: 14ch;
+  animation:
+    sdpl-typewriter 2.5s steps(14, end) forwards,
+    sdpl-cursor 0.75s step-end infinite;
+}
+
+.privacy-hero-text-block p {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.privacy-hero-image-block {
+  height: 100%;
+  min-height: 360px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Graphic Blend Overlay Fading to White background */
+.privacy-hero-image-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 150px;
+  background: linear-gradient(to right, #ffffff, transparent);
+}
+
+/* 2. Standard Breadcrumbs Strip Layout */
+.privacy-breadcrumb-strip {
+  background: #f8fafc;
+  border-bottom: 1px solid #edf2f7;
+  padding: 14px 20px;
+}
+
+.breadcrumb-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb-wrapper a {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.breadcrumb-wrapper a:hover {
+  color: #cc1b1b;
+}
+
+.active-crumb {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* 3. Central Content Document Canvas */
+.privacy-document-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Enhanced vertical card spacing */
+}
+
+.document-section-intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.document-section-intro h2 {
+  font-size: 1.8rem;
+  color: #0f172a;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+}
+
+.golden-accent-divider {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.golden-accent-divider span {
+  width: 50px;
+  height: 3px;
+  background: #cc1b1b; /* Accent Line adjusted to Brand Red */
+  position: relative;
+}
+
+.document-section-intro p {
+  font-size: 1.05rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* 4. Minimalist Row Component Cards */
+.privacy-row-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px; /* Smoothed corner layout profile */
+  padding: 24px 30px;
+  display: grid;
+  grid-template-columns: 300px 1fr 50px;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  top: 0;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.3s ease;
+}
+
+/* --- ANIMATION: High-Fidelity Floating Hover Card Effect --- */
+.privacy-row-card:hover {
+  transform: translateY(-5px); /* Lift card upwards dynamically */
+  border-color: rgba(204, 27, 27, 0.25); /* Structural accent color matching */
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08); /* Deepen dynamic dropshadow */
+}
+
+.row-card-left-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Safety Badge Circles styled to match clean technical frameworks */
+.row-card-icon-frame {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  transition: all 0.25s ease;
+}
+
+/* Hover highlights row frame to accent red color */
+.privacy-row-card:hover .row-card-icon-frame {
+  background: rgba(204, 27, 27, 0.08);
+  color: #cc1b1b;
+  border-color: rgba(204, 27, 27, 0.2);
+  transform: scale(1.05); /* Micro expansion highlight */
+}
+
+.row-card-left-meta h3 {
+  font-size: 1.05rem;
+  color: #0f172a;
+  font-weight: 700;
+  margin: 0;
+}
+
+.row-card-center-text p {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.row-card-right-num {
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-align: right;
+  transition: color 0.25s ease;
+}
+
+.privacy-row-card:hover .row-card-right-num {
+  color: #cc1b1b; /* Numeric step counter colors shift on focus hover */
+}
+
+/* 5. Modern Question/Contact CTA Block */
+.privacy-contact-cta-banner {
+  background: #0f172a; /* Dark Brand Slate Palette */
+  border-radius: 8px;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.cta-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cta-phone-icon-bubble {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #cc1b1b; /* Pops with Brand Red */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.cta-banner-text-block h3 {
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+}
+
+.cta-banner-text-block p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.cta-banner-button {
+  background: #cc1b1b;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.cta-banner-button:hover {
+  background: #b31414;
+}
+
+/* ==========================================================================
+   CROSS-SYSTEM RESPONSIVE BREAKPOINTS (ALL GADGET COMPATIBILITY)
+   ========================================================================== */
+
+/* --- TABLETS / MEDIUM SCREENS --- */
+@media (max-width: 1024px) {
+  .privacy-row-card {
+    grid-template-columns: 240px 1fr 40px; /* Shrinks the left metadata block space */
+    gap: 16px;
+    padding: 20px;
+  }
+  .privacy-hero-text-block h1 {
+    font-size: 2.4rem;
+  }
+}
+
+/* --- SMALL TABLETS / PORTRAIT MODE --- */
+@media (max-width: 900px) {
+  .privacy-row-card {
+    grid-template-columns: 1fr; /* Switch to stack structure natively */
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .row-card-right-num {
+    text-align: left;
+    order: -1; /* Pushes numeric ID above contents on small screens */
+    font-size: 1rem;
+  }
+
+  .privacy-hero-inner-split {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy-hero-image-block {
+    display: none; /* Safely kills structural images across mobile viewports */
+  }
+
+  .privacy-hero-text-block {
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Prevent text clip anomalies inside smaller screens */
+  .privacy-hero-text-block h1 {
+    white-space: normal;
+    width: auto;
+    border-right: none;
+    animation: none; /* Kill typewriter on phone viewports to avoid text overflows */
+  }
+
+  .privacy-contact-cta-banner {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .cta-banner-left {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* --- SMARTPHONES / MOBILE VIEWS --- */
+@media (max-width: 480px) {
+  .privacy-hero-text-block h1 {
+    font-size: 2rem;
+  }
+  .document-section-intro h2 {
+    font-size: 1.5rem;
+  }
+  .row-card-left-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .cta-banner-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   ANIMATION INTERACTIVE KEYFRAMES
+   ========================================================================== */
+@keyframes sdpl-typewriter {
+  from { width: 0; }
+  to { width: 11.5ch; }
+}
+
