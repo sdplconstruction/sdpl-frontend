@@ -6,7 +6,7 @@ import hero3 from "../assets/hero3.jpeg";
 import hero4 from "../assets/hero4.jpeg";
 
 
-import SearchPanel from "./SearchPanel";
+import SearchPanel from "../components/SearchPanel";
 
 import "../styles/hero.css";
 

@@ -12,13 +12,13 @@ import {
   FaSearch,
   FaKey,
 } from "react-icons/fa";
-import director1Img from "../assets/team/ManagingDirector1.jpeg";
-import director2Img from "../assets/team/ManagingDirector2.jpeg";
-import financedirectorImg from "../assets/team/FinanceDirector.jpeg";
-import procurementdirectorImg from "../assets/team/ProcurementDirector.jpeg";
-import salesheadImg from "../assets/team/SalesHead.jpeg";
-import projectarchitectImg from "../assets/team/ProjectArchitect.jpeg";
-import civilengineerImg from "../assets/team/CivilEngineer.jpeg";
+import director1Img from "../assets/Team/ManagingDirector1.jpeg";
+import director2Img from "../assets/Team/ManagingDirector2.jpeg";
+import financedirectorImg from "../assets/Team/FinanceDirector.jpeg";
+import procurementdirectorImg from "../assets/Team/ProcurementDirector.jpeg";
+import salesheadImg from "../assets/Team/SalesHead.jpeg";
+import projectarchitectImg from "../assets/Team/ProjectArchitect.jpeg";
+import civilengineerImg from "../assets/Team/CivilEngineer.jpeg";
 
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
