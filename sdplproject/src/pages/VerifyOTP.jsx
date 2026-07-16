@@ -1,4 +1,8 @@
+
 import { useState, useEffect, useRef } from "react";
+
+
+
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/verifyOtp.css";
 
@@ -10,7 +14,9 @@ export default function VerifyOTP() {
   const navigate = useNavigate();
   const location = useLocation();
 
+
   // Retrieve the variables forwarded from the login page
+
   const contactInfo = location.state?.contact || "+91 98XXXXXX45";
   const method = location.state?.method || "mobile";
   const initialOTP = location.state?.actualOTP || "";
@@ -19,9 +25,12 @@ export default function VerifyOTP() {
   // State variables
   const [currentOTP, setCurrentOTP] = useState(initialOTP);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [error, setError] = useState("");
+
+ 
   const [isVerifying, setIsVerifying] = useState(false);
   const [isResending, setIsResending] = useState(false);
+  // 1. Added error state to hold validation messages
+  const [error, setError] = useState(""); 
 
   // ⏳ TIMER STATE: Changed to 60 seconds
   const [timeLeft, setTimeLeft] = useState(60);
@@ -52,6 +61,9 @@ export default function VerifyOTP() {
   const handleChange = (value, index) => {
     if (!/^\d?$/.test(value)) return;
     setError(""); // Clear error on typing
+
+    // Clear error message once they start typing again
+    if (error) setError("");
 
     const newOtp = [...otp];
     newOtp[index] = value;
@@ -201,6 +213,26 @@ export default function VerifyOTP() {
     triggerVerification(otp);
   };
 
+//   const handleVerify = () => {
+//     const isOtpComplete = otp.every((digit) => digit !== "");
+
+//     // 2. Validate if the user actually filled out all 6 digits
+//     if (!isOtpComplete) {
+//       setError("Please enter the complete 6-digit OTP.");
+//       return; 
+//     }
+    
+//     setError(""); // Clear error if validation passes
+// const finalOtp = otp.join("");
+// console.log("Verifying OTP:", finalOtp);
+
+// // Login successful
+// localStorage.setItem("isLoggedIn", "true");
+
+// // Proceed to Budget Planner
+// navigate("/budget-planner");
+//   };
+
   return (
     <div className="verify-page">
       <div className="verify-card">
@@ -208,7 +240,11 @@ export default function VerifyOTP() {
 
         <h2>Verify OTP</h2>
         <p>Enter the 6-digit OTP sent to</p>
+
         <h4>{contactInfo}</h4>
+
+        
+        
 
         <form onSubmit={handleVerifySubmit}>
           <div className="otp-container">
@@ -238,30 +274,43 @@ export default function VerifyOTP() {
           </button>
         </form>
 
-        <button
-          className="resend-btn"
-          type="button"
-          onClick={handleResendOTP}
-          disabled={timeLeft > 0 || isResending || isVerifying}
-          style={{ cursor: timeLeft > 0 ? "not-allowed" : "pointer", opacity: timeLeft > 0 ? 0.6 : 1 }}
-        >
-          {isResending ? "Resending..." : timeLeft > 0 ? `Resend OTP in ${formatTime(timeLeft)}` : "Resend OTP"}
-        </button>
+        {/* 3. Render the dynamic error message block here */}
+        {error && <div className="error-message">{error}</div>}
 
-        {/* ✅ FIXED: Correctly forwards the current estimate data AND contact details back to Login */}
+        <button
+
+  className="resend-btn"
+  type="button"
+  onClick={handleResendOTP}
+  disabled={timeLeft > 0 || isResending || isVerifying}
+  style={{
+    cursor: timeLeft > 0 ? "not-allowed" : "pointer",
+    opacity: timeLeft > 0 ? 0.6 : 1,
+  }}
+>
+  {isResending
+    ? "Resending..."
+    : timeLeft > 0
+    ? `Resend OTP in ${formatTime(timeLeft)}`
+    : "Resend OTP"}
+</button>
+
 <button
   className="change-btn"
-  onClick={() => navigate("/login", {
-    state: {
-      estimateData,
-      contact: contactInfo,
-      method
-    }
-  })}
   type="button"
+  onClick={() =>
+    navigate("/login", {
+      state: {
+        estimateData,
+        contact: contactInfo,
+        method,
+      },
+    })
+  }
 >
   ← Change Details
 </button>
+        
       </div>
     </div>
   );

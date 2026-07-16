@@ -21,6 +21,7 @@ import CompletedProjects from "./pages/CompletedProjects";
 import ProjectDetails from "./pages/ProjectDetails";
 
 import ExecutionPlan from "./pages/ExecutionPlan";
+import DirectorProfile from "./pages/DirectorProfile";
 
 function App() {
   const location = useLocation();
@@ -28,7 +29,8 @@ function App() {
   const hideHeader =
   location.pathname.toLowerCase() === "/login" ||
   location.pathname.toLowerCase() === "/verify-otp" ||
-  location.pathname.toLowerCase() === "/budget-planner";
+  location.pathname.toLowerCase() === "/budget-planner" ||
+   location.pathname === "/director";
 
   return (
     <>
@@ -55,6 +57,7 @@ function App() {
         <Route path="/projects/upcoming" element={<UpcomingProjects />} />
         <Route path="/projects/completed" element={<CompletedProjects />} />
         <Route path="/projects/:slug" element={<ProjectDetails />} />
+        <Route path="/director" element={<DirectorProfile />} />
       </Routes>
     </>
   );

@@ -54,10 +54,17 @@ export default function Hero() {
 
         <div className="hero-content">
 
-          <p className="hero-tag">
-            BUILD WITH CONFIDENCE
-          </p>
+        <div className="hero-tag">
+  <span className="hero-tag-red">
+    BUILD WITH CONFIDENCE
+  </span>
 
+  <span className="hero-separator">|</span>
+
+  <span className="hero-tag-white">
+    DELIVER WITH PRIDE
+  </span>
+</div>
           <h1>
             Building Dreams,
             <br />

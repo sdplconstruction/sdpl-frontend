@@ -67,13 +67,13 @@ export default function Header() {
 </button>
 
         {/* Get Quote Button */}
-        <button
-          className="enquire-btn"
-          onClick={() => navigate("/login")}
-        >
-          Get Quote
-        </button>
-
+        {/* Budget Calculator Button */}
+<button
+  className="enquire-btn"
+  onClick={() => navigate("/login")}
+>
+  Budget Calculator
+</button>
       </div>
       <div className={`mobile-menu ${menuOpen ? "active" : ""}`}>
 
@@ -141,14 +141,14 @@ export default function Header() {
   </NavLink>
 
   <button
-    className="mobile-quote"
-    onClick={()=>{
-      navigate("/login");
-      setMenuOpen(false);
-    }}
-  >
-    Get Quote
-  </button>
+  className="mobile-quote"
+  onClick={()=>{
+    navigate("/login");
+    setMenuOpen(false);
+  }}
+>
+  Budget Calculator
+</button>
 
 </div>
     </header>

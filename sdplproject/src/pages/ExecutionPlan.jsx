@@ -125,11 +125,11 @@ export default function ExecutionPlan() {
           <p>From foundational concrete pours to the final key handoff, explore our step-by-step engineering roadmap built around precision, safety, and transparency.</p>
 
           <button
-            className="budget-planner-btn"
-            onClick={() => navigate('/budget-planner')}
-          >
-            📊 Open Interactive Budget Planner
-          </button>
+  className="budget-planner-btn"
+  onClick={() => navigate("/login")}
+>
+  📊 Open Interactive Budget Planner
+</button>
         </section>
 
         {/* Workflow Component Matrix */}

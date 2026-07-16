@@ -25,7 +25,7 @@ export default function About() {
         }
       },
       {
-        threshold: 0.4,
+        threshold: 0.2,
       }
     );
 
@@ -40,12 +40,13 @@ export default function About() {
   useEffect(() => {
     if (!startCounter) return;
 
-    const duration = 2000;
+    const duration = 1800; 
     const interval = 20;
+    const totalSteps = duration / interval;
 
-    const yearsStep = 7 / (duration / interval);
-const projectsStep = 21 / (duration / interval);
-const clientsStep = 100 / (duration / interval);
+    const yearsStep = 10 / totalSteps;
+    const projectsStep = 21 / totalSteps;
+    const clientsStep = 100 / totalSteps;
 
     let y = 0;
     let p = 0;
@@ -56,13 +57,17 @@ const clientsStep = 100 / (duration / interval);
       p += projectsStep;
       c += clientsStep;
 
-      setYears(y >= 7 ? 7 : Math.floor(y));
-setProjects(p >= 21 ? 21 : Math.floor(p));
-setClients(c >= 100 ? 100 : Math.floor(c));
+      const currentY = y >= 10 ? 10 : Math.floor(y);
+      const currentP = p >= 21 ? 21 : Math.floor(p);
+      const currentC = c >= 100 ? 100 : Math.floor(c);
 
-if (y >= 7 && p >= 21 && c >= 100) {
-  clearInterval(timer);
-}
+      setYears(currentY);
+      setProjects(currentP);
+      setClients(currentC);
+
+      if (currentY === 10 && currentP === 21 && currentC === 100) {
+        clearInterval(timer);
+      }
     }, interval);
 
     return () => clearInterval(timer);
@@ -70,56 +75,52 @@ if (y >= 7 && p >= 21 && c >= 100) {
 
   return (
     <section className="about" ref={aboutRef}>
-
       <div className="about-image">
-        <img src={aboutImage} alt="SDPL Construction" />
+        <img src={aboutImage} alt="SDPL Construction Builders" />
       </div>
 
       <div className="about-content">
-
-        <p className="about-tag">
-          ABOUT SDPL
-        </p>
+        <div className="about-tag-container">
+          <span className="about-tag">ABOUT SDPL</span>
+        </div>
 
         <h2>
-          Building Excellence,
-          <br />
+          Building Excellence,<br />
           One Project at a Time.
         </h2>
 
         <p className="about-text">
-          SDPL Constructions is committed to delivering premium
-          residential, commercial and industrial projects with
-          superior quality, modern engineering and transparent
-          execution. Our experienced professionals ensure every
-          project is completed with precision, safety and trust.
+          SDPL Constructions is one of Odisha's trusted builder with{" "}
+          <span className="about-highlight">10+ years of expertise</span>. 
+          Powered by <span className="about-highlight-red">Aramva</span>, we deliver superior residential, 
+          commercial, and industrial projects with total transparency and timely execution.
         </p>
 
         <div className="about-stats">
-
-          <div>
+          <div className="stat-card">
             <h3>{years}+</h3>
             <span>Years Experience</span>
           </div>
 
-          <div>
+          <div className="stat-card">
             <h3>{projects}+</h3>
             <span>Projects Delivered</span>
           </div>
 
-          <div>
+          <div className="stat-card">
             <h3>{clients}%</h3>
             <span>Client Satisfaction</span>
           </div>
-
         </div>
 
         <Link to="/about" className="about-btn">
-  Know More
-</Link>
-
+          <span>Know More</span>
+          <svg className="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </Link>
       </div>
-
     </section>
   );
 }

@@ -11,20 +11,19 @@
     background: #fff;
     border-radius: 22px;
 
-    /* 1. Setup CSS Grid layout tracks */
+    /* Setup CSS Grid layout tracks */
     display: grid;
     grid-template-columns: 1.6fr 1.1fr 1.3fr 1.5fr 1.5fr 220px;
     align-items: center;
-
     box-shadow: 0 20px 60px rgba(0,0,0,.18);
-
-    /* 2. CRUCIAL FIXES FOR DROPDOWN VISIBILITY */
+    
+    /* CRUCIAL FIXES FOR DROPDOWN VISIBILITY */
     overflow: visible !important; /* Forces grid row layout to let menus drop down */
     z-index: 20000 !important;   /* Forces panel over lower homepage components */
 }
 
 .search-panel:hover {
-    /* Kept your smooth hover, but preserved the horizontal center positioning */
+    /* Kept smooth hover, but preserved the horizontal center positioning */
     transform: translateX(-50%) translateY(-6px);
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
 }
@@ -59,7 +58,7 @@
     width: 100%;
     border: none;
     outline: none;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     background: transparent;
 }
@@ -106,7 +105,7 @@
     width: 100% !important;
     background-color: #ffffff !important;
     border: 1px solid #ececec !important;
-    border-radius: 16px !important; /* Slightly rounder to match your other panels */
+    border-radius: 16px !important; /* Slightly rounder to match other panels */
     max-height: 250px !important;
     overflow-y: auto !important;
     z-index: 999999 !important;
@@ -117,7 +116,7 @@
     text-align: left !important;
 }
 
-/* 1. Sleek Scrollbar Styling (Hides clunky default arrows) */
+/* Sleek Scrollbar Styling (Hides clunky default arrows) */
 .location-suggestions-dropdown::-webkit-scrollbar {
     width: 6px !important;
 }
@@ -135,7 +134,7 @@
     background: #cccccc !important;
 }
 
-/* 2. List Items Style */
+/* List Items Style */
 .location-suggestions-dropdown li {
     padding: 12px 24px !important;
     font-size: 15px !important;
@@ -145,8 +144,8 @@
     transition: background 0.15s ease, color 0.15s ease !important;
 }
 
-/* 3. SOLID RED HOVER EFFECT (Exactly matches Triplex hover) */
-.location-suggestions-dropdown li:hover{
+/* SOLID RED HOVER EFFECT */
+.location-suggestions-dropdown li:hover {
     background-color: #D62828 !important; /* Solid Red Background */
     color: #ffffff !important;            /* White Text */
 }
@@ -205,7 +204,7 @@
         width: 92%;
         grid-template-columns: 1fr 1fr;
         bottom: 50px;
-        overflow: visible !important; /* Double-check this is visible */
+        overflow: visible !important;
     }
 
     /* Force the location wrapper to have priority when dropdown is open */

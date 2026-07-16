@@ -59,14 +59,32 @@
 
     z-index: 3;
 }
+.hero-tag{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:20px;
 
-.hero-tag {
-    color: #FF4D4D; /* Vibrant neon red to pop perfectly over dark slate panels */
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
 }
 
+.hero-tag-red{
+    color:#FF4D4D !important;
+}
+
+.hero-tag-white{
+    color:#FFFFFF !important;
+}
+
+.hero-separator{
+    color:#FFFFFF !important;
+    font-size:18px;
+    font-weight:300;
+    letter-spacing:0;
+}
 .hero h1 {
     font-size: clamp(40px, 4vw, 64px);
     line-height: 1.15;
@@ -214,6 +232,16 @@
     padding-bottom:460px;
 
 }
+.hero-tag{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    text-align:center;
+}
+
+.hero-separator{
+    font-size:16px;
+}
 
 .hero h1{
 
@@ -227,7 +255,9 @@
 
 }
 
+
 }
+
 
 /* ================================
    Mobile
@@ -237,6 +267,16 @@
 .hero{
     height: 850px;
 }
+.hero-tag{
+    font-size:12px;
+    letter-spacing:2px;
+    gap:8px;
+}
+
+.hero-separator{
+    font-size:14px;
+}
+
 
 .hero-content{
     width: 90%;

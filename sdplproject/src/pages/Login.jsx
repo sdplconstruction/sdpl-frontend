@@ -1,22 +1,29 @@
+
 import React, { useState, useEffect } from "react";
+
+
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaPhoneAlt, FaEnvelope, FaChevronRight, FaArrowLeft, FaShieldAlt, FaAward, FaTruck } from "react-icons/fa";
 import building from "../assets/login-building.png";
-import logo from "../assets/logo.png";
+
 import "../styles/login.css";
 
-// ⚠️ CONFIGURATION VALUES:
+
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVSr1nPgoY0JjuJcxG0Q8FWoraZ2YCNU8KSFknjDg8hQdZ-bpahS01gnzwX9rObPMw/exec";
 const FAST2SMS_API_KEY = "lyX20DwrcKkT9QUYjAiGo1Rsuqa7PSJH3vEpZez85tnNWFdCBxUXEWMe1DTsHtfJ4SbuA6xiCY9dQRv2";
 
 export default function Login() {
   const navigate = useNavigate();
+
   const routeLocation = useLocation();
 
   // Retrieve the variables forwarded from previous pages
   const estimateData = routeLocation.state?.estimateData || null;
   const returnedContact = routeLocation.state?.contact || "";
   const returnedMethod = routeLocation.state?.method || "mobile";
+
+
+  
 
   const [activeTab, setActiveTab] = useState("mobile");
 
@@ -252,18 +259,11 @@ export default function Login() {
             </button>
           </form>
 
-          <div className="divider-line">
-            <span>OR CONTINUE WITH</span>
-          </div>
 
-          <button className="google-sso-btn" type="button">
-            <img
-              src="https://www.vectorlogo.zone/logos/google/google-icon.svg"
-              alt="Google Logo"
-              className="google-icon"
-            />
-            Continue with Google
-          </button>
+          
+
+          
+
 
           <div className="login-footer">
             <p className="secure-data-info">🛡 Your data is safe with us.</p>
