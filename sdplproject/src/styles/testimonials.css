@@ -143,13 +143,28 @@
   gap: 16px;
 }
 
-.client-avatar {
+/* .client-avatar {
   width: 56px;
   height: 56px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #ffffff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+} */
+/* Replace .client-avatar with this block */
+.client-avatar-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f1f5f9; /* Light background color for the circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;      /* Icon color */
+  font-size: 1.5rem;   /* Icon size */
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;      /* Prevents the icon from squishing */
 }
 
 .client-meta h4 {

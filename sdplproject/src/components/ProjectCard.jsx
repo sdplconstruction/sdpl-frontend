@@ -1,17 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin, ArrowRight, Building } from "lucide-react"; // Added Building icon
 import "../styles/projects.css";
 
 export default function ProjectCard({ project }) {
+  // Check if project is upcoming
+  const isUpcoming = project.category === "upcoming";
+
   return (
     <div className="project-card">
       <div className="project-image-wrapper">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="project-image"
-        />
+        {isUpcoming ? (
+          /* Placeholder for Upcoming Projects */
+          <div className="project-image-placeholder">
+            <Building size={48} />
+          </div>
+        ) : (
+          /* Real Image for Ongoing/Completed */
+          <img
+            src={project.image}
+            alt={project.title}
+            className="project-image"
+          />
+        )}
 
         <span className={`project-badge ${project.category}`}>
           {project.category.charAt(0).toUpperCase() +
@@ -41,14 +52,6 @@ export default function ProjectCard({ project }) {
             </p>
           </>
         )}
-
-        {/* <Link
-          to={`/projects/${project.slug}`}
-          className="project-btn"
-        >
-          View Details
-          <ArrowRight size={16} />
-        </Link> */}
       </div>
     </div>
   );

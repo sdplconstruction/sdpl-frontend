@@ -810,6 +810,18 @@
   font-size: 1.1rem;
 }
 
+/* Hide HTML5 input number arrows (spinners) */
+.input-with-unit input[type="number"]::-webkit-outer-spin-button,
+.input-with-unit input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-with-unit input[type="number"] {
+ appearance: textfield; /* Modern Standard */
+  -moz-appearance: textfield; /* Keep for legacy Firefox support */
+}
+
 /* ==========================================================================
    CROSS-SYSTEM RESPONSIVE MEDIA QUERIES (DESKTOP TO PHONE)
    ========================================================================== */

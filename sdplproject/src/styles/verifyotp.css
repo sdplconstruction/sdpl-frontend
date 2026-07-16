@@ -1,21 +1,21 @@
 /* ==========================================================================
    GLOBAL LAYOUT OVERRIDES (CRITICAL FIX FOR THE WHITE BAR)
    ========================================================================== */
-html, 
-body, 
+html,
+body,
 #root {
     margin: 0 !important;
     padding: 0 !important;
     min-height: 100% !important; /* Changed from height to min-height to allow scrolling if content overflows */
     width: 100% !important;
-    background-color: #f7f7f7 !important; 
+    background-color: #f7f7f7 !important;
 }
 
 /* ==========================================================================
    PAGE CONTAINER STYLES
    ========================================================================== */
 .verify-page {
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -23,7 +23,7 @@ body,
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f7f7f7; 
+    background: #f7f7f7;
     margin: 0;
     padding: 24px; /* Slightly increased for better safety padding on mobile */
     box-sizing: border-box;
@@ -57,7 +57,7 @@ body,
 .verify-card h2 {
     font-size: 34px;
     color: #222;
-    margin-top: 0; 
+    margin-top: 0;
     margin-bottom: 12px;
 }
 
@@ -146,6 +146,16 @@ body,
 .change-btn:hover {
     text-decoration: underline;
 }
+.validation-error-msg {
+  color: #e53935;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-top: 15px;
+  text-align: center;
+}
 
 /* ==========================================================================
    RESPONSIVE BREAKPOINTS
@@ -179,12 +189,12 @@ body,
 
     /* Scaling OTP items slightly for standard mobile viewports */
     .otp-container {
-        gap: 8px; 
+        gap: 8px;
         margin-bottom: 25px;
     }
 
     .otp-container input {
-        width: 46px; 
+        width: 46px;
         height: 52px;
         font-size: 20px;
         border-radius: 10px;

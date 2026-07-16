@@ -72,16 +72,16 @@ export default function Footer() {
           </p>
 
           <div className="footer-social-row">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=61588532075702" target="_blank" rel="noopener noreferrer" className="social-circle" title="Facebook">
               <FaFacebookF />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="Instagram">
+            <a href="https://www.instagram.com/sdplconstruction/" target="_blank" rel="noopener noreferrer" className="social-circle" title="Instagram">
               <FaInstagram />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="LinkedIn">
+            {/* <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="LinkedIn">
               <FaLinkedinIn />
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="YouTube">
+            </a> */}
+            <a href="https://www.youtube.com/@sdplconstruction" target="_blank" rel="noopener noreferrer" className="social-circle" title="YouTube">
               <FaYoutube />
             </a>
           </div>
@@ -95,14 +95,14 @@ export default function Footer() {
             <li><Link to="/"> <FaChevronRight className="link-arrow" /> Home</Link></li>
             <li><Link to="/about"> <FaChevronRight className="link-arrow" /> About Us</Link></li>
             <li><Link to="/services"> <FaChevronRight className="link-arrow" /> Our Services</Link></li>
-            
+
             {/* UPDATED PROJECTS LINK WITH INTERACTION METHOD */}
             <li>
               <a href="#homepage-projects-section" onClick={handleProjectsClick}>
                 <FaChevronRight className="link-arrow" /> Projects
               </a>
             </li>
-            
+
             <li><Link to="/login"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
             <li><Link to="/contact-us"> <FaChevronRight className="link-arrow" /> Contact Us</Link></li>
           </ul>

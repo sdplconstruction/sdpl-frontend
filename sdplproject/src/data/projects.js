@@ -1,135 +1,158 @@
-import project1 from "../assets/projects/project1.jpg";
-import project2 from "../assets/projects/project2.jpg";
-import project3 from "../assets/projects/project3.jpg";
-import project4 from "../assets/projects/project4.jpg";
-import project5 from "../assets/projects/project5.jpg";
-import project6 from "../assets/projects/project6.jpg"
-import project7 from "../assets/projects/project7.jpg"
-import project8 from "../assets/projects/project8.jpg"
-import project9 from "../assets/projects/project9.jpg"
-import project10 from "../assets/projects/project10.jpg"
-import project11 from "../assets/projects/project11.jpg"
-import project12 from "../assets/projects/project12.jpg"
+import ongoingpic3 from "../assets/projects/ongoingpic3.jpeg";
+import ongoingpic2 from "../assets/projects/ongoingpic2.jpeg";
+import ongoingpic1 from "../assets/projects/ongoingpic1.jpeg";
+import completedpic1 from "../assets/projects/completedpic1.jpeg";
+import completedpic2 from "../assets/projects/completedpic2.jpeg";
+import completedpic3 from "../assets/projects/completedpic3.jpeg";
+import completedpic4 from "../assets/projects/completedpic4.jpeg";
+import completedpic5 from "../assets/projects/completedpic5.jpeg";
+import completedpic6 from "../assets/projects/completedpic6.jpeg";
+import completedpic7 from "../assets/projects/completedpic7.jpeg";
+// import project5 from "../assets/projects/project5.jpg";
+// import project6 from "../assets/projects/project6.jpg";
 
 const projects = [
   {
     id: 1,
-    slug: "sdpl-harmony-heights",
-    title: "SDPL Harmony Heights",
+    slug: "trisulia",
+    title: "Project At Trisulia",
     category: "ongoing",
-    location: "Bhubaneswar",
-    image: project1,
-    progress: 65,
-    description: "Premium residential apartments."
-  },
-  {
-    id: 2,
-    slug: "sdpl-sky-residency",
-    title: "SDPL Sky Residency",
-    category: "ongoing",
-    location: "Bhubaneswar",
-    image: project2,
-    progress: 40,
-    description: "Modern family apartments."
-  },
-
-  {
-    id: 3,
-    slug: "sdpl-heights",
-    title: "SDPL Heights",
-    category: "ongoing",
-    location: "Bhubaneswar",
-    image: project3,
-    progress: 45,
-    description: "Premium residential apartments."
-  },
-   {
-    id: 4,
-    slug: "sdpl-villa",
-    title: "SDPL Villa",
-    category: "ongoing",
-    location: "Bhubaneswar",
-    image: project4,
+    location: "Cuttack",
+    image: ongoingpic3,
     progress: 30,
     description: "Premium residential apartments."
   },
   {
-    id: 5,
-    slug: "sdpl-green-view",
-    title: "SDPL Green View",
+    id: 2,
+    slug: "madanpur",
+    title: "Project At Madanpur",
+    category: "ongoing",
+    location: "Bhubaneswar",
+    image: ongoingpic2,
+    progress: 20,
+    description: "Modern family apartments."
+  },
+  {
+    id: 3,
+    slug: "Tamando",
+    title: "Project At Tamando",
+    category: "ongoing",
+    location: "Bhubaneswar",
+    image: ongoingpic1,
+    progress: 40,
+    description: "Premium residential apartments."
+  },
+  {
+    id: 4,
+    slug: "triplex",
+    title: "Triplex Project",
     category: "upcoming",
-    location: "Cuttack",
-    image: project5,
+    location: "Kashipur, Khorda",
+    // image: project5,
     progress: 0,
     description: "Launching soon."
   },
-  {
-    id: 6,
-    slug: "sdpl-green",
-    title: "SDPL Green",
+   {
+    id: 5,
+    slug: "triplex",
+    title: "Triplex Project",
     category: "upcoming",
-    location: "Cuttack",
-    image: project6,
+    location: "Kashipur, Khorda",
+    // image: project5,
+    progress: 0,
+    description: "Launching soon."
+  },
+   {
+    id: 6,
+    slug: "independent",
+    title: "Independent S+3 Project",
+    category: "upcoming",
+    location: "Patrapada, Bhubaneswar",
+    // image: project5,
     progress: 0,
     description: "Launching soon."
   },
   {
     id: 7,
-    slug: "sdpl-elite-heights",
-    title: "SDPL Elite Heights",
-    category: "completed",
-    location: "Puri",
-    image: project7,
-    progress: 100,
-    description: "Successfully delivered."
+    slug: "independent",
+    title: "Independent S+4 Project",
+    category: "upcoming",
+    location: "Kalinga Nagar, Bhubaneswar",
+    // image: project6,
+    progress: 0,
+    description: "Launching soon."
   },
   {
     id: 8,
-    slug: "sdpl-elite-heights",
-    title: "SDPL Elite Heights",
+    slug: "core-house",
+    title: "Core House Project",
     category: "completed",
-    location: "Puri",
-    image: project8,
+    location: "Madanpur, Bhubaneswar",
+    image: completedpic1,
     progress: 100,
     description: "Successfully delivered."
   },
-
-
   {
     id: 9,
-    slug: "sdpl-golden-enclave",
-    title: "SDPL Golden Enclave",
+    slug: "ready-to-move",
+    title: "Ready To Move Project",
     category: "completed",
-    location: "Bhubaneswar",
-    image: project9,
+    location: "Sundarpada, Bhubaneswar",
+    image: completedpic2,
+    progress: 100,
+    description: "Successfully delivered."
+  },
+  {
+    id: 10,
+    slug: "completed-house-hanspal",
+    title: "Complete House Project",
+    category: "completed",
+    location: "Hanspal, Bhubaneswar",
+    image: completedpic3,
+    progress: 100,
+    description: "Premium gated community."
+  },
+  {
+    id: 11,
+    slug: "complete-house-malipada",
+    title: "Complete House Project",
+    category: "completed",
+    location: "Malipada, Bhubaneswar",
+    image: completedpic4,
+    progress: 100,
+    description: "Premium gated community."
+  },
+  {
+    id: 12,
+    slug: "complete-house-fulnakhara",
+    title: "Complete House Project",
+    category: "completed",
+    location: "Fulnakhara, Bhubaneswar",
+    image: completedpic5,
+    progress: 100,
+    description: "Premium gated community."
+  },
+  {
+    id: 13,
+    slug: "complete-house-tamando",
+    title: "Complete House Project",
+    category: "completed",
+    location: "Tamando, Bhubaneswar",
+    image: completedpic6,
     progress: 100,
     description: "Premium gated community."
   },
 
   {
-    id: 10,
-    slug: "sdpl-golden-enclave",
-    title: "SDPL Golden Enclave",
+    id: 14,
+    slug: "complete-house-tamando",
+    title: "Complete House Project",
     category: "completed",
-    location: "Bhubaneswar",
-    image: project10,
+    location: "Bhagwanpur, Bhubaneswar",
+    image: completedpic7,
     progress: 100,
     description: "Premium gated community."
-  },
-
-    {
-    id: 11,
-    slug: "sdpl-golden-enclave",
-    title: "SDPL Golden Enclave",
-    category: "completed",
-    location: "Bhubaneswar",
-    image: project10,
-    progress: 100,
-    description: "Premium gated community."
-  },
-
-  
-
+  }
 ];
 
 export default projects;

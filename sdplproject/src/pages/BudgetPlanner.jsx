@@ -4,14 +4,15 @@ import html2pdf from 'html2pdf.js';
 import { CALCULATION_RATES, ADD_ON_PRICES } from '../data/rates';
 import './BudgetPlanner.css';
 
-
-
 // Import local assets securely
 import coreImg from '../assets/core.jpg';
 import lockKeyImg from '../assets/lockkey.jpg';
 import semiFurnishedImg from '../assets/semifurnished.jpg';
 import fullyFurnishedImg from '../assets/fullyfurnished.jpg';
 import calculatorLogo from '../assets/logo.png';
+
+// Replace this with your Google Apps Script Web App URL!
+const GOOGLE_SHEETS_API_URL = "https://script.google.com/macros/s/AKfycbx4dtk2FPhdIUatBkeg8_oVfra6BAQPk-SG9tA7saog6zqAUZX7HfxBjUP89aA1-GBl/exec";
 
 const ODISHA_DISTRICTS = [
   "Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Baudh", "Cuttack",
@@ -64,70 +65,38 @@ const QUALITY_TIERS = {
     name: "Basic",
     stars: "★★",
     desc: "Standard Quality",
-    badge: "Economical",
-    materials: [
-      { category: "Cement", brand: "ACC / Dalmia Standard" },
-      { category: "Steel", brand: "Kamdhenu / Shyam TMT" },
-      { category: "Bricks", brand: "Class A Local Red Bricks" },
-      { category: "Sand/Aggregate", brand: "Local River Sand & Crusher" },
-      { category: "Paint", brand: "Tractor Emulsion / Berger" },
-      { category: "Electrical", brand: "Anchor / Local Modular" },
-      { category: "Plumbing", brand: "Supreme PVC & Standard CP Fittings" },
-      { category: "Flooring", brand: "Double Charged Vitrified Tiles" }
-    ]
+    badge: "Economical"
   },
   classic: {
     name: "Classic",
     stars: "★★★",
     desc: "Good Quality",
-    badge: "Best Value",
-    materials: [
-      { category: "Cement", brand: "UltraTech / ACC" },
-      { category: "Steel", brand: "Tata Tiscon / JSW" },
-      { category: "Bricks", brand: "Fly Ash Blocks / Class AA" },
-      { category: "Sand/Aggregate", brand: "Premium River Sand & Coarse Crusher" },
-      { category: "Paint", brand: "Berger Easy Clean / Premium Paint" },
-      { category: "Electrical", brand: "Havells Switches & Wiring" },
-      { category: "Plumbing", brand: "Astral Pipes & Premium Sanitary" },
-      { category: "Flooring", brand: "Premium GVT / Digital Tiles" }
-    ]
+    badge: "Best Value"
   },
   premium: {
     name: "Premium",
     stars: "★★★★★",
     desc: "High Quality",
-    badge: "Luxury Finish",
-    materials: [
-      { category: "Cement", brand: "UltraTech Premium / ACC Gold" },
-      { category: "Steel", brand: "Tata Tiscon SD Super Ductile" },
-      { category: "Bricks", brand: "AAC Eco-friendly Blocks" },
-      { category: "Sand/Aggregate", brand: "Washed River Sand & High-Grade Aggregate" },
-      { category: "Paint", brand: "Asian Royale / Berger Silk Luxury" },
-      { category: "Electrical", brand: "Schneider / Legrand Premium" },
-      { category: "Plumbing", brand: "Ashirvad CPVC Premium & Luxury CP" },
-      { category: "Flooring", brand: "Italian Marble / Imported Granite / Premium GVT" }
-    ]
+    badge: "Luxury Finish"
   }
 };
 
 export default function BudgetPlanner() {
-   const navigate = useNavigate();
-   const plannerRef = useRef(null);
+  const navigate = useNavigate();
+  const plannerRef = useRef(null);
   const locationDropdownRef = useRef(null);
   const floorDropdownRef = useRef(null);
 
   useEffect(() => {
-    // Skip login check while running locally with npm run dev
     if (import.meta.env.DEV) return;
-
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-
     if (!isLoggedIn) {
       navigate("/login");
     }
   }, [navigate]);
-  // States initialized empty to let placeholders show up cleanly
+
   const [formData, setFormData] = useState({
+    mobile: '',
     area: '',
     location: '',
     buildingType: 'Residential',
@@ -151,6 +120,9 @@ export default function BudgetPlanner() {
   const [isFloorOpen, setIsFloorOpen] = useState(false);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
+  // Track if we already auto-saved this lead's data to prevent duplicate entries
+  const hasSavedRef = useRef(false);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (locationDropdownRef.current && !locationDropdownRef.current.contains(event.target)) {
@@ -164,6 +136,7 @@ export default function BudgetPlanner() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Calculate Summary values
   useEffect(() => {
     const baseRatePerSqFt = CALCULATION_RATES[formData.packageType]?.[formData.qualityTier] || 2100;
     let floorMultiplier = 1.0;
@@ -207,8 +180,69 @@ export default function BudgetPlanner() {
     });
   }, [formData]);
 
+  // AUTO-SAVE MECHANISM: Whenever a valid 10-digit mobile number and area are present, sync to Google Sheet
+ // AUTO-SAVE MECHANISM: Updates the spreadsheet dynamically as they finish selections
+useEffect(() => {
+  const mobileRegex = /^[6-9]\d{9}$/;
+
+  if (mobileRegex.test(formData.mobile) && formData.area) {
+    const delaySave = setTimeout(() => {
+      saveDataToGoogleSheets();
+    }, 2000);
+
+    return () => clearTimeout(delaySave);
+  }
+}, [formData]);
+
+  const saveDataToGoogleSheets = async () => {
+    if (!GOOGLE_SHEETS_API_URL || GOOGLE_SHEETS_API_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
+      console.warn("Google Sheet Web App URL is not configured.");
+      return;
+    }
+
+    const activeAddOnsList = Object.keys(formData.addOns)
+      .filter(key => formData.addOns[key])
+      .map(key => key.replace(/([A-Z])/g, ' $1'))
+      .join(', ');
+
+    const payload = {
+      mobile: formData.mobile,
+      area: formData.area,
+      location: formData.location,
+      buildingType: formData.buildingType,
+      numFloors: formData.numFloors,
+      packageType: PACKAGE_DETAILS[formData.packageType].name,
+      qualityTier: QUALITY_TIERS[formData.qualityTier].name,
+      addOns: activeAddOnsList || "None",
+      totalCost: summary.totalCost
+    };
+    console.log("Sending to Google Sheet:");
+    console.log(payload);
+    try {
+      await fetch(GOOGLE_SHEETS_API_URL, {
+        method: "POST",
+        mode: "no-cors", // Required to bypass CORS restriction with Google Script redirect endpoints
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      console.log("Lead successfully captured in background!");
+    } catch (error) {
+      console.error("Error logging to Google Sheets:", error);
+    }
+  };
+
   const handleInputChange = (e) => setFormData({ ...formData, area: e.target.value });
+  const handleMobileChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ""); // Keep numbers only
+    if (value.length <= 10) {
+      setFormData({ ...formData, mobile: value });
+    }
+  };
+
   const handleSelect = (field, value) => setFormData({ ...formData, [field]: value });
+
   const handleToggleAddOn = (key) => {
     setFormData({
       ...formData,
@@ -228,50 +262,16 @@ export default function BudgetPlanner() {
   const currentPackage = PACKAGE_DETAILS[formData.packageType];
   const activeQualityData = QUALITY_TIERS[formData.qualityTier];
 
-  const getFilteredMaterials = () => {
-    const allMaterials = activeQualityData.materials;
-    if (formData.packageType === 'coreHouse') {
-      return allMaterials.filter(m => ['Cement', 'Steel', 'Bricks', 'Sand/Aggregate'].includes(m.category));
-    } else if (formData.packageType === 'lockAndKey') {
-      return allMaterials.filter(m => ['Cement', 'Steel', 'Bricks', 'Sand/Aggregate', 'Electrical', 'Plumbing', 'Paint', 'Flooring'].includes(m.category));
+  const handleDownloadPDF = async () => {
+    // Validate mobile number before allowing download to guarantee we get lead info
+    if (!formData.mobile || formData.mobile.length !== 10) {
+      alert("Please enter a valid 10-digit mobile number to download your estimate.");
+      return;
     }
-    return allMaterials;
-  };
 
-  const renderMaterialIcon = (category) => {
-    switch(category) {
-      case 'Cement':
-        return (
-          <div style={{
-            position: 'relative',
-            width: '24px',
-            height: '30px',
-            backgroundColor: '#bdc3c7',
-            borderRadius: '3px',
-            border: '2px solid #7f8c8d',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: 'inset 0 0 3px rgba(0,0,0,0.15)'
-          }}>
-            <div style={{ width: '100%', height: '4px', backgroundColor: '#95a5a6', position: 'absolute', top: 0 }} />
-            <span style={{ fontSize: '7px', fontWeight: '900', color: '#2c3e50', transform: 'scale(0.9)', lineHeight: '1' }}>CMNT</span>
-            <div style={{ width: '100%', height: '4px', backgroundColor: '#95a5a6', position: 'absolute', bottom: 0 }} />
-          </div>
-        );
-      case 'Steel': return <span style={{ fontSize: '1.5rem' }}>🏗️</span>;
-      case 'Bricks': return <span style={{ fontSize: '1.5rem' }}>🧱</span>;
-      case 'Sand/Aggregate': return <span style={{ fontSize: '1.5rem' }}>⏳</span>;
-      case 'Paint': return <span style={{ fontSize: '1.5rem' }}>🎨</span>;
-      case 'Electrical': return <span style={{ fontSize: '1.5rem' }}>⚡</span>;
-      case 'Plumbing': return <span style={{ fontSize: '1.5rem' }}>🚰</span>;
-      case 'Flooring': return <span style={{ fontSize: '1.5rem' }}>📐</span>;
-      default: return <span style={{ fontSize: '1.5rem' }}>📦</span>;
-    }
-  };
+    // Force run a direct write immediately just in case background sync hasn't run yet
+    await saveDataToGoogleSheets();
 
-  const handleDownloadPDF = () => {
     setIsGeneratingPdf(true);
 
     const activeAddOnsList = Object.keys(formData.addOns)
@@ -314,26 +314,12 @@ export default function BudgetPlanner() {
               <td style="padding: 6px 0; color: #7f8c8d;">Material Tier:</td>
               <td style="padding: 6px 0; font-weight: 600; color: #111;">${activeQualityData.name} Quality</td>
             </tr>
-          </table>
-        </div>
-
-        <div style="margin-bottom: 35px; page-break-inside: avoid;">
-          <h3 style="margin: 0 0 12px 0; font-size: 14px; color: #b22222; text-transform: uppercase; letter-spacing: 0.5px;">Material Quality Matrix</h3>
-          <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left;">
-            <thead>
-              <tr style="background-color: #f1f2f6; border-bottom: 1px solid #e0e0e0;">
-                <th style="padding: 10px; color: #2c3e50; font-weight: 700; width: 40%;">Material Category</th>
-                <th style="padding: 10px; color: #2c3e50; font-weight: 700; width: 60%;">Assigned Standard / Brand Partner</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${getFilteredMaterials().map(mat => `
-                <tr style="border-bottom: 1px solid #f1f2f6;">
-                  <td style="padding: 10px; color: #7f8c8d; font-weight: 500;">${mat.category}</td>
-                  <td style="padding: 10px; color: #111; font-weight: 600;">${mat.brand}</td>
-                </tr>
-              `).join('')}
-            </tbody>
+            <tr>
+              <td style="padding: 6px 0; color: #7f8c8d;">Contact Mobile:</td>
+              <td style="padding: 6px 0; font-weight: 600; color: #111;">+91 ${formData.mobile}</td>
+              <td style="padding: 6px 0; color: #7f8c8d;">—</td>
+              <td style="padding: 6px 0; font-weight: 600; color: #111;">—</td>
+            </tr>
           </table>
         </div>
 
@@ -403,8 +389,6 @@ export default function BudgetPlanner() {
     });
   };
 
-  const displayedMaterials = getFilteredMaterials();
-
   const getFloorDropdownLabel = (floorValue) => {
     if (!floorValue) return 'Select number of floors';
     if (floorValue === 'G') return 'Ground Floor Only (G)';
@@ -439,7 +423,21 @@ export default function BudgetPlanner() {
             <h2 className="section-step-title"><span>📋</span> 1. Project Details</h2>
             <div className="project-details-row full-clean-dropdowns">
 
-              {/* Construction Area Field with numeric placeholder */}
+              {/* NEW FIELD: Mobile Number */}
+              <div className="input-box-wrapper">
+                <label>Mobile Number <span style={{ color: '#b22222' }}>*</span></label>
+                <div className="input-with-unit">
+                  <input
+                    type="tel"
+                    value={formData.mobile}
+                    onChange={handleMobileChange}
+                    placeholder="Enter 10-digit Mobile"
+                    maxLength={10}
+                    style={{ paddingRight: '12px' }}
+                  />
+                </div>
+              </div>
+
               <div className="input-box-wrapper">
                 <label>Construction Area</label>
                 <div className="input-with-unit">
@@ -447,13 +445,18 @@ export default function BudgetPlanner() {
                     type="number"
                     value={formData.area}
                     onChange={handleInputChange}
+                    onKeyDown={(e) => {
+                      if (['e', 'E', '+', '-'].includes(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
+                    min="1"
                     placeholder="e.g. 1500"
                   />
                   <span className="unit-tag">sq.ft</span>
                 </div>
               </div>
 
-              {/* Location Selector Input Field with placeholder */}
               <div className="input-box-wrapper" ref={locationDropdownRef}>
                 <label>Location (Odisha District)</label>
                 <div className="searchable-dropdown-container" style={{ position: 'relative' }}>
@@ -514,7 +517,6 @@ export default function BudgetPlanner() {
                 </div>
               </div>
 
-              {/* No. of Floors Dropdown with empty initial placeholder state text support */}
               <div className="input-box-wrapper" ref={floorDropdownRef}>
                 <label>No. of Floors</label>
                 <div className="searchable-dropdown-container">
@@ -600,25 +602,6 @@ export default function BudgetPlanner() {
               })}
             </div>
 
-            <div className="visual-specifications-box">
-              <h4 style={{ fontSize: '15px', fontWeight: '600', marginBottom: '15px', color: '#2c3e50' }}>
-                Material Specification ({activeQualityData.name.toUpperCase()} Quality)
-              </h4>
-              <div className="specifications-inline-grid">
-                {displayedMaterials.map((mat, idx) => (
-                  <div key={idx} className="spec-inline-item" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div className="spec-icon-container" style={{ width: '36px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      {renderMaterialIcon(mat.category)}
-                    </div>
-                    <div className="spec-text">
-                      <div className="spec-title">{mat.brand}</div>
-                      <div className="spec-sub">{mat.category}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="visual-specifications-box" style={{ marginTop: '20px', backgroundColor: '#fcfcfc' }}>
               <h4 style={{ color: '#27ae60', fontSize: '15px', fontWeight: '600' }}>Scope of Work Included ({currentPackage.name})</h4>
               <div className="inclusions-checked-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginTop: '12px' }}>
@@ -639,7 +622,9 @@ export default function BudgetPlanner() {
                 <div key={key} className={`addon-premium-tile ${formData.addOns[key] ? 'active' : ''}`} onClick={() => handleToggleAddOn(key)}>
                   <input type="checkbox" checked={formData.addOns[key]} readOnly />
                   <div className="addon-tile-content">
-                    <span className="addon-tile-name">{key.replace(/([A-Z])/g, ' $1')}</span>
+                    <span className="addon-tile-name">
+                      {key.replace(/([A-Z])/g, ' $1')}
+                    </span>
                     <span className="addon-tile-price">+ {formatCurrency(ADD_ON_PRICES[key])}</span>
                   </div>
                 </div>
@@ -657,7 +642,7 @@ export default function BudgetPlanner() {
               <div className="metric-item"><span>🪜 Structure</span><strong>{formData.numFloors || '—'}</strong></div>
               <div className="metric-item"><span>🏢 Type</span><strong>{formData.buildingType}</strong></div>
               <div className="metric-item"><span>📍 Location</span><strong>{formData.location || '—'}</strong></div>
-              <div className="metric-item"><span>Box Selected Package</span><strong className="capitalize-text">{currentPackage.name}</strong></div>
+              <div className="metric-item"><span>📦 Selected Package</span><strong className="capitalize-text">{currentPackage.name}</strong></div>
               <div className="metric-item"><span>✨ Finish Tier</span><strong className="capitalize-text">{activeQualityData.name}</strong></div>
             </div>
 
