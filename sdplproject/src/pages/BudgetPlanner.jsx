@@ -119,6 +119,9 @@ export default function BudgetPlanner() {
   const [isLocationOpen, setIsLocationOpen] = useState(false);
   const [isFloorOpen, setIsFloorOpen] = useState(false);
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  
+  // 🌟 NEW STATE: Tracks real-time typing error blocks
+  const [error, setError] = useState("");
 
   // Track if we already auto-saved this lead's data to prevent duplicate entries
   const hasSavedRef = useRef(false);
@@ -180,19 +183,20 @@ export default function BudgetPlanner() {
     });
   }, [formData]);
 
-  // AUTO-SAVE MECHANISM: Whenever a valid 10-digit mobile number and area are present, sync to Google Sheet
- // AUTO-SAVE MECHANISM: Updates the spreadsheet dynamically as they finish selections
-useEffect(() => {
-  const mobileRegex = /^[6-9]\d{9}$/;
+  // AUTO-SAVE MECHANISM: Updates the spreadsheet dynamically as they finish selections
+  useEffect(() => {
+    const mobileRegex = /^[6-9]\d{9}$/;
+    const isRepeatingDigits = /^(\d)\1{9}$/.test(formData.mobile);
 
-  if (mobileRegex.test(formData.mobile) && formData.area) {
-    const delaySave = setTimeout(() => {
-      saveDataToGoogleSheets();
-    }, 2000);
+    // 🌟 ENHANCED AUTO-SAVE VERIFICATION: Blocks saving repeating placeholder strings
+    if (mobileRegex.test(formData.mobile) && !isRepeatingDigits && formData.area) {
+      const delaySave = setTimeout(() => {
+        saveDataToGoogleSheets();
+      }, 2000);
 
-    return () => clearTimeout(delaySave);
-  }
-}, [formData]);
+      return () => clearTimeout(delaySave);
+    }
+  }, [formData]);
 
   const saveDataToGoogleSheets = async () => {
     if (!GOOGLE_SHEETS_API_URL || GOOGLE_SHEETS_API_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")) {
@@ -238,6 +242,19 @@ useEffect(() => {
     const value = e.target.value.replace(/\D/g, ""); // Keep numbers only
     if (value.length <= 10) {
       setFormData({ ...formData, mobile: value });
+      
+      // Clear errors reactively if they are fixing the length or numbers
+      if (value.length === 10) {
+        const isRepeatingDigits = /^(\d)\1{9}$/.test(value);
+        const mobileRegex = /^[6-9]\d{9}$/;
+        if (!mobileRegex.test(value) || isRepeatingDigits) {
+          setError("Please enter a valid 10-digit mobile number.");
+        } else {
+          setError("");
+        }
+      } else {
+        setError("");
+      }
     }
   };
 
@@ -263,11 +280,17 @@ useEffect(() => {
   const activeQualityData = QUALITY_TIERS[formData.qualityTier];
 
   const handleDownloadPDF = async () => {
-    // Validate mobile number before allowing download to guarantee we get lead info
-    if (!formData.mobile || formData.mobile.length !== 10) {
+    const mobileRegex = /^[6-9]\d{9}$/;
+    const isRepeatingDigits = /^(\d)\1{9}$/.test(formData.mobile);
+
+    // 🌟 IN-PLACE VALIDATION CHECK: Blocks file downloads on dummy repeating digits
+    if (!formData.mobile || !mobileRegex.test(formData.mobile) || isRepeatingDigits) {
+      setError("Please enter a valid 10-digit mobile number.");
       alert("Please enter a valid 10-digit mobile number to download your estimate.");
       return;
     }
+
+    setError(""); // Explicit cleanup
 
     // Force run a direct write immediately just in case background sync hasn't run yet
     await saveDataToGoogleSheets();
@@ -433,9 +456,11 @@ useEffect(() => {
                     onChange={handleMobileChange}
                     placeholder="Enter 10-digit Mobile"
                     maxLength={10}
-                    style={{ paddingRight: '12px' }}
+                    style={{ paddingRight: '12px', borderColor: error ? '#b22222' : '' }}
                   />
                 </div>
+                {/* LIVE DYNAMIC TEXT EXCLUSION ERROR MESSAGE */}
+                {error && <div style={{ color: '#b22222', fontSize: '12px', marginTop: '5px' }}>⚠️ {error}</div>}
               </div>
 
               <div className="input-box-wrapper">
@@ -686,11 +711,10 @@ useEffect(() => {
               className="sidebar-secondary-contact-btn"
               onClick={handleContactRedirect}
             >
-              <span>📞</span> Need Help? Contact Our Engineer
+              Contact Us
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

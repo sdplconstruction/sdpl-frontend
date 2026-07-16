@@ -1,12 +1,8 @@
-
 import { useState, useEffect, useRef } from "react";
-
-
-
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/verifyOtp.css";
 
-// ⚠️ API CONFIGURATION STRINGS
+// API CONFIGURATION STRINGS
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVSr1nPgoY0JjuJcxG0Q8FWoraZ2YCNU8KSFknjDg8hQdZ-bpahS01gnzwX9rObPMw/exec";
 const FAST2SMS_API_KEY = "lyX20DwrcKkT9QUYjAiGo1Rsuqa7PSJH3vEpZez85tnNWFdCBxUXEWMe1DTsHtfJ4SbuA6xiCY9dQRv2";
 
@@ -14,9 +10,7 @@ export default function VerifyOTP() {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   // Retrieve the variables forwarded from the login page
-
   const contactInfo = location.state?.contact || "+91 98XXXXXX45";
   const method = location.state?.method || "mobile";
   const initialOTP = location.state?.actualOTP || "";
@@ -25,21 +19,18 @@ export default function VerifyOTP() {
   // State variables
   const [currentOTP, setCurrentOTP] = useState(initialOTP);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-
- 
   const [isVerifying, setIsVerifying] = useState(false);
   const [isResending, setIsResending] = useState(false);
-  // 1. Added error state to hold validation messages
   const [error, setError] = useState(""); 
 
-  // ⏳ TIMER STATE: Changed to 60 seconds
+  // TIMER STATE: 60 seconds
   const [timeLeft, setTimeLeft] = useState(60);
 
   // Use a ref to keep track of the current values for auto-submit
   const stateRef = useRef({ currentOTP, isVerifying });
   stateRef.current = { currentOTP, isVerifying };
 
-  // ⏳ EFFECT HOOK: Runs the countdown clock smoothly every second
+  // EFFECT HOOK: Runs the countdown clock smoothly every second
   useEffect(() => {
     if (timeLeft === 0) return;
 
@@ -62,9 +53,6 @@ export default function VerifyOTP() {
     if (!/^\d?$/.test(value)) return;
     setError(""); // Clear error on typing
 
-    // Clear error message once they start typing again
-    if (error) setError("");
-
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
@@ -75,7 +63,7 @@ export default function VerifyOTP() {
       if (nextInput) nextInput.focus();
     }
 
-    // 🚀 AUTO-SUBMIT: If the user filled the last digit (index 5)
+    // AUTO-SUBMIT: If the user filled the last digit (index 5)
     const fullyEnteredOTP = newOtp.join("");
     if (fullyEnteredOTP.length === 6) {
       setTimeout(() => {
@@ -115,7 +103,7 @@ export default function VerifyOTP() {
 
         if (data.return) {
           setCurrentOTP(newGeneratedOTP);
-          setTimeLeft(60); // ⏳ RESET TIMER BACK TO 60 SECONDS
+          setTimeLeft(60); 
           alert(`Success! A fresh verification code has been dispatched to +91 ${cleanMobile}`);
         } else {
           setError("SMS Gateway failed: " + (data.message || "Limit exceeded."));
@@ -136,13 +124,13 @@ export default function VerifyOTP() {
 
         await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
-          mode: "no-cors",
+          mode: "no-cors", 
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: formData.toString()
         });
 
         setCurrentOTP(newGeneratedOTP);
-        setTimeLeft(60); // ⏳ RESET TIMER BACK TO 60 SECONDS
+        setTimeLeft(60); 
         alert(`Verification email resent successfully to ${contactInfo}`);
       } catch (err) {
         console.error("Email Resend error:", err);
@@ -172,7 +160,7 @@ export default function VerifyOTP() {
 
     setIsVerifying(true);
 
-    // 🌟 ROBUST DATA MAPPING: If keys vary from source component, fallback values will catch them
+    // ROBUST DATA MAPPING
     const payload = {
       Location: estimateData?.location || estimateData?.city || "Direct Visit",
       PlotUnit: estimateData?.plotUnit || estimateData?.unit || "N/A",
@@ -184,18 +172,21 @@ export default function VerifyOTP() {
     };
 
     try {
+      // Convert mapping directly into URL parameters
       const formData = new URLSearchParams();
       Object.keys(payload).forEach((key) => {
         formData.append(key, payload[key]);
       });
 
+      // FIX: Keeps native form fields for your original script, but strips 
+      // strict headers/modes that trigger local adblock drops.
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData.toString(),
+        body: formData,
       });
 
+      // Login validation tracking flag setup
+      localStorage.setItem("isLoggedIn", "true");
       alert("Verification successful! Your budget estimation has been logged.");
       navigate("/budget-planner");
 
@@ -207,31 +198,10 @@ export default function VerifyOTP() {
     }
   };
 
-  // Manual fallback form handler
   const handleVerifySubmit = (e) => {
     e.preventDefault();
     triggerVerification(otp);
   };
-
-//   const handleVerify = () => {
-//     const isOtpComplete = otp.every((digit) => digit !== "");
-
-//     // 2. Validate if the user actually filled out all 6 digits
-//     if (!isOtpComplete) {
-//       setError("Please enter the complete 6-digit OTP.");
-//       return; 
-//     }
-    
-//     setError(""); // Clear error if validation passes
-// const finalOtp = otp.join("");
-// console.log("Verifying OTP:", finalOtp);
-
-// // Login successful
-// localStorage.setItem("isLoggedIn", "true");
-
-// // Proceed to Budget Planner
-// navigate("/budget-planner");
-//   };
 
   return (
     <div className="verify-page">
@@ -240,11 +210,7 @@ export default function VerifyOTP() {
 
         <h2>Verify OTP</h2>
         <p>Enter the 6-digit OTP sent to</p>
-
         <h4>{contactInfo}</h4>
-
-        
-        
 
         <form onSubmit={handleVerifySubmit}>
           <div className="otp-container">
@@ -263,7 +229,11 @@ export default function VerifyOTP() {
             ))}
           </div>
 
-          {error && <div className="validation-error-msg" style={{ color: "#d32f2f", margin: "15px 0", fontSize: "14px" }}>⚠️ {error}</div>}
+          {error && (
+            <div className="validation-error-msg" style={{ color: "#d32f2f", margin: "15px 0", fontSize: "14px" }}>
+              ⚠️ {error}
+            </div>
+          )}
 
           <button
             type="submit"
@@ -274,43 +244,40 @@ export default function VerifyOTP() {
           </button>
         </form>
 
-        {/* 3. Render the dynamic error message block here */}
         {error && <div className="error-message">{error}</div>}
 
         <button
+          className="resend-btn"
+          type="button"
+          onClick={handleResendOTP}
+          disabled={timeLeft > 0 || isResending || isVerifying}
+          style={{
+            cursor: timeLeft > 0 ? "not-allowed" : "pointer",
+            opacity: timeLeft > 0 ? 0.6 : 1,
+          }}
+        >
+          {isResending
+            ? "Resending..."
+            : timeLeft > 0
+            ? `Resend OTP in ${formatTime(timeLeft)}`
+            : "Resend OTP"}
+        </button>
 
-  className="resend-btn"
-  type="button"
-  onClick={handleResendOTP}
-  disabled={timeLeft > 0 || isResending || isVerifying}
-  style={{
-    cursor: timeLeft > 0 ? "not-allowed" : "pointer",
-    opacity: timeLeft > 0 ? 0.6 : 1,
-  }}
->
-  {isResending
-    ? "Resending..."
-    : timeLeft > 0
-    ? `Resend OTP in ${formatTime(timeLeft)}`
-    : "Resend OTP"}
-</button>
-
-<button
-  className="change-btn"
-  type="button"
-  onClick={() =>
-    navigate("/login", {
-      state: {
-        estimateData,
-        contact: contactInfo,
-        method,
-      },
-    })
-  }
->
-  ← Change Details
-</button>
-        
+        <button
+          className="change-btn"
+          type="button"
+          onClick={() =>
+            navigate("/login", {
+              state: {
+                estimateData,
+                contact: contactInfo,
+                method,
+              },
+            })
+          }
+        >
+          &larr; Change Details
+        </button>
       </div>
     </div>
   );

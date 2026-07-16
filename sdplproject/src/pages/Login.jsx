@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 
@@ -63,12 +62,18 @@ export default function Login() {
     // --- MOBILE VERIFICATION ROUTE ---
     if (activeTab === "mobile") {
       const mobileRegex = /^[6-9]\d{9}$/;
+      
+      // 🌟 NEW VALIDATION CHECK: Detects repetitive digits like 7777777777
+      const isRepeatingDigits = /^(\d)\1{9}$/.test(mobileNumber);
+
       if (!mobileNumber) {
         setError("Please enter your mobile number.");
         setIsSubmitting(false);
         return;
       }
-      if (!mobileRegex.test(mobileNumber)) {
+      
+      // If it fails standard formatting OR is a fake repeating number
+      if (!mobileRegex.test(mobileNumber) || isRepeatingDigits) {
         setError("Please enter a valid 10-digit mobile number.");
         setIsSubmitting(false);
         return;
