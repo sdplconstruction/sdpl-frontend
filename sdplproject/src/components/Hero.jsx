@@ -56,13 +56,13 @@ export default function Hero() {
 
         <div className="hero-tag">
   <span className="hero-tag-red">
-    BUILD WITH CONFIDENCE
+    BUILD WITH PRIDE
   </span>
 
   <span className="hero-separator">|</span>
 
   <span className="hero-tag-white">
-    DELIVER WITH PRIDE
+    DELIVER WITH CONFIDENCE
   </span>
 </div>
           <h1>

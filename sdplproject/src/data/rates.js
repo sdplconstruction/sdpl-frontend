@@ -8,11 +8,11 @@ export const CALCULATION_RATES = {
 
 // Fixed pricing for optional add-ons
 export const ADD_ON_PRICES = {
-  modularKitchen: 250000,
+  modularKitchen: 300000,
   falseCeiling: 120000,
-  compoundWall: 180000,
-  borewell: 80000,
+  compoundWall: 300000,
+  borewell: 150000,
   solarSystem: 250000,
-  smartHome: 300000,
-  lift: 800000
+  smartHome: 400000,
+  lift: 500000
 };

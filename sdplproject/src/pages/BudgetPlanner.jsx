@@ -616,7 +616,7 @@ useEffect(() => {
 
           {/* Step 4: Add-On Features */}
           <section className="form-card-section">
-            <h2 className="section-step-title"><span>➕</span> 4. Optional Infrastructure Add-Ons</h2>
+            <h2 className="section-step-title"><span>➕</span> 4. Optional Infrastructure Add-Ons (Costs May Vary)</h2>
             <div className="addons-premium-grid">
               {Object.keys(ADD_ON_PRICES).map((key) => (
                 <div key={key} className={`addon-premium-tile ${formData.addOns[key] ? 'active' : ''}`} onClick={() => handleToggleAddOn(key)}>
