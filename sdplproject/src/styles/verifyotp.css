@@ -131,13 +131,13 @@ body,
 }
 
 @keyframes slideDown {
-    from { 
-        opacity: 0; 
-        transform: translateY(-8px) scale(0.98); 
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.98);
     }
-    to { 
-        opacity: 1; 
-        transform: translateY(0) scale(1); 
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -245,7 +245,7 @@ body,
         font-size: 20px;
         border-radius: 10px;
     }
-    
+
     .error-message {
         font-size: 13px;
         margin-bottom: 20px;

@@ -42,7 +42,7 @@ export default function AboutPage() {
 
   return (
     <div className="about-page-wrapper">
-      
+
       {/* HERO SECTION */}
       <section className="about-banner">
         <img src={aboutBanner} alt="SDPL Banner" className="about-banner-image" />
@@ -95,7 +95,7 @@ export default function AboutPage() {
             <p>
               "Our vision is to build trusted landmarks across Odisha through
               innovation, transparency, and uncompromising quality while
-              transforming the construction experience with <strong>Aramva</strong>—
+              transforming the construction experience with <strong>Subharambha</strong>—
               from planning and budgeting to project completion."
             </p>
           </div>
@@ -110,7 +110,10 @@ export default function AboutPage() {
             <h2>Meet Our Leadership Team</h2>
           </div>
           <div className="team-grid">
-            {teamMembers.map((member, index) => (
+            {/* 2. Filter here: only show members where designation is NOT "Managing Director" */}
+           {teamMembers
+           .filter((member) => member.designation !== "Managing Director")
+           .map((member, index) => (
               <div key={index} className="team-card animate-fade-up" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="team-img-circle">
                   {member.image ? (

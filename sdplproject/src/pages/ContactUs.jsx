@@ -115,8 +115,8 @@ const handleFormSubmit = async (e) => {
             <div className="badge-icon-circle phone-clr">📞</div>
             <div className="badge-info-text">
               <h4>Call Us</h4>
+              <p>+91 94394 67820</p>
               <p>+91 70087 11934</p>
-              <p>+91 82603 43676</p>
             </div>
           </div>
 
@@ -210,7 +210,7 @@ const handleFormSubmit = async (e) => {
           <div className="interactive-map-card">
             <iframe
               title="Subharambha Office Location Map"
-              src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d29946.847002866536!2d85.76723435000001!3d20.2440704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3a19a9f8c47eb8d9%3A0x33d432026d6d543e!2sAramva.in%2C%20Plot%20no-%2082%2F2164%2C%20Kalinga%20Vihar%2C%20Patrapada%2C%20Bhubaneswar%2C%20Odisha%20751019!3m2!1d20.241950199999998!2d85.7656738!5e0!3m2!1sen!2sin!4v1783683961891!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d29946.847002866536!2d85.76723435000001!3d20.2440704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3a19a9f8c47eb8d9%3A0x33d432026d6d543e!2sSubharambha%2C%20Plot%20no-%2082%2F2164%2C%20Kalinga%20Vihar%2C%20Patrapada%2C%20Bhubaneswar%2C%20Odisha%20751019!3m2!1d20.241950199999998!2d85.7656738!5e0!3m2!1sen!2sin!4v1783683961891!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -232,12 +232,12 @@ const handleFormSubmit = async (e) => {
           </div>
           <div className="strip-center-meta">
             <span>Call us directly</span>
-            <h3>+91 70087 11934</h3>
+            <h3>+91 94394 67820</h3>
           </div>
           <div className="strip-right-action">
-            <a href="tel:+917008711934" className="callback-action-btn">
-              📞 Request a Callback
-            </a>
+            <a href="tel:+919439467820" className="callback-action-btn">
+           📞 Request a Callback
+          </a>
           </div>
         </div>
       </div>

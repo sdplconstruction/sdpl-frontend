@@ -16,7 +16,7 @@
     grid-template-columns: 1.6fr 1.1fr 1.3fr 1.5fr 1.5fr 220px;
     align-items: center;
     box-shadow: 0 20px 60px rgba(0,0,0,.18);
-    
+
     /* CRUCIAL FIXES FOR DROPDOWN VISIBILITY */
     overflow: visible !important; /* Forces grid row layout to let menus drop down */
     z-index: 20000 !important;   /* Forces panel over lower homepage components */
@@ -144,8 +144,9 @@
     transition: background 0.15s ease, color 0.15s ease !important;
 }
 
-/* SOLID RED HOVER EFFECT */
-.location-suggestions-dropdown li:hover {
+/* SOLID RED EFFECT FOR MOUSE HOVER AND KEYBOARD ARROW SELECTION */
+.location-suggestions-dropdown li:hover,
+.location-suggestions-dropdown li.active {
     background-color: #D62828 !important; /* Solid Red Background */
     color: #ffffff !important;            /* White Text */
 }

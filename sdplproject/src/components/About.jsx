@@ -40,7 +40,7 @@ export default function About() {
   useEffect(() => {
     if (!startCounter) return;
 
-    const duration = 1800; 
+    const duration = 1800;
     const interval = 20;
     const totalSteps = duration / interval;
 
@@ -91,8 +91,8 @@ export default function About() {
 
         <p className="about-text">
           SDPL Constructions is one of Odisha's trusted builder with{" "}
-          <span className="about-highlight">10+ years of expertise</span>. 
-          Powered by <span className="about-highlight-red">Aramva</span>, we deliver superior residential, 
+          <span className="about-highlight">10+ years of expertise</span>.
+          Powered by <span className="about-highlight-red">Subharambha</span>, we deliver superior residential,
           commercial, and industrial projects with total transparency and timely execution.
         </p>
 
