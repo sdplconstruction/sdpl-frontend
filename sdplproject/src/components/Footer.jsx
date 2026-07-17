@@ -163,15 +163,15 @@ export default function Footer() {
             </li>
             <li>
               <FaPhoneAlt className="contact-react-icon" />
-              <p>+91 70087 11934<br />+91 82603 43676</p>
+              <p>+91 94394 67820<br />+91 70087 11934</p>
             </li>
             <li>
               <FaEnvelope className="contact-react-icon" />
-              <p>info@sdplconstruction.com<br/>sdplconstruction1@gmail.com</p>
+              <p>info@sdplconstructions.com<br/>sdplconstruction1@gmail.com</p>
             </li>
             <li>
               <FaGlobe className="contact-react-icon" />
-              <p>www.sdplconstruction.com</p>
+              <p>www.sdplconstructions.com</p>
             </li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 // Rate matrix based on your exact pricing structure
 export const CALCULATION_RATES = {
-  coreHouse: { basic: 1100, classic: 1250, premium: 1450 },
+  coreHouse: { basic: 1200, classic: 1350, premium: 1450 },
   lockAndKey: { basic: 1700, classic: 2100, premium: 2500 },
   semiFurnished: { basic: 2100, classic: 2500, premium: 3000 },
   fullyFurnished: { basic: 2800, classic: 3400, premium: 4200 }

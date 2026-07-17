@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../styles/verifyOtp.css";
+import "../styles/verifyotp.css";
 
 // API CONFIGURATION STRINGS
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVSr1nPgoY0JjuJcxG0Q8FWoraZ2YCNU8KSFknjDg8hQdZ-bpahS01gnzwX9rObPMw/exec";
@@ -21,7 +21,7 @@ export default function VerifyOTP() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [isVerifying, setIsVerifying] = useState(false);
   const [isResending, setIsResending] = useState(false);
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   // TIMER STATE: 60 seconds
   const [timeLeft, setTimeLeft] = useState(60);
@@ -103,7 +103,7 @@ export default function VerifyOTP() {
 
         if (data.return) {
           setCurrentOTP(newGeneratedOTP);
-          setTimeLeft(60); 
+          setTimeLeft(60);
           alert(`Success! A fresh verification code has been dispatched to +91 ${cleanMobile}`);
         } else {
           setError("SMS Gateway failed: " + (data.message || "Limit exceeded."));
@@ -124,13 +124,13 @@ export default function VerifyOTP() {
 
         await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
-          mode: "no-cors", 
+          mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: formData.toString()
         });
 
         setCurrentOTP(newGeneratedOTP);
-        setTimeLeft(60); 
+        setTimeLeft(60);
         alert(`Verification email resent successfully to ${contactInfo}`);
       } catch (err) {
         console.error("Email Resend error:", err);
@@ -154,10 +154,18 @@ export default function VerifyOTP() {
     }
 
     if (enteredOTP !== stateRef.current.currentOTP) {
-      setError("Invalid OTP code. Please try again.");
-      return;
-    }
+  setError("Invalid OTP code. Please try again.");
 
+  // Clear OTP boxes
+  setOtp(["", "", "", "", "", ""]);
+
+  // Focus back to first input
+  setTimeout(() => {
+    document.getElementById("otp-0")?.focus();
+  }, 0);
+
+  return;
+}
     setIsVerifying(true);
 
     // ROBUST DATA MAPPING
@@ -178,7 +186,7 @@ export default function VerifyOTP() {
         formData.append(key, payload[key]);
       });
 
-      // FIX: Keeps native form fields for your original script, but strips 
+      // FIX: Keeps native form fields for your original script, but strips
       // strict headers/modes that trigger local adblock drops.
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
@@ -214,37 +222,37 @@ export default function VerifyOTP() {
 
         <form onSubmit={handleVerifySubmit}>
           <div className="otp-container">
-            {otp.map((digit, index) => (
-              <input
-                key={index}
-                id={`otp-${index}`}
-                maxLength="1"
-                type="text"
-                inputMode="numeric"
-                value={digit}
-                onChange={(e) => handleChange(e.target.value, index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                required
-              />
-            ))}
-          </div>
+  {otp.map((digit, index) => (
+    <input
+      key={index}
+      id={`otp-${index}`}
+      maxLength="1"
+      type="text"
+      inputMode="numeric"
+      value={digit}
+      onChange={(e) => handleChange(e.target.value, index)}
+      onKeyDown={(e) => handleKeyDown(e, index)}
+      required
+    />
+  ))}
+</div>
 
-          {error && (
-            <div className="validation-error-msg" style={{ color: "#d32f2f", margin: "15px 0", fontSize: "14px" }}>
-              ⚠️ {error}
-            </div>
-          )}
+<button
+  type="submit"
+  className="verify-btn"
+  disabled={isVerifying || isResending}
+>
+  {isVerifying ? "Loading Budget Planner..." : "Verify & Continue"}
+</button>
 
-          <button
-            type="submit"
-            className="verify-btn"
-            disabled={isVerifying || isResending}
-          >
-            {isVerifying ? "Loading Budget Planner..." : "Verify & Continue"}
-          </button>
+{error && (
+  <div className="validation-error-msg">
+    ⚠️ {error}
+  </div>
+)}
         </form>
 
-        {error && <div className="error-message">{error}</div>}
+
 
         <button
           className="resend-btn"
