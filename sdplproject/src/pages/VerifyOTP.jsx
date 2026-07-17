@@ -154,10 +154,18 @@ export default function VerifyOTP() {
     }
 
     if (enteredOTP !== stateRef.current.currentOTP) {
-      setError("Invalid OTP code. Please try again.");
-      return;
-    }
+  setError("Invalid OTP code. Please try again.");
 
+  // Clear OTP boxes
+  setOtp(["", "", "", "", "", ""]);
+
+  // Focus back to first input
+  setTimeout(() => {
+    document.getElementById("otp-0")?.focus();
+  }, 0);
+
+  return;
+}
     setIsVerifying(true);
 
     // ROBUST DATA MAPPING
@@ -214,37 +222,37 @@ export default function VerifyOTP() {
 
         <form onSubmit={handleVerifySubmit}>
           <div className="otp-container">
-            {otp.map((digit, index) => (
-              <input
-                key={index}
-                id={`otp-${index}`}
-                maxLength="1"
-                type="text"
-                inputMode="numeric"
-                value={digit}
-                onChange={(e) => handleChange(e.target.value, index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                required
-              />
-            ))}
-          </div>
+  {otp.map((digit, index) => (
+    <input
+      key={index}
+      id={`otp-${index}`}
+      maxLength="1"
+      type="text"
+      inputMode="numeric"
+      value={digit}
+      onChange={(e) => handleChange(e.target.value, index)}
+      onKeyDown={(e) => handleKeyDown(e, index)}
+      required
+    />
+  ))}
+</div>
 
-          {error && (
-            <div className="validation-error-msg" style={{ color: "#d32f2f", margin: "15px 0", fontSize: "14px" }}>
-              ⚠️ {error}
-            </div>
-          )}
+<button
+  type="submit"
+  className="verify-btn"
+  disabled={isVerifying || isResending}
+>
+  {isVerifying ? "Loading Budget Planner..." : "Verify & Continue"}
+</button>
 
-          <button
-            type="submit"
-            className="verify-btn"
-            disabled={isVerifying || isResending}
-          >
-            {isVerifying ? "Loading Budget Planner..." : "Verify & Continue"}
-          </button>
+{error && (
+  <div className="validation-error-msg">
+    ⚠️ {error}
+  </div>
+)}
         </form>
 
-        {error && <div className="error-message">{error}</div>}
+        
 
         <button
           className="resend-btn"
