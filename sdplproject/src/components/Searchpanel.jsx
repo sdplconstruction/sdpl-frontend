@@ -78,9 +78,11 @@ export default function SearchPanel() {
     "Farm House",
   ];
 
-  const filteredDistricts = odishaDistricts.filter((district) =>
-    district.toLowerCase().includes(location.toLowerCase())
-  );
+  const filteredDistricts = location.trim() === ""
+  ? odishaDistricts
+  : odishaDistricts.filter((district) =>
+      district.toLowerCase().includes(location.toLowerCase())
+    );
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -254,14 +256,19 @@ export default function SearchPanel() {
             type="text"
             placeholder="Enter Location"
             value={location}
+            onClick={() => {
+            setLocation("");
+           setIsDropdownOpen(true);
+          }}
             onFocus={() => {
               setIsDropdownOpen(true);
               setActiveDistrictIndex(-1);
             }}
             onChange={(e) => {
+              const val = e.target.value;
               setLocation(e.target.value);
-              setIsDropdownOpen(true);
-              setActiveDistrictIndex(-1);
+              // setIsDropdownOpen(true);
+              // setActiveDistrictIndex(-1);
             }}
             onKeyDown={handleKeyDown}
             style={{
@@ -274,12 +281,17 @@ export default function SearchPanel() {
           <FaChevronDown
             className="dropdown-arrow-icon"
             onClick={() => {
+              // If opening, maybe clear the text so they see the full list
+             if (!isDropdownOpen) {
+            setLocation("");
+             }
               setIsDropdownOpen(!isDropdownOpen);
               setActiveDistrictIndex(-1);
             }}
             style={{
               cursor: "pointer",
               marginLeft: "10px",
+              transition: "transform 0.2s",
               transform: isDropdownOpen
                 ? "rotate(180deg)"
                 : "rotate(0deg)",

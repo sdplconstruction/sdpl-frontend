@@ -668,13 +668,13 @@ export default function BudgetPlanner() {
               {isGeneratingPdf ? 'Generating PDF...' : 'Download Estimate PDF'}
             </button>
 
-            <button
+            {/* <button
               type="button"
               className="sidebar-secondary-contact-btn"
               onClick={handleContactRedirect}
             >
               Speak with an Expert
-            </button>
+            </button> */}
           </div>
         </div>
 

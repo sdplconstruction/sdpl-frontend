@@ -358,7 +358,7 @@
   display: inline-block;
   transition: background 0.2s ease;
   z-index: 10;
-  position: relative; 
+  position: relative;
   pointer-events: auto; /
 }
 
@@ -367,37 +367,61 @@
 }
 
 /* ==========================================================================
-   CROSS-SYSTEM RESPONSIVE VIEWS Breakpoints
+   CROSS-SYSTEM RESPONSIVE VIEWS
    ========================================================================== */
 @media (max-width: 992px) {
   .contact-hero-banner {
     grid-template-columns: 1fr;
     text-align: center;
+    /* Allows the height to adjust based on content */
+    min-height: auto;
   }
+
+  .banner-overlay-content {
+    padding: 30px 20px;
+  }
+
   .banner-overlay-content p {
     margin: 0 auto;
   }
+
+  /* FIX: Instead of hiding the image, give it a fixed height for mobile */
   .banner-visual-frame {
-    display: none;
+    display: block;
+    height: 250px;
+    order: -1; /* Moves the image to the TOP on mobile */
   }
+
+  /* Adjust the clip-path for mobile so it doesn't look cut off */
+  .banner-visual-frame img {
+    clip-path: none;
+  }
+
   .interactive-split-matrix {
     grid-template-columns: 1fr;
   }
+
   .footer-callback-strip-panel {
     flex-direction: column;
     text-align: center;
     padding: 30px 20px;
   }
+
   .strip-left-meta {
     flex-direction: column;
   }
 }
 
 @media (max-width: 580px) {
+  .banner-visual-frame {
+    height: 200px; /* Even smaller height for phones */
+  }
+
   .input-field-duo {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
   .form-action-trigger-btn {
     width: 100%;
     justify-content: center;

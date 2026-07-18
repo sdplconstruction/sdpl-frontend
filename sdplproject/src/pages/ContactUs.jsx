@@ -230,18 +230,18 @@ const handleFormSubmit = async (e) => {
               <p>We're happy to assist you!</p>
             </div>
           </div>
-          <div className="strip-center-meta">
+          {/* <div className="strip-center-meta">
             <span>Call us directly</span>
             <h3>+91 94394 67820</h3>
-          </div>
+          </div> */}
           <div className="strip-right-action">
             <a href="tel:+919439467820" className="callback-action-btn">
-           📞 Request a Callback
+           📞 Dial Now
           </a>
           </div>
         </div>
       </div>
-
+      
       {/* 5. Global Brand Footer */}
       <Footer />
     </>
