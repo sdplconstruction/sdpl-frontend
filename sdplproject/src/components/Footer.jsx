@@ -114,6 +114,18 @@ export default function Footer() {
           <div className="red-underline"></div>
 
           <ul>
+             <li>
+              <Link to="/services#civil-construction">
+                <FaChevronRight className="link-arrow" />
+                Construction
+              </Link>
+            </li>
+            <li>
+              <Link to="/services#interior-design">
+                <FaChevronRight className="link-arrow" />
+                Interior Design
+              </Link>
+            </li>
             <li>
               <Link to="/services#building-approvals">
                 <FaChevronRight className="link-arrow" />

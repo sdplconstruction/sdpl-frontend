@@ -62,10 +62,10 @@ export default function AboutPage() {
           <p className="section-tag">WHO WE ARE</p>
           <h2>Creating Spaces That Inspire Generations.</h2>
           <p className="desc-paragraph">
-            SDPL Constructions specializes in residential, commercial, and industrial construction with a core focus on structural reliability, architectural elegance, and punctual project completion.
+            SDPL Constructions, a specialized unit of Subharambha Developers Pvt. Ltd., is a premier partner for high-stakes civil work. We bring robust experience to both private and government sector projects, delivering everything from residential developments to complex industrial infrastructure.
           </p>
           <p className="desc-paragraph">
-            Every project is mapped carefully down to the finest detail, executed with absolute precision, and handed over with seamless operational clarity to guarantee lasting client delight.
+            By combining structural integrity with architectural innovation, we ensure every project is executed with precision and delivered on time, creating spaces that stand the test of time and exceed client expectations.
           </p>
         </div>
 

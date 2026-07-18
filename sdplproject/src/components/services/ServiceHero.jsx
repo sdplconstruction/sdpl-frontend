@@ -12,7 +12,6 @@ export default function ServiceHero() {
       
       <div className="services-wrapper">
         <div className="services-hero-content">
-          <span className="hero-tag">Build With Confidence</span>
           <h1>
             Our Services
           </h1>

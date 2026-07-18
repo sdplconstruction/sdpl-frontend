@@ -10,25 +10,17 @@ export default function ProjectCard({ project }) {
   return (
     <div className="project-card">
       <div className="project-image-wrapper">
-        {isUpcoming ? (
-          /* Placeholder for Upcoming Projects */
-          <div className="project-image-placeholder">
-            <Building size={48} />
-          </div>
-        ) : (
-          /* Real Image for Ongoing/Completed */
-          <img
-            src={project.image}
-            alt={project.title}
-            className="project-image"
-          />
-        )}
+  {/* Always render the image provided in the project data */}
+  <img
+    src={project.image}
+    alt={project.title}
+    className="project-image"
+  />
 
-        <span className={`project-badge ${project.category}`}>
-          {project.category.charAt(0).toUpperCase() +
-            project.category.slice(1)}
-        </span>
-      </div>
+  <span className={`project-badge ${project.category}`}>
+    {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
+  </span>
+</div>
 
       <div className="project-content">
         <h3>{project.title}</h3>
