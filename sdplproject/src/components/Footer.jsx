@@ -2,10 +2,6 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import '../styles/footer.css';
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
@@ -16,6 +12,11 @@ import {
 
 import { FaHelmetSafety } from 'react-icons/fa6';
 import footerLogo from '../assets/logo.png';
+
+// Import your custom logo assets
+import facebookIcon from "../assets/facebooklogo.svg";
+import instagramIcon from "../assets/instagramlogo.png";
+import youtubeIcon from "../assets/youtubelogo.jpg";
 
 export default function Footer() {
   const location = useLocation();
@@ -73,16 +74,13 @@ export default function Footer() {
 
           <div className="footer-social-row">
             <a href="https://www.facebook.com/profile.php?id=61588532075702" target="_blank" rel="noopener noreferrer" className="social-circle" title="Facebook">
-              <FaFacebookF />
+              <img src={facebookIcon} alt="Facebook" className="social-logo-img" />
             </a>
             <a href="https://www.instagram.com/sdplconstruction/" target="_blank" rel="noopener noreferrer" className="social-circle" title="Instagram">
-              <FaInstagram />
+              <img src={instagramIcon} alt="Instagram" className="social-logo-img" />
             </a>
-            {/* <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-circle" title="LinkedIn">
-              <FaLinkedinIn />
-            </a> */}
             <a href="https://www.youtube.com/@sdplconstruction" target="_blank" rel="noopener noreferrer" className="social-circle" title="YouTube">
-              <FaYoutube />
+              <img src={youtubeIcon} alt="YouTube" className="social-logo-img" />
             </a>
           </div>
         </div>
@@ -96,7 +94,6 @@ export default function Footer() {
             <li><Link to="/about"> <FaChevronRight className="link-arrow" /> About Us</Link></li>
             <li><Link to="/services"> <FaChevronRight className="link-arrow" /> Our Services</Link></li>
 
-            {/* UPDATED PROJECTS LINK WITH INTERACTION METHOD */}
             <li>
               <a href="#homepage-projects-section" onClick={handleProjectsClick}>
                 <FaChevronRight className="link-arrow" /> Projects
