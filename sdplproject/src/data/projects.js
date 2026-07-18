@@ -8,8 +8,11 @@ import completedpic3 from "../assets/projects/completedpic3.jpeg";
 import completedpic4 from "../assets/projects/completedpic4.jpeg";
 import completedpic5 from "../assets/projects/completedpic5.jpeg";
 import completedpic6 from "../assets/projects/completedpic6.jpeg";
-// import project5 from "../assets/projects/project5.jpg";
-// import project6 from "../assets/projects/project6.jpg";
+import upcoming1 from "../assets/projects/upcoming1.jpg";
+import upcoming2 from "../assets/projects/upcoming2.jpg";
+import upcoming3 from "../assets/projects/upcoming3.jpg";
+import upcoming4 from "../assets/projects/upcoming4.jpg";
+
 
 const projects = [
   {
@@ -58,7 +61,7 @@ const projects = [
     title: "Triplex Project",
     category: "upcoming",
     location: "Hanspal, Bhubaneswar",
-    // image: project5,
+    image: upcoming1,
     progress: 0,
     description: "Launching soon."
   },
@@ -68,7 +71,7 @@ const projects = [
     title: "Triplex Project",
     category: "upcoming",
     location: "Kashipur, Khorda",
-    // image: project5,
+    image: upcoming2,
     progress: 0,
     description: "Launching soon."
   },
@@ -78,7 +81,7 @@ const projects = [
     title: "Independent S+3 Project",
     category: "upcoming",
     location: "Patrapada, Bhubaneswar",
-    // image: project5,
+    image: upcoming3,
     progress: 0,
     description: "Launching soon."
   },
@@ -88,7 +91,7 @@ const projects = [
     title: "Independent S+4 Project",
     category: "upcoming",
     location: "Raghunathpur, Bhubaneswar",
-    // image: project6,
+    image: upcoming4,
     progress: 0,
     description: "Launching soon."
   },
@@ -115,11 +118,11 @@ const projects = [
   },
   {
     id: 11,
-    slug: "complete-house-malipada",
+    slug: "complete-house-tamando",
     title: "Complete House Project",
     category: "completed",
-    location: "Malipada, Bhubaneswar",
-    image: completedpic3,
+    location: "Bhagwanpur, Bhubaneswar",
+    image: completedpic6,
     progress: 100,
     description: "Premium gated community."
   },
@@ -146,14 +149,16 @@ const projects = [
 
   {
     id: 14,
-    slug: "complete-house-tamando",
+    slug: "complete-house-malipada",
     title: "Complete House Project",
     category: "completed",
-    location: "Bhagwanpur, Bhubaneswar",
-    image: completedpic6,
+    location: "Malipada, Bhubaneswar",
+    image: completedpic3,
     progress: 100,
     description: "Premium gated community."
   }
 ];
 
 export default projects;
+
+
