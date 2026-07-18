@@ -3,11 +3,47 @@ import structural from "../assets/services/structural.png";
 import layout from "../assets/services/layout.png";
 import plan from "../assets/services/plan.png";
 import elevation from "../assets/services/elevation.png";
+import civil from "../assets/services/civil.png";
+import interior from "../assets/services/interior.png";
+
 export const services = [
+ {
+    id: "civil-construction",
+    number: "01",
+    title: "", // Removed "PREMIUM GRADE" completely
+    highlight: "CONSTRUCTION",
+    image: civil,
+    reverse: false,
+    description:
+      "From foundational groundwork to structural completion, we deliver premium-grade engineering and robust civil construction services engineered for durability.",
+    points: [
+      "Civil Construction",
+      "Residential & Commercial Construction",
+      "End-to-End Project Engineering Management",
+      "Premium Material Sourcing & Execution",
+    ],
+  },
+  {
+    id: "interior-design",
+    number: "02",
+    title: "",
+    highlight: "INTERIOR DESIGN",
+    image: interior,
+    reverse: true, // Image on the right side
+    description:
+      "Transform your spaces with bespoke structural design plans, curated palettes, and space planning metrics optimized to marry elegance with practical utility.",
+    points: [
+      "Bespoke Spatial Layouts & Space Planning",
+      "Curated Material & Color Palette Advisories",
+      "Custom Furniture & Structural Fixture Placements",
+      "Ergonomic Space Optimization Configurations",
+    ],
+  },
+
   {
     id: "building-approvals",
-    number: "01",
-    title: "ALL TYPES OF",
+    number: "03",
+    title: "",
     highlight: "BUILDING APPROVALS",
     image: approval,
     reverse: false,
@@ -23,7 +59,7 @@ export const services = [
 
   {
     id: "structural-design",
-    number: "02",
+    number: "04",
     title: "",
     highlight: "STRUCTURAL DESIGN",
     image: structural,
@@ -40,7 +76,7 @@ export const services = [
 
   {
     id: "layout-ideas",
-    number: "03",
+    number: "05",
     title: "",
     highlight: "LAYOUT IDEAS",
     image: layout,
@@ -57,7 +93,7 @@ export const services = [
 
   {
     id: "plan-approval",
-    number: "04",
+    number: "06",
     title: "",
     highlight: "PLAN APPROVAL",
     image: plan,
@@ -74,7 +110,7 @@ export const services = [
 
   {
     id: "elevation-3d",
-    number: "05",
+    number: "07",
     title: "",
     highlight: "ELEVATION, 3D MODEL & VIDEOS",
     image: elevation,

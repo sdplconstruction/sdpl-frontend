@@ -252,21 +252,28 @@
     gap: 30px;
 }
 
+/* Base card styling with permanent red border */
 .team-card {
     background: #fff;
     border-radius: 20px;
     padding: 35px 20px;
     text-align: center;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.03);
-    border: 1px solid #f0f0f0;
-    transition: all 0.3s ease;
+    border: none; /* Removed the thin outline entirely */
+    
+    /* Multi-layered soft red shadow to create that intense neon glow effect */
+    box-shadow: 0 0 15px rgba(214, 40, 40, 0.25), 
+                0 0 30px rgba(214, 40, 40, 0.15); 
+                
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* Hover state makes the glow intensify and expand outward as the card lifts */
 .team-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(214, 40, 40, 0.4), 
+                0 0 40px rgba(214, 40, 40, 0.25);
 }
-
 .team-img-circle {
     width: 130px;
     height: 130px;
