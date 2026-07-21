@@ -58,7 +58,7 @@ const projects = [
   {
     id: 5,
     slug: "triplex",
-    title: "Triplex Project",
+    title: "Duplex Project",
     category: "upcoming",
     location: "Hanspal, Bhubaneswar",
     image: upcoming1,
@@ -78,7 +78,7 @@ const projects = [
    {
     id: 7,
     slug: "independent",
-    title: "Independent S+3 Project",
+    title: "Independent S+4 Project",
     category: "upcoming",
     location: "Patrapada, Bhubaneswar",
     image: upcoming3,
@@ -88,7 +88,7 @@ const projects = [
   {
     id: 8,
     slug: "independent",
-    title: "Independent S+4 Project",
+    title: "S+4 Apartment Project",
     category: "upcoming",
     location: "Raghunathpur, Bhubaneswar",
     image: upcoming4,
