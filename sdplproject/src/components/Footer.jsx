@@ -102,9 +102,12 @@ export default function Footer() {
 
             <li><Link to="/login"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
             <li><Link to="/contact-us"> <FaChevronRight className="link-arrow" /> Contact Us</Link></li>
-            
+
+            {/* <li><Link to="/construction-company-bhubaneswar-cuttack"> <FaChevronRight className="link-arrow" /> Construction Company in Bhubaneswar & Cuttack</Link></li> */}
+
+
             {/* NEW LANDING PAGE LINK */}
-           
+
           </ul>
         </div>
 

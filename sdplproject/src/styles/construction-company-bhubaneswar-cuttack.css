@@ -1,0 +1,597 @@
+/* =========================================
+   GLOBAL RESET & UNIQUE CONTAINERS
+========================================= */
+
+.sdpl-hero,
+.sdpl-intro,
+.sdpl-what-we-build,
+.sdpl-regional-projects,
+.sdpl-why-section,
+.sdpl-cta-section {
+  padding: 90px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sdpl-container {
+  max-width: 1280px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Unique Section Titles */
+.sdpl-section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sdpl-section-title span {
+  color: #d8232a;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(216, 35, 42, 0.08);
+  padding: 6px 16px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.sdpl-section-title h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin: 10px 0 15px;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+.sdpl-section-title p {
+  max-width: 720px;
+  margin: auto;
+  color: #4b5563;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.sdpl-hero {
+  background: linear-gradient(135deg, #071d35 0%, #0d2847 50%, #12385c 100%);
+  background-image: urlurl("../assets/seoimage1.avif");;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.sdpl-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(7, 29, 53, 0.88) 0%, rgba(13, 40, 71, 0.94) 100%);
+  z-index: 1;
+}
+
+.sdpl-hero-badge {
+  background: rgba(216, 35, 42, 0.25);
+  border: 1px solid rgba(216, 35, 42, 0.5);
+  color: #ff6b6b;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 8px 20px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.sdpl-hero h1 {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.25;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sdpl-text-highlight {
+  background: linear-gradient(120deg, #ff4d4d, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ff4d4d;
+}
+
+.sdpl-hero p {
+  max-width: 780px;
+  margin: 24px auto 36px;
+  color: #e2e8f0;
+  line-height: 1.8;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.sdpl-hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.sdpl-hero-primary-btn {
+  background: #d8232a;
+  color: white;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(216, 35, 42, 0.4);
+}
+
+.sdpl-hero-primary-btn:hover {
+  background: #ff333a;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(216, 35, 42, 0.6);
+}
+
+.sdpl-hero-secondary-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.sdpl-hero-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+.sdpl-hero-title {
+  color: #ffffff !important;
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 auto 20px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.sdpl-hero-desc {
+  max-width: 780px;
+  margin: 0 auto 36px;
+  color: #f1f5f9 !important;
+  line-height: 1.8;
+  font-size: 19px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   INTRO SECTION
+========================================= */
+.sdpl-intro {
+  background: #ffffff;
+}
+
+.sdpl-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.sdpl-intro-text h2 {
+  font-size: 38px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.sdpl-intro-text p {
+  line-height: 1.9;
+  color: #4b5563;
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.sdpl-intro-image-wrapper {
+  position: relative;
+}
+
+.sdpl-intro-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.sdpl-experience-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  background: #d8232a;
+  color: white;
+  padding: 24px 32px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(216, 35, 42, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sdpl-experience-badge .sdpl-years {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.sdpl-experience-badge .sdpl-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   WHAT WE BUILD (SERVICES)
+========================================= */
+.sdpl-what-we-build {
+  background: #f8fafc;
+}
+
+.sdpl-service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+}
+
+.sdpl-service-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.sdpl-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(216, 35, 42, 0.15);
+  border-color: #d8232a;
+}
+
+/* Background image & hover zoom */
+.sdpl-card-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+}
+
+.sdpl-service-card:hover .sdpl-card-bg-img {
+  transform: scale(1.1);
+  opacity: 0.15;
+}
+
+.sdpl-card-inner {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+}
+
+.sdpl-card-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(216, 35, 42, 0.1);
+  color: #d8232a;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.sdpl-service-card:hover .sdpl-card-icon {
+  background: #d8232a;
+  color: white;
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.sdpl-service-card h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 24px;
+  transition: color 0.3s ease;
+}
+
+.sdpl-service-card:hover h3 {
+  color: #d8232a;
+}
+
+.sdpl-service-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+}
+
+.sdpl-service-card h4::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #d8232a;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.sdpl-service-card p {
+  color: #6b7280;
+  line-height: 1.7;
+  font-size: 15px;
+  padding-left: 18px;
+}
+
+/* =========================================
+   REGIONAL PROJECTS
+========================================= */
+.sdpl-regional-projects {
+  background: #ffffff;
+}
+
+.sdpl-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.sdpl-project-card {
+  position: relative;
+  background: #f9fafb;
+  padding: 40px;
+  border-radius: 20px;
+  border-top: 4px solid #d8232a;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.sdpl-project-card:hover {
+  transform: translateY(-8px);
+  background: #ffffff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.sdpl-project-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #e0f2fe;
+  color: #0284c7;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.sdpl-project-tag.sdpl-tag-success {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.sdpl-project-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.sdpl-project-card p {
+  color: #4b5563;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* =========================================
+   WHY CHOOSE SDPL
+========================================= */
+.sdpl-why-section {
+  background: #0f172a;
+  color: white;
+}
+
+.sdpl-why-section .sdpl-section-title h2 {
+  color: white;
+}
+
+.sdpl-why-section .sdpl-section-title p {
+  color: #94a3b8;
+}
+
+.sdpl-why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.sdpl-why-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 32px;
+  border-radius: 20px;
+  text-align: left;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.sdpl-why-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-6px);
+  border-color: #d8232a;
+}
+
+.sdpl-why-icon-box {
+  font-size: 24px;
+  font-weight: 900;
+  color: #d8232a;
+  margin-bottom: 20px;
+  background: rgba(216, 35, 42, 0.15);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.sdpl-why-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.sdpl-why-card p {
+  color: #94a3b8;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* =========================================
+   CALL TO ACTION (CTA)
+========================================= */
+.sdpl-cta-section {
+  background: linear-gradient(135deg, #d8232a 0%, #991b1e 100%);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sdpl-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sdpl-cta-section h2 {
+  font-size: 46px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.sdpl-cta-section p {
+  max-width: 720px;
+  margin: 0 auto 36px;
+  line-height: 1.8;
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sdpl-cta-btn {
+  display: inline-block;
+  background: #ffffff;
+  color: #d8232a;
+  padding: 18px 42px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.sdpl-cta-btn:hover {
+  background: #111827;
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+========================================= */
+@media (max-width: 1024px) {
+  .sdpl-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .sdpl-intro-image-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .sdpl-hero {
+    min-height: auto;
+    padding: 100px 20px 80px;
+  }
+
+  .sdpl-hero h1 {
+    font-size: 36px;
+  }
+
+  .sdpl-hero p {
+    font-size: 16px;
+  }
+
+  .sdpl-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sdpl-hero-primary-btn,
+  .sdpl-hero-secondary-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sdpl-section-title h2 {
+    font-size: 32px;
+  }
+
+  .sdpl-intro-text h2 {
+    font-size: 28px;
+  }
+
+  .sdpl-cta-section h2 {
+    font-size: 32px;
+  }
+
+  .sdpl-service-grid,
+  .sdpl-project-grid,
+  .sdpl-why-grid {
+    grid-template-columns: 1fr;
+  }
+}

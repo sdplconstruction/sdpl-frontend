@@ -24,9 +24,10 @@ import ExecutionPlan from "./pages/ExecutionPlan";
 import DirectorProfile from "./pages/DirectorProfile";
 
 // 1. IMPORT YOUR NEW LANDING PAGE
-import ConstructionCompanyOdisha from "./pages/ConstructionCompanyOdisha"; // or your existing component import
+import ConstructionCompanyOdisha from "./pages/ConstructionCompanyOdisha";
+import ConstructionCompanyBhubaneswarCuttack from "./pages/ConstructionCompanyBhubaneswarCuttack";
+import CivilContractorBhubaneswarOdisha from "./pages/CivilContractorBhubaneswarOdisha";
 
-// Inside <Routes>:
 
 function App() {
   const location = useLocation();
@@ -65,10 +66,18 @@ function App() {
         <Route path="/director" element={<DirectorProfile />} />
 
         {/* 2. REGISTER THE SEO LANDING PAGE ROUTE */}
-        <Route 
-  path="/construction-company-odisha" 
-  element={<ConstructionCompanyOdisha />} 
+        <Route
+  path="/construction-company-odisha"
+  element={<ConstructionCompanyOdisha />}
 />
+<Route
+  path="/construction-company-bhubaneswar-cuttack"
+  element={<ConstructionCompanyBhubaneswarCuttack />}
+/>
+ <Route
+    path="/civil-contractor-bhubaneswar-odisha"
+    element={<CivilContractorBhubaneswarOdisha />}
+  />
       </Routes>
     </>
   );
