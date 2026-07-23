@@ -23,10 +23,9 @@ import ProjectDetails from "./pages/ProjectDetails";
 import ExecutionPlan from "./pages/ExecutionPlan";
 import DirectorProfile from "./pages/DirectorProfile";
 
-// 1. IMPORT YOUR NEW LANDING PAGE
-import ConstructionCompanyOdisha from "./pages/ConstructionCompanyOdisha"; // or your existing component import
-
-// Inside <Routes>:
+import ConstructionCompanyOdisha from "./pages/ConstructionCompanyOdisha";
+import HouseConstructionCost from "./pages/HouseConstructionCost";
+import ModernOdishaHomeBlog from "./pages/ModernOdishaHomeBlog";
 
 function App() {
   const location = useLocation();
@@ -64,11 +63,21 @@ function App() {
         <Route path="/projects/:slug" element={<ProjectDetails />} />
         <Route path="/director" element={<DirectorProfile />} />
 
-        {/* 2. REGISTER THE SEO LANDING PAGE ROUTE */}
-        <Route 
-  path="/construction-company-odisha" 
-  element={<ConstructionCompanyOdisha />} 
-/>
+        {/* SEO LANDING PAGES */}
+        <Route
+          path="/construction-company-odisha"
+          element={<ConstructionCompanyOdisha />}
+        />
+        <Route
+          path="/house-construction-cost-calculator"
+          element={<HouseConstructionCost />}
+        />
+
+        {/* BLOG ROUTES */}
+        <Route
+          path="/blogs/from-3d-elevation-to-key-handover"
+          element={<ModernOdishaHomeBlog />}
+        />
       </Routes>
     </>
   );
