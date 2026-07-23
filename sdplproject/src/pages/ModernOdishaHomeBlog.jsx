@@ -120,21 +120,27 @@ const ModernOdishaHomeBlog = () => {
             </div>
 
             {/* CALL TO ACTION BOX */}
-            <div className="blog-cta-box">
-              <h3>Build Your Dream Home Today</h3>
-              <p>
-                From raw plot assessments and 3D design to turnkey construction and interior finishing, partnering with SDPL Constructions—trusted by homeowners as the best builder in Odisha—ensures your dream home is delivered on time, within budget, and with complete peace of mind.
-              </p>
-              
-              <div className="blog-cta-buttons">
-                <Link to="/budget-planner" className="btn-primary">
-                  <FaCalculator /> Try Online Budget Planner
-                </Link>
-                <Link to="/contact-us" className="btn-secondary">
-                  <FaPhoneAlt /> Contact Us
-                </Link>
-              </div>
-            </div>
+<div className="blog-cta-box">
+  <h3>Build Your Dream Home Today</h3>
+  <p>
+    From raw plot assessments and 3D design to turnkey construction and interior finishing...
+  </p>
+  
+  <div className="blog-cta-buttons">
+    {/* REDIRECT TO LOGIN WITH TARGET STATE */}
+    <Link 
+      to="/login" 
+      state={{ redirectTo: "/budget-planner" }} 
+      className="btn-primary"
+    >
+      <FaCalculator /> Try Online Budget Planner
+    </Link>
+
+    <Link to="/contact-us" className="btn-secondary">
+      <FaPhoneAlt /> Contact Us
+    </Link>
+  </div>
+</div>
           </div>
         </article>
       </div>

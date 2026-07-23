@@ -103,7 +103,12 @@ export default function Footer() {
             <li><Link to="/login"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
             <li><Link to="/contact-us"> <FaChevronRight className="link-arrow" /> Contact Us</Link></li>
             
-            {/* NEW LANDING PAGE LINK */}
+            {/* BLOGS LINK */}
+            <li>
+              <Link to="/blogs/from-3d-elevation-to-key-handover">
+                <FaChevronRight className="link-arrow" /> Blogs
+              </Link>
+            </li>
            
           </ul>
         </div>

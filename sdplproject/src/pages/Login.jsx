@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from "react";
-
-
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaPhoneAlt, FaEnvelope, FaChevronRight, FaArrowLeft, FaShieldAlt, FaAward, FaTruck } from "react-icons/fa";
 import building from "../assets/login-building.png";
-
 import "../styles/login.css";
-
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVSr1nPgoY0JjuJcxG0Q8FWoraZ2YCNU8KSFknjDg8hQdZ-bpahS01gnzwX9rObPMw/exec";
 const FAST2SMS_API_KEY = "lyX20DwrcKkT9QUYjAiGo1Rsuqa7PSJH3vEpZez85tnNWFdCBxUXEWMe1DTsHtfJ4SbuA6xiCY9dQRv2";
 
 export default function Login() {
   const navigate = useNavigate();
-
   const routeLocation = useLocation();
 
   // Retrieve the variables forwarded from previous pages
   const estimateData = routeLocation.state?.estimateData || null;
+  const redirectTo = routeLocation.state?.redirectTo || null; // 👈 Captures target destination (e.g., "/budget-planner")
   const returnedContact = routeLocation.state?.contact || "";
   const returnedMethod = routeLocation.state?.method || "mobile";
-
-
-  
 
   const [activeTab, setActiveTab] = useState("mobile");
 
@@ -63,7 +56,7 @@ export default function Login() {
     if (activeTab === "mobile") {
       const mobileRegex = /^[6-9]\d{9}$/;
       
-      // 🌟 NEW VALIDATION CHECK: Detects repetitive digits like 7777777777
+      // Detects repetitive digits like 7777777777
       const isRepeatingDigits = /^(\d)\1{9}$/.test(mobileNumber);
 
       if (!mobileNumber) {
@@ -72,7 +65,6 @@ export default function Login() {
         return;
       }
       
-      // If it fails standard formatting OR is a fake repeating number
       if (!mobileRegex.test(mobileNumber) || isRepeatingDigits) {
         setError("Please enter a valid 10-digit mobile number.");
         setIsSubmitting(false);
@@ -146,14 +138,15 @@ export default function Login() {
     }
   };
 
-  // 🌟 FIXED: Replaced non-existent variables with function parameters
+  // Forward details and target destination to OTP page
   const goToVerificationPage = (contactValue, generatedOTP, method) => {
     navigate("/verify-otp", {
       state: {
         contact: contactValue,
         method: method,
         actualOTP: generatedOTP,
-        estimateData: estimateData
+        estimateData: estimateData,
+        redirectTo: redirectTo // 👈 Forwards intended target page to OTP page
       }
     });
   };
@@ -166,7 +159,6 @@ export default function Login() {
 
   return (
     <div className="login-page">
-
       {/* LEFT SIDE: HERO BRANDING */}
       <div className="login-left">
         <img src={building} alt="Building Under Construction" className="bg-image" />
@@ -241,7 +233,7 @@ export default function Login() {
                   className="form-input"
                   maxLength={10}
                   value={mobileNumber}
-                  onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, ""))} // Only allow digits
+                  onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, ""))}
                 />
               </div>
             ) : (
@@ -264,12 +256,6 @@ export default function Login() {
             </button>
           </form>
 
-
-          
-
-          
-
-
           <div className="login-footer">
             <p className="secure-data-info">🛡 Your data is safe with us.</p>
             <p className="terms-text">
@@ -285,7 +271,6 @@ export default function Login() {
             </p>
           </div>
         </div>
-
       </div>
     </div>
   );
