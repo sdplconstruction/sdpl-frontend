@@ -22,16 +22,16 @@ const ConstructionCompanyOdisha = () => {
       {/* =======================================================
           HERO SECTION (Centered, No Right Card)
       ======================================================== */}
-      <section className="cco-hero">
-        <div className="container hero-wrapper">
-          <div className="hero-content">
-            <span className="hero-badge">
-              <span className="badge-dot"></span> SDPL CONSTRUCTIONS • ODISHA
+      <section className="sdpl-hero-section">
+        <div className="sdpl-container sdpl-hero-wrapper">
+          <div className="sdpl-hero-content">
+            <span className="sdpl-hero-badge">
+              <span className="sdpl-badge-dot"></span> SDPL CONSTRUCTIONS • ODISHA
             </span>
 
             <h1>
               Best Construction <br />
-              <span className="text-highlight">Company in Odisha</span>
+              <span className="sdpl-text-highlight">Company in Odisha</span>
             </h1>
 
             <p>
@@ -42,20 +42,20 @@ const ConstructionCompanyOdisha = () => {
               create strong and sustainable structures.
             </p>
 
-            <div className="hero-buttons">
-              <Link to="/contact-us" className="btn-primary">
+            <div className="sdpl-hero-buttons">
+              <Link to="/contact-us" className="sdpl-btn-primary">
                 Get Free Consultation
                 <FaArrowRight />
               </Link>
 
-              <a href="tel:+919439467820" className="btn-secondary">
+              <a href="tel:+919439467820" className="sdpl-btn-secondary">
                 <FaPhoneAlt />
                 +91 94394 67820
               </a>
             </div>
 
-            <div className="hero-rating">
-              <div className="stars">
+            <div className="sdpl-hero-rating">
+              <div className="sdpl-rating-stars">
                 <FaStar />
                 <FaStar />
                 <FaStar />
@@ -72,9 +72,9 @@ const ConstructionCompanyOdisha = () => {
         </div>
 
         {/* ==================== HERO STATS BAR ==================== */}
-        <div className="hero-stats-container">
-          <div className="hero-stats">
-            <div className="stat-card">
+        <div className="sdpl-stats-container">
+          <div className="sdpl-stats-grid">
+            <div className="sdpl-stat-card">
               <FaBuilding />
               <div>
                 <h3>150+</h3>
@@ -82,7 +82,7 @@ const ConstructionCompanyOdisha = () => {
               </div>
             </div>
 
-            <div className="stat-card">
+            <div className="sdpl-stat-card">
               <FaAward />
               <div>
                 <h3>10+</h3>
@@ -90,7 +90,7 @@ const ConstructionCompanyOdisha = () => {
               </div>
             </div>
 
-            <div className="stat-card">
+            <div className="sdpl-stat-card">
               <FaUsers />
               <div>
                 <h3>300+</h3>
@@ -98,7 +98,7 @@ const ConstructionCompanyOdisha = () => {
               </div>
             </div>
 
-            <div className="stat-card">
+            <div className="sdpl-stat-card">
               <FaCheckCircle />
               <div>
                 <h3>98%</h3>
@@ -112,11 +112,11 @@ const ConstructionCompanyOdisha = () => {
       {/* =======================================================
           MAIN CONTENT
       ======================================================== */}
-      <main className="construction-main">
-        <div className="container">
+      <main className="sdpl-main-wrapper">
+        <div className="sdpl-container">
           {/* OVERVIEW */}
-          <section className="overview-section">
-            <div className="section-heading">
+          <section className="sdpl-overview-box">
+            <div className="sdpl-section-heading">
               <span>WHY CHOOSE SDPL</span>
               <h2>Leading Construction Company in Odisha</h2>
             </div>
@@ -134,15 +134,15 @@ const ConstructionCompanyOdisha = () => {
           </section>
 
           {/* SERVICES */}
-          <section className="services-section">
-            <div className="section-heading">
+          <section className="sdpl-services-section">
+            <div className="sdpl-section-heading">
               <span>OUR EXPERTISE</span>
               <h2>Our Construction Services in Odisha</h2>
             </div>
 
-            <div className="services-grid">
-              <div className="service-card">
-                <div className="service-icon">
+            <div className="sdpl-services-grid">
+              <div className="sdpl-service-card">
+                <div className="sdpl-service-icon">
                   <FaHome />
                 </div>
                 <h3>Residential Construction Services</h3>
@@ -152,8 +152,8 @@ const ConstructionCompanyOdisha = () => {
                 </p>
               </div>
 
-              <div className="service-card">
-                <div className="service-icon">
+              <div className="sdpl-service-card">
+                <div className="sdpl-service-icon">
                   <FaBuilding />
                 </div>
                 <h3>Villa Construction Services</h3>
@@ -163,8 +163,8 @@ const ConstructionCompanyOdisha = () => {
                 </p>
               </div>
 
-              <div className="service-card">
-                <div className="service-icon">
+              <div className="sdpl-service-card">
+                <div className="sdpl-service-icon">
                   <FaCity />
                 </div>
                 <h3>Commercial Building Construction</h3>
@@ -175,8 +175,8 @@ const ConstructionCompanyOdisha = () => {
                 </p>
               </div>
 
-              <div className="service-card">
-                <div className="service-icon">
+              <div className="sdpl-service-card">
+                <div className="sdpl-service-icon">
                   <FaHardHat />
                 </div>
                 <h3>Civil Construction Works</h3>
@@ -189,8 +189,8 @@ const ConstructionCompanyOdisha = () => {
           </section>
 
           {/* CIVIL CONSTRUCTION SECTION */}
-          <section className="content-section">
-            <div className="section-heading left">
+          <section className="sdpl-content-box">
+            <div className="sdpl-section-heading sdpl-align-left">
               <span>CIVIL CONSTRUCTION</span>
               <h2>Civil Construction Company in Odisha</h2>
             </div>
@@ -205,8 +205,8 @@ const ConstructionCompanyOdisha = () => {
           </section>
 
           {/* RESIDENTIAL CONSTRUCTION SECTION */}
-          <section className="content-section">
-            <div className="section-heading left">
+          <section className="sdpl-content-box">
+            <div className="sdpl-section-heading sdpl-align-left">
               <span>RESIDENTIAL CONSTRUCTION</span>
               <h2>Residential Construction Company in Odisha</h2>
             </div>
@@ -218,9 +218,9 @@ const ConstructionCompanyOdisha = () => {
               quality, modern design, and customer requirements.
             </p>
 
-            <div className="feature-grid">
-              <div className="feature-card">
-                <div className="feature-icon">
+            <div className="sdpl-feature-grid">
+              <div className="sdpl-feature-card">
+                <div className="sdpl-feature-icon">
                   <FaCheckCircle />
                 </div>
                 <div>
@@ -232,8 +232,8 @@ const ConstructionCompanyOdisha = () => {
                 </div>
               </div>
 
-              <div className="feature-card">
-                <div className="feature-icon">
+              <div className="sdpl-feature-card">
+                <div className="sdpl-feature-icon">
                   <FaCheckCircle />
                 </div>
                 <div>
@@ -245,8 +245,8 @@ const ConstructionCompanyOdisha = () => {
                 </div>
               </div>
 
-              <div className="feature-card">
-                <div className="feature-icon">
+              <div className="sdpl-feature-card">
+                <div className="sdpl-feature-icon">
                   <FaCheckCircle />
                 </div>
                 <div>
@@ -261,8 +261,8 @@ const ConstructionCompanyOdisha = () => {
           </section>
 
           {/* VILLA CONSTRUCTION SECTION */}
-          <section className="content-section">
-            <div className="section-heading left">
+          <section className="sdpl-content-box">
+            <div className="sdpl-section-heading sdpl-align-left">
               <span>VILLA CONSTRUCTION</span>
               <h2>Villa Construction Services in Odisha</h2>
             </div>
@@ -277,13 +277,13 @@ const ConstructionCompanyOdisha = () => {
               elegant, durable, and comfortable living spaces.
             </p>
 
-            <div className="badge-wrapper">
-              <div className="service-badge">
+            <div className="sdpl-badge-group">
+              <div className="sdpl-chip-badge">
                 <FaCheckCircle />
                 Customized Villa Design & Construction
               </div>
 
-              <div className="service-badge">
+              <div className="sdpl-chip-badge">
                 <FaCheckCircle />
                 Premium Residential Solutions
               </div>
@@ -291,8 +291,8 @@ const ConstructionCompanyOdisha = () => {
           </section>
 
           {/* BUILDING CONSTRUCTION SECTION */}
-          <section className="content-section">
-            <div className="section-heading left">
+          <section className="sdpl-content-box">
+            <div className="sdpl-section-heading sdpl-align-left">
               <span>BUILDING CONSTRUCTION</span>
               <h2>Building Construction Company in Odisha</h2>
             </div>
@@ -308,13 +308,13 @@ const ConstructionCompanyOdisha = () => {
               the project while ensuring quality control and timely completion.
             </p>
 
-            <div className="badge-wrapper">
-              <div className="service-badge">
+            <div className="sdpl-badge-group">
+              <div className="sdpl-chip-badge">
                 <FaCheckCircle />
                 Residential Building Projects
               </div>
 
-              <div className="service-badge">
+              <div className="sdpl-chip-badge">
                 <FaCheckCircle />
                 Commercial Building Development
               </div>
@@ -322,9 +322,9 @@ const ConstructionCompanyOdisha = () => {
           </section>
 
           {/* CALL TO ACTION */}
-          <section className="cta-section">
-            <div className="cta-content">
-              <span className="cta-tag">BUILD WITH CONFIDENCE</span>
+          <section className="sdpl-cta-block">
+            <div className="sdpl-cta-body">
+              <span className="sdpl-cta-tag">BUILD WITH CONFIDENCE</span>
 
               <h2>Build Your Dream Structure with SDPL</h2>
 
@@ -334,13 +334,13 @@ const ConstructionCompanyOdisha = () => {
                 planning.
               </p>
 
-              <div className="cta-buttons">
-                <Link to="/contact-us" className="btn-primary btn-white">
+              <div className="sdpl-cta-actions">
+                <Link to="/contact-us" className="sdpl-btn-primary sdpl-btn-white">
                   Get Free Project Quote
                   <FaArrowRight />
                 </Link>
 
-                <a href="tel:+919439467820" className="btn-secondary btn-outline-white">
+                <a href="tel:+919439467820" className="sdpl-btn-secondary sdpl-btn-outline-white">
                   <FaPhoneAlt />
                   +91 94394 67820
                 </a>
