@@ -23,11 +23,14 @@ import ProjectDetails from "./pages/ProjectDetails";
 import ExecutionPlan from "./pages/ExecutionPlan";
 import DirectorProfile from "./pages/DirectorProfile";
 
-// 1. IMPORT YOUR NEW LANDING PAGE
+/* SEO PAGES */
 import ConstructionCompanyOdisha from "./pages/ConstructionCompanyOdisha";
 import ConstructionCompanyBhubaneswarCuttack from "./pages/ConstructionCompanyBhubaneswarCuttack";
 import CivilContractorBhubaneswarOdisha from "./pages/CivilContractorBhubaneswarOdisha";
+import HouseConstructionCost from "./pages/HouseConstructionCost";
 
+/* BLOGS */
+import ModernOdishaHomeBlog from "./pages/ModernOdishaHomeBlog";
 
 function App() {
   const location = useLocation();
@@ -63,21 +66,32 @@ function App() {
         <Route path="/projects/upcoming" element={<UpcomingProjects />} />
         <Route path="/projects/completed" element={<CompletedProjects />} />
         <Route path="/projects/:slug" element={<ProjectDetails />} />
+
         <Route path="/director" element={<DirectorProfile />} />
 
-        {/* 2. REGISTER THE SEO LANDING PAGE ROUTE */}
+        {/* SEO LANDING PAGES */}
         <Route
-  path="/construction-company-odisha"
-  element={<ConstructionCompanyOdisha />}
-/>
-<Route
-  path="/construction-company-bhubaneswar-cuttack"
-  element={<ConstructionCompanyBhubaneswarCuttack />}
-/>
- <Route
-    path="/civil-contractor-bhubaneswar-odisha"
-    element={<CivilContractorBhubaneswarOdisha />}
-  />
+          path="/construction-company-odisha"
+          element={<ConstructionCompanyOdisha />}
+        />
+        <Route
+          path="/construction-company-bhubaneswar-cuttack"
+          element={<ConstructionCompanyBhubaneswarCuttack />}
+        />
+        <Route
+          path="/civil-contractor-bhubaneswar-odisha"
+          element={<CivilContractorBhubaneswarOdisha />}
+        />
+        <Route
+          path="/house-construction-cost-calculator"
+          element={<HouseConstructionCost />}
+        />
+
+        {/* BLOG */}
+        <Route
+          path="/blogs/from-3d-elevation-to-key-handover"
+          element={<ModernOdishaHomeBlog />}
+        />
       </Routes>
     </>
   );
