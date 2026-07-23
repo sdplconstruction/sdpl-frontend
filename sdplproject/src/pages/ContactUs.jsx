@@ -210,7 +210,7 @@ const handleFormSubmit = async (e) => {
           <div className="interactive-map-card">
             <iframe
               title="Subharambha Office Location Map"
-              src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d29946.847002866536!2d85.76723435000001!3d20.2440704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3a19a9f8c47eb8d9%3A0x33d432026d6d543e!2sSubharambha%2C%20Plot%20no-%2082%2F2164%2C%20Kalinga%20Vihar%2C%20Patrapada%2C%20Bhubaneswar%2C%20Odisha%20751019!3m2!1d20.241950199999998!2d85.7656738!5e0!3m2!1sen!2sin!4v1783683961891!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.408761709887!2d85.76552009999999!3d20.241875399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b738ef1cf5ebb2d%3A0x91495533ef5d3cec!2sSDPL%20Constructions!5e0!3m2!1sen!2sin!4v1784634189436!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -241,7 +241,7 @@ const handleFormSubmit = async (e) => {
           </div>
         </div>
       </div>
-      
+
       {/* 5. Global Brand Footer */}
       <Footer />
     </>
