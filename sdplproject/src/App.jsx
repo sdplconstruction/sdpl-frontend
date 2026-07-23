@@ -23,14 +23,19 @@ import ProjectDetails from "./pages/ProjectDetails";
 import ExecutionPlan from "./pages/ExecutionPlan";
 import DirectorProfile from "./pages/DirectorProfile";
 
+// 1. IMPORT YOUR NEW LANDING PAGE
+import ConstructionCompanyOdisha from "./pages/ConstructionCompanyOdisha"; // or your existing component import
+
+// Inside <Routes>:
+
 function App() {
   const location = useLocation();
 
   const hideHeader =
-  location.pathname.toLowerCase() === "/login" ||
-  location.pathname.toLowerCase() === "/verify-otp" ||
-  location.pathname.toLowerCase() === "/budget-planner" ||
-   location.pathname === "/director";
+    location.pathname.toLowerCase() === "/login" ||
+    location.pathname.toLowerCase() === "/verify-otp" ||
+    location.pathname.toLowerCase() === "/budget-planner" ||
+    location.pathname === "/director";
 
   return (
     <>
@@ -58,6 +63,12 @@ function App() {
         <Route path="/projects/completed" element={<CompletedProjects />} />
         <Route path="/projects/:slug" element={<ProjectDetails />} />
         <Route path="/director" element={<DirectorProfile />} />
+
+        {/* 2. REGISTER THE SEO LANDING PAGE ROUTE */}
+        <Route 
+  path="/construction-company-odisha" 
+  element={<ConstructionCompanyOdisha />} 
+/>
       </Routes>
     </>
   );
