@@ -63,10 +63,7 @@ const ConstructionCompanyOdisha = () => {
                 <FaStar />
               </div>
 
-              <p>
-                <strong>4.9/5 Rating</strong>
-                &nbsp;•&nbsp; Trusted by 300+ Families
-              </p>
+             
             </div>
           </div>
         </div>
