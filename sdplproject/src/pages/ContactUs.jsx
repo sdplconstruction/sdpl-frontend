@@ -115,8 +115,8 @@ const handleFormSubmit = async (e) => {
             <div className="badge-icon-circle phone-clr">📞</div>
             <div className="badge-info-text">
               <h4>Call Us</h4>
-              <p>+91 94394 67820</p>
-              <p>+91 70087 11934</p>
+              <p>+91 8260343676</p>
+              <p>+91 7008711934</p>
             </div>
           </div>
 
@@ -235,7 +235,7 @@ const handleFormSubmit = async (e) => {
             <h3>+91 94394 67820</h3>
           </div> */}
           <div className="strip-right-action">
-            <a href="tel:+919439467820" className="callback-action-btn">
+            <a href="tel:+917008711934" className="callback-action-btn">
            📞 Dial Now
           </a>
           </div>

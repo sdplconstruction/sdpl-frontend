@@ -178,7 +178,7 @@ export default function Footer() {
             </li>
             <li>
               <FaPhoneAlt className="contact-react-icon" />
-              <p>+91 94394 67820<br />+91 70087 11934</p>
+              <p>+91 8260343676<br />+91 7008711934</p>
             </li>
             <li>
               <FaEnvelope className="contact-react-icon" />
