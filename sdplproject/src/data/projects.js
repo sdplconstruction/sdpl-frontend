@@ -12,6 +12,7 @@ import upcoming1 from "../assets/projects/upcoming1.jpg";
 import upcoming2 from "../assets/projects/upcoming2.jpg";
 import upcoming3 from "../assets/projects/upcoming3.jpg";
 import upcoming4 from "../assets/projects/upcoming4.jpg";
+import upcoming5 from "../assets/projects/upcoming5.png";
 
 
 const projects = [
@@ -21,7 +22,7 @@ const projects = [
     title: "Project At Trisulia",
     category: "ongoing",
     location: "Cuttack",
-    image: ongoingpic3,
+    image: ongoingpic2,
     progress: 30,
     description: "Premium residential apartments."
   },
@@ -31,7 +32,7 @@ const projects = [
     title: "Project At Madanpur",
     category: "ongoing",
     location: "Bhubaneswar",
-    image: ongoingpic2,
+    image: ongoingpic3,
     progress: 20,
     description: "Modern family apartments."
   },
@@ -58,7 +59,7 @@ const projects = [
   {
     id: 5,
     slug: "triplex",
-    title: "Triplex Project",
+    title: "Duplex Project",
     category: "upcoming",
     location: "Hanspal, Bhubaneswar",
     image: upcoming1,
@@ -78,7 +79,7 @@ const projects = [
    {
     id: 7,
     slug: "independent",
-    title: "Independent S+3 Project",
+    title: "Independent S+4 Project",
     category: "upcoming",
     location: "Patrapada, Bhubaneswar",
     image: upcoming3,
@@ -88,7 +89,7 @@ const projects = [
   {
     id: 8,
     slug: "independent",
-    title: "Independent S+4 Project",
+    title: "S+4 Apartment Project",
     category: "upcoming",
     location: "Raghunathpur, Bhubaneswar",
     image: upcoming4,
@@ -156,7 +157,18 @@ const projects = [
     image: completedpic3,
     progress: 100,
     description: "Premium gated community."
+  },
+  {
+    id: 14,
+    slug: "independent",
+    title: "G+4 Project",
+    category: "upcoming",
+    location: "MadanPur, Bhubaneswar",
+    image: upcoming5,
+    progress: 0,
+    description: "Launching soon."
   }
+
 ];
 
 export default projects;

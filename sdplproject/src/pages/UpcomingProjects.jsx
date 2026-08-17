@@ -8,10 +8,10 @@ export default function UpcomingProjects() {
   const upcomingProjects = projects.filter(
     (project) => project.category === "upcoming"
   );
-
+  
   return (
     <>
-    
+
 
       <section className="projects-section">
         <div className="projects-header">

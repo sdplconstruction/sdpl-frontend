@@ -102,6 +102,12 @@ export default function Footer() {
 
             <li><Link to="/login"> <FaChevronRight className="link-arrow" /> Budget Planner</Link></li>
             <li><Link to="/contact-us"> <FaChevronRight className="link-arrow" /> Contact Us</Link></li>
+{/* BLOGS LINK */}
+<li>
+  <Link to="/blogs/from-3d-elevation-to-key-handover">
+    <FaChevronRight className="link-arrow" /> Blogs
+  </Link>
+</li>
           </ul>
         </div>
 
@@ -172,7 +178,7 @@ export default function Footer() {
             </li>
             <li>
               <FaPhoneAlt className="contact-react-icon" />
-              <p>+91 94394 67820<br />+91 70087 11934</p>
+              <p>+91 8260343676<br />+91 7008711934</p>
             </li>
             <li>
               <FaEnvelope className="contact-react-icon" />

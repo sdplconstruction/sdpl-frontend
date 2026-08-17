@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
@@ -32,6 +31,21 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- ODISHA CONSTRUCTION COMPANY LANDING PAGE -->
+  <url>
+    <loc>https://sdplconstructions.com/construction-company-odisha</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://sdplconstructions.com/best-luxury-apartments-in-bhubaneswar</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://sdplconstructions.com/terms-and-conditions</loc>
     <changefreq>yearly</changefreq>
@@ -43,5 +57,21 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- BHUBANESWAR & CUTTACK CONSTRUCTION COMPANY LANDING PAGE -->
+<url>
+  <loc>https://sdplconstructions.com/construction-company-bhubaneswar-cuttack</loc>
+  <lastmod>2026-07-23</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<!-- CIVIL CONTRACTOR BHUBANESWAR ODISHA -->
+<url>
+    <loc>https://sdplconstructions.com/civil-contractor-bhubaneswar-odisha</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+</url>
 
 </urlset>

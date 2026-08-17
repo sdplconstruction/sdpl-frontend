@@ -1,0 +1,459 @@
+/* ===========================================================
+   CIVIL CONTRACTOR BHUBANESWAR ODISHA PAGE
+=========================================================== */
+
+.civil-hero,
+.civil-intro,
+.civil-services,
+.specialized-services,
+.civil-cta {
+  padding: 90px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+/* ===========================================================
+   HERO WITH BACKGROUND IMAGE & ANIMATION
+=========================================================== */
+
+.civil-hero {
+  position: relative;
+  background: linear-gradient(135deg, #071d35 0%, #0d2847 50%, #d8232a 100%);
+  background-image: url("../assets/seoimage2.avif");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 120px 20px;
+  overflow: hidden;
+}
+
+.civil-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(7, 21, 38, 0.78);
+  z-index: 1;
+}
+
+.civil-hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.civil-hero h1 {
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 25px;
+  color: #D62828;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.civil-hero p {
+  max-width: 850px;
+  margin: auto;
+  font-size: 19px;
+  line-height: 1.8;
+  color: #f1f5f9;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ===========================================================
+   INTRODUCTION WITH SPLIT IMAGE & BADGE
+=========================================================== */
+
+.civil-intro {
+  background: #ffffff;
+}
+
+.civil-intro-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.civil-intro h2 {
+  font-size: 38px;
+  margin-bottom: 25px;
+  color: #111827;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.civil-intro p {
+  font-size: 17px;
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.civil-intro-image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease;
+}
+
+.civil-intro-image-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.civil-intro-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.civil-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: #d8232a;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(216, 35, 42, 0.4);
+}
+
+.civil-badge span {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.civil-badge p {
+  font-size: 12px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===========================================================
+   SECTION TITLE
+=========================================================== */
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title span {
+  color: #d8232a;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.section-title h2 {
+  font-size: 38px;
+  margin-top: 10px;
+  color: #111827;
+  font-weight: 700;
+}
+
+/* ===========================================================
+   SERVICES & CARDS
+=========================================================== */
+
+.civil-services {
+  background: #f8fafc;
+}
+
+.single-feature-card {
+  background: #ffffff;
+  padding: 45px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid #d8232a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.single-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.single-feature-card h3 {
+  color: #d8232a;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.single-feature-card p {
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* ===========================================================
+   SPECIALIZED SERVICES GRID WITH IMAGE CARDS
+=========================================================== */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.service-card.image-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card.image-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+.card-image-box {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-card.image-card:hover .card-image-box img {
+  transform: scale(1.08);
+}
+
+.card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.card-body {
+  padding: 30px;
+  flex-grow: 1;
+}
+
+.card-body h3 {
+  color: #111827;
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.service-card.image-card:hover .card-body h3 {
+  color: #d8232a;
+}
+
+.card-body p {
+  color: #6b7280;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* ===========================================================
+   CTA SECTION
+=========================================================== */
+
+.civil-cta {
+  position: relative;
+  background: linear-gradient(135deg, #d8232a 0%, #a01319 100%);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  padding: 100px 20px;
+}
+
+.civil-cta-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.civil-cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.civil-cta h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.civil-cta p {
+  max-width: 700px;
+  margin: auto auto 35px;
+  line-height: 1.8;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.primary-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: #ffffff;
+  color: #d8232a;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn:hover {
+  background: #111827;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===========================================================
+   KEYFRAMES / ANIMATIONS
+=========================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ===========================================================
+   SCROLL ANIMATION UTILITIES
+=========================================================== */
+
+/* Base state before element enters viewport */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+/* Offscreen Initial Directions */
+.from-left {
+  transform: translateX(-60px);
+}
+
+.from-right {
+  transform: translateX(60px);
+}
+
+.from-top {
+  transform: translateY(-60px);
+}
+
+.from-bottom {
+  transform: translateY(60px);
+}
+
+/* Active State applied when scrolled into view */
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Stagger Delay Helpers */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+/* ===========================================================
+   RESPONSIVE DESIGN
+=========================================================== */
+
+@media (max-width: 992px) {
+  .civil-hero h1 {
+    font-size: 40px;
+  }
+
+  .civil-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .section-title h2,
+  .civil-intro h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .civil-hero,
+  .civil-intro,
+  .civil-services,
+  .specialized-services,
+  .civil-cta {
+    padding: 60px 18px;
+  }
+
+  .civil-hero h1 {
+    font-size: 30px;
+  }
+
+  .civil-hero p {
+    font-size: 16px;
+  }
+
+  .section-title h2,
+  .civil-intro h2 {
+    font-size: 26px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .civil-cta h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .civil-hero h1 {
+    font-size: 26px;
+  }
+
+  .single-feature-card,
+  .card-body {
+    padding: 20px;
+  }
+
+  .primary-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
