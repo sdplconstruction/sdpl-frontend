@@ -32,10 +32,10 @@ export default function AboutPage() {
     { name: "Mr. Sushant Mallick", designation: "CFO", image: financedirectorImg },
     { name: "Mr. Muktikant Swain", designation: "COO", image: procurementdirectorImg },
     { name: "Mr. Jayant Kumar Rout", designation: "Sales Head", image: salesheadImg },
-    { name: "Mr. Priyaranjan Behera", designation: "Chief Architect", image:projectarchitectImg },
-    { name: "Mr. Debasish Mohakud", designation: "Civil Engineer", image:civilengineerImg },
+    { name: "Ar. Priyaranjan Behera", designation: "Chief Architect", image:projectarchitectImg },
+    { name: "Er. Debasish Mohakud", designation: "Civil Engineer", image:civilengineerImg },
     { name: "Mrs. Sasmita Nayak", designation: "Legal Advisor", image:null},
-     { name: "Mr. Suryakumar", designation: "Sr. Engg.", image:null},
+     { name: "Er. Suryakumar", designation: "Sr. Engg.", image:null},
 
 
   ];
