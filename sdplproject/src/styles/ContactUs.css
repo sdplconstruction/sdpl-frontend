@@ -358,10 +358,8 @@
   display: inline-block;
   transition: background 0.2s ease;
   z-index: 10;
-  position: relative; 
+  position: relative;
   pointer-events: auto; 
-
- 
 }
 
 .callback-action-btn:hover {
