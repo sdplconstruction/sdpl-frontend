@@ -5,9 +5,10 @@ import hero2 from "../assets/hero2.jpeg";
 import hero3 from "../assets/hero3.jpeg";
 import hero4 from "../assets/hero4.jpeg";
 
-import SearchPanel from "./SearchPanel";
+import SearchPanel from "./Searchpanel";
 
 import "../styles/hero.css";
+
 
 export default function Hero() {
   const images = [hero, hero2, hero3, hero4];
