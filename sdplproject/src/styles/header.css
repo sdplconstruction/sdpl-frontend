@@ -183,6 +183,11 @@
   background: #B71C1C;
 }
 
+.right-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 /* ==========================================================================
    RESPONSIVE LAYOUT FRAMEWORK
    ========================================================================== */
@@ -263,16 +268,7 @@
   }
 }
 
-@media (max-width: 480px) {
-  .header-container {
-    width: 92%; /* Offers wider container spacing cushions on highly narrow phones */
-  }
 
-  .enquire-btn {
-    padding: 10px 18px;
-    font-size: 14px;
-  }
-}
 /* ===========================
    HAMBURGER
 =========================== */
@@ -420,11 +416,11 @@ display:none;
 
 }
 
-.enquire-btn{
-
-display:none;
-
-}
+.enquire-btn {
+    display: block;
+    padding: 9px 16px;
+    font-size: 13px;
+  }
 
 .menu-btn{
 
@@ -447,4 +443,15 @@ display:block;
     cursor:pointer;
     font-size:24px;
     color:#222;
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    width: 92%;
+  }
+
+  .enquire-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
 }
