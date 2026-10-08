@@ -16,9 +16,9 @@ import director1Img from "../assets/team/ManagingDirector1.jpeg";
 import director2Img from "../assets/team/ManagingDirector2.jpeg";
 import financedirectorImg from "../assets/team/FinanceDirector.jpeg";
 import procurementdirectorImg from "../assets/team/ProcurementDirector.jpeg";
-import salesheadImg from "../assets/team/SalesHead.jpeg";
-import projectarchitectImg from "../assets/team/ProjectArchitect.jpeg";
-import civilengineerImg from "../assets/team/CivilEngineer.jpeg";
+// import salesheadImg from "../assets/team/SalesHead.jpeg";
+// import projectarchitectImg from "../assets/team/ProjectArchitect.jpeg";
+// import civilengineerImg from "../assets/team/CivilEngineer.jpeg";
 
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -31,9 +31,9 @@ export default function AboutPage() {
     { name: "Mrs. Rajashree Swain", designation: "Managing Director", image: director2Img },
     { name: "Mr. Sushant Mallick", designation: "CFO", image: financedirectorImg },
     { name: "Mr. Muktikant Swain", designation: "COO", image: procurementdirectorImg },
-    { name: "Mr. Jayant Kumar Rout", designation: "Sales Head", image: salesheadImg },
-    { name: "Ar. Priyaranjan Behera", designation: "Chief Architect", image:projectarchitectImg },
-    { name: "Er. Debasish Mohakud", designation: "Civil Engineer", image:civilengineerImg },
+    // { name: "Mr. Jayant Kumar Rout", designation: "Sales Head", image: salesheadImg },
+    // { name: "Ar. Priyaranjan Behera", designation: "Chief Architect", image:projectarchitectImg },
+    // { name: "Er. Debasish Mohakud", designation: "Civil Engineer", image:civilengineerImg },
     { name: "Mrs. Sasmita Nayak", designation: "Legal Advisor", image:null},
      { name: "Er. Suryakumar", designation: "Sr. Engg.", image:null},
 
