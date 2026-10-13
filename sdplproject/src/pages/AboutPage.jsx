@@ -16,6 +16,7 @@ import director1Img from "../assets/Team/ManagingDirector1.jpeg";
 import director2Img from "../assets/Team/ManagingDirector2.jpeg";
 import financedirectorImg from "../assets/Team/FinanceDirector.jpeg";
 import procurementdirectorImg from "../assets/Team/ProcurementDirector.jpeg";
+import adminimg from "../assets/Team/Admin.jpeg";
 //import director1Img from "../assets/team/ManagingDirector1.jpeg";
 //import director2Img from "../assets/team/ManagingDirector2.jpeg";
 //import financedirectorImg from "../assets/team/FinanceDirector.jpeg";
@@ -39,6 +40,8 @@ export default function AboutPage() {
     // { name: "Ar. Priyaranjan Behera", designation: "Chief Architect", image:projectarchitectImg },
     // { name: "Er. Debasish Mohakud", designation: "Civil Engineer", image:civilengineerImg },
     { name: "Mrs. Sasmita Nayak", designation: "Legal Advisor", image:null},
+     
+     {name:"Miss. Sthitimayee Mohanty", designation: "Admin", image:adminimg},
      { name: "Er. Suryakumar", designation: "Sr. Engg.", image:null},
 
 
