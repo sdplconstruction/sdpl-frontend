@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import heroVideo from "../videos/background.mp4";
-import SearchPanel from "./SearchPanel";
 import "../styles/hero.css";
 
 const slidesData = [
@@ -125,8 +124,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Search panel, if needed */}
-      {/* <SearchPanel /> */}
     </section>
   );
 }
