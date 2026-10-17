@@ -1,63 +1,132 @@
-import { useState, useEffect } from "react";
-
-import hero from "../assets/hero.jpeg";
-import hero2 from "../assets/hero2.jpeg";
-import hero3 from "../assets/hero3.jpeg";
-import hero4 from "../assets/hero4.jpeg";
-
-import SearchPanel from "./Searchpanel";
-
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import heroVideo from "../videos/background.mp4";
+import SearchPanel from "./SearchPanel";
 import "../styles/hero.css";
 
+const slidesData = [
+  {
+    lang: "en",
+    tagRed: "BUILD WITH PRIDE",
+    tagWhite: "DELIVER WITH CONFIDENCE",
+    headingLine1: "Building Dreams,",
+    headingLine2: "Creating Lasting Value.",
+  },
+  {
+    lang: "or",
+    tagRed: "ଗର୍ବର ସହିତ ନିର୍ମାଣ",
+    tagWhite: "ଭରସା ସହିତ ସଫଳତା",
+    headingLine1: "ଘର ବନାଇବା ଆହୁରି ହେଲା ସହଜ,",
+    headingPart1: "ନିଜ ସ୍ୱପ୍ନର ଘର ନିଜ ",
+    highlightWord: "Budget",
+    headingPart2: " ଭିତରେ ବନାନ୍ତୁ।",
+  },
+];
 
 export default function Hero() {
-  const images = [hero, hero2, hero3, hero4];
+  const navigate = useNavigate();
+  const videoRef = useRef(null);
 
-  const [currentImage, setCurrentImage] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [fade, setFade] = useState(true);
 
+  // Set background video playback speed.
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000); // every 5 seconds
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.5;
+    }
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+  // Rotate between English and Odia slides.
+  useEffect(() => {
+    let fadeTimeout;
+
+    const interval = setInterval(() => {
+      setFade(false);
+
+      fadeTimeout = setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % slidesData.length);
+        setFade(true);
+      }, 500);
+    }, 6000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(fadeTimeout);
+    };
+  }, []);
+
+  const slide = slidesData[currentSlide];
+  const isOdia = slide.lang === "or";
 
   return (
     <section className="hero">
-      {images.map((image, index) => (
-        <img
-          key={index}
-          src={image}
-          alt="Construction"
-          className={`hero-image ${
-            index === currentImage ? "active" : ""
-          }`}
-        />
-      ))}
+      {/* Background video */}
+      <video
+        ref={videoRef}
+        className="hero-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={heroVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
+      {/* Hero overlay and content */}
       <div className="hero-overlay">
-        <div className="hero-content">
+        <div
+          className={`hero-content ${fade ? "fade-in" : "fade-out"}`}
+        >
           <div className="hero-tag">
-            <span className="hero-tag-red">BUILD WITH PRIDE</span>
+            <span
+              className={isOdia ? "hero-tag-white" : "hero-tag-red"}
+            >
+              {slide.tagRed}
+            </span>
+
             <span className="hero-separator">|</span>
-            <span className="hero-tag-white">DELIVER WITH CONFIDENCE</span>
+
+            <span className="hero-tag-white">
+              {slide.tagWhite}
+            </span>
           </div>
 
           <h1>
-            Building Dreams,
+            {slide.headingLine1}
             <br />
-            <span>Creating Lasting Value.</span>
+
+            {isOdia ? (
+              <>
+                {slide.headingPart1}
+                <span className="budget-green">
+                  {slide.highlightWord}
+                </span>
+                {slide.headingPart2}
+              </>
+            ) : (
+              <span className="text-all-white">
+                {slide.headingLine2}
+              </span>
+            )}
           </h1>
 
-          {/* SHORT 2-LINE HERO TEXT WITH KEYWORDS */}
-          <p className="hero-text">
-            We transform ideas into exceptional living and commercial spaces through precision and innovation. Recognized among the <strong>best builders in Bhubaneswar</strong>, SDPL delivers modern design and structural excellence.
-          </p>
+          {/* BuildSmart365 Calculator button */}
+          <div className="hero-cta-buttons">
+            <button
+              type="button"
+              className="hero-btn featured-calc-btn"
+              onClick={() => navigate("/budget-planner")}
+            >
+              BuildSmart365 Calculator
+            </button>
+          </div>
         </div>
       </div>
 
-      <SearchPanel />
+      {/* Search panel, if needed */}
+      {/* <SearchPanel /> */}
     </section>
   );
 }

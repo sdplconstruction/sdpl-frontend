@@ -1,9 +1,9 @@
-// Rate matrix based on your exact pricing structure
+// Rate matrix based on your exact spreadsheet pricing structure
 export const CALCULATION_RATES = {
-  coreHouse: { basic: 1200, classic: 1350, premium: 1450 },
-  lockAndKey: { basic: 1700, classic: 2100, premium: 2500 },
-  semiFurnished: { basic: 2100, classic: 2500, premium: 3000 },
-  fullyFurnished: { basic: 2800, classic: 3400, premium: 4200 }
+  coreHouse: { basic: 999, classic: 1200, premium: 1400 },
+  lockAndKey: { basic: 1600, classic: 1800, premium: 2200 },
+  semiFurnished: { basic: 1800, classic: 2000, premium: 2400 },
+  fullyFurnished: { basic: 2500, classic: 3000, premium: 3500 }
 };
 
 // Fixed pricing for optional add-ons

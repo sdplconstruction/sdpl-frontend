@@ -1,0 +1,225 @@
+/* ==========================================================================
+   WHY CHOOSE US SECTION STYLES
+   ========================================================================== */
+
+.why-choose-us {
+  width: 100%;
+  padding: 40px 20px 80px 20px;
+  background-color: #f8fafc;
+  position: relative;
+  z-index: 5;
+}
+
+.why-choose-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Header Definitions */
+.why-choose-header {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 50px auto;
+}
+
+.why-choose-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.25;
+  margin: 0 0 16px 0;
+}
+
+.why-choose-title span {
+  color: #D62828;
+}
+
+.why-choose-divider {
+  width: 60px;
+  height: 4px;
+  background-color: #D62828;
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+.why-choose-description {
+  font-size: 16px;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Grid Layout (3 Columns by default on Desktops) */
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Feature Cards */
+.why-choose-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #D62828;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.why-choose-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border-color: transparent;
+}
+
+.why-choose-card:hover::before {
+  opacity: 1;
+}
+
+/* Icon Container */
+.why-choose-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #fef2f2;
+  color: #D62828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 22px;
+  transition: all 0.3s ease;
+}
+
+.why-choose-card:hover .why-choose-icon-wrapper {
+  background-color: #D62828;
+  color: #ffffff;
+}
+
+.why-choose-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.why-choose-card-desc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+/* Tablets & Small Laptops (<= 1024px): Keep 2 columns */
+@media (max-width: 1024px) {
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .why-choose-title {
+    font-size: 32px;
+  }
+}
+
+/* Mobile Devices & Small Gadgets (<= 768px): Maintain 2 columns with optimized spacing */
+@media (max-width: 768px) {
+  .why-choose-us {
+    padding: 40px 14px 60px 14px;
+  }
+
+  .why-choose-header {
+    margin-bottom: 35px;
+  }
+
+  .why-choose-title {
+    font-size: 24px;
+  }
+
+  .why-choose-description {
+    font-size: 14px;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .why-choose-card {
+    padding: 24px 16px;
+  }
+
+  .why-choose-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+
+  .why-choose-card-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .why-choose-card-desc {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+/* Extra-small screens / Tiny Mobile Devices (<= 480px): Still keeps 2 columns cleanly */
+@media (max-width: 480px) {
+  .why-choose-us {
+    padding: 30px 10px 50px 10px;
+  }
+
+  .why-choose-grid {
+    gap: 10px;
+  }
+
+  .why-choose-card {
+    padding: 18px 12px;
+  }
+
+  .why-choose-title {
+    font-size: 21px;
+  }
+
+  .why-choose-card-title {
+    font-size: 14px;
+  }
+
+  .why-choose-card-desc {
+    font-size: 11px;
+  }
+
+  .why-choose-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+}

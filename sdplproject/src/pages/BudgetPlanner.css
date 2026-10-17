@@ -120,6 +120,9 @@
   color: var(--brand-red);
   font-weight: 700;
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Grid Alignment Row for Details fields */
@@ -128,6 +131,11 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
   gap: 20px;
   align-items: end;
+}
+
+/* Utility class for fields that should take full width across both columns on mobile */
+.span-full {
+  grid-column: span 1;
 }
 
 /* ==========================================================================
@@ -175,15 +183,6 @@
   box-shadow: 0 0 0 3px rgba(204, 27, 27, 0.1);
   outline: none;
   background-color: #ffffff;
-}
-
-/* Disabled States */
-.input-with-unit input:disabled,
-.custom-select:disabled {
-  background: #f5f5f5;
-  color: var(--text-light);
-  cursor: not-allowed;
-  border-color: var(--border-color);
 }
 
 .unit-tag {
@@ -244,7 +243,6 @@
 .dropdown-options-list {
   position: absolute;
   top: 100% !important;
-  bottom: auto !important;
   left: 0;
   width: 100%;
   max-height: 220px;
@@ -254,6 +252,7 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
   overflow-y: auto;
   z-index: 9999;
+  margin-top: 4px;
 }
 
 .display-trigger-dropdown {
@@ -265,14 +264,6 @@
   background-repeat: no-repeat;
   background-position: calc(100% - 16px) center;
   padding-right: 40px !important;
-}
-
-.standard-forced-down {
-  position: absolute !important;
-  top: 100% !important;
-  bottom: auto !important;
-  margin-top: 4px;
-  z-index: 99999 !important;
 }
 
 .dropdown-item-row {
@@ -288,42 +279,11 @@
   font-weight: 600;
 }
 
-/* ==========================
-   No Location Found
-========================== */
 .dropdown-no-results-row {
-  padding: 18px 16px;
+  padding: 16px;
   text-align: center;
-  color: #666;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.no-location-found {
-  max-width: 100%;
-}
-
-.no-location-found h4 {
-  margin: 0;
-  color: #d8232a;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.no-location-found p {
-  margin: 8px 0 4px;
-  font-size: 14px;
-  line-height: 1.5;
-  word-break: break-word;
-}
-
-.no-location-found small {
-  display: block;
-  color: #999;
-  font-size: 12px;
-  line-height: 1.4;
+  color: #7f8c8d;
+  font-size: 0.9rem;
 }
 
 /* ==========================================================================
@@ -383,7 +343,6 @@
   height: 20px;
   border-radius: 50%;
   font-size: 0.75rem;
-  line-height: 20px;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -471,56 +430,6 @@
 .quality-premium-card.selected .tier-badge {
   background: #ffebee;
   color: var(--brand-red);
-}
-
-.visual-specifications-box {
-  margin-top: 30px;
-  background: #f8fafc;
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-}
-
-.visual-specifications-box h4 {
-  margin: 0 0 16px 0;
-  font-size: 0.95rem;
-  color: #27ae60;
-  font-weight: 600;
-}
-
-.specifications-inline-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
-}
-
-.spec-inline-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: white;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #edf2f7;
-  box-sizing: border-box;
-}
-
-.spec-inline-item::before {
-  content: "✓";
-  color: #27ae60;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.spec-title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #555;
-}
-
-.spec-sub {
-  font-size: 0.75rem;
-  color: var(--text-light);
 }
 
 /* ==========================================================================
@@ -627,16 +536,11 @@
 .metric-item span:first-child {
   color: var(--text-light);
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
-.metric-item span:last-child,
-.capitalize-text {
+.metric-item span:last-child {
   font-weight: 600;
   color: var(--text-dark);
-  text-transform: capitalize;
   text-align: right;
   max-width: 60%;
   white-space: nowrap;
@@ -683,13 +587,8 @@
   border-left: 4px solid var(--brand-red);
   padding: 16px;
   border-radius: 0 8px 8px 0;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  display: block;
-  height: auto !important;
-  min-height: 90px;
-  overflow: visible !important;
-  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .total-label {
@@ -700,20 +599,24 @@
   font-weight: 600;
 }
 
+/* Increased font size for the price value and support for approx tag */
 .total-val-fixed {
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 800;
   color: var(--brand-red);
-  margin: 4px 0;
-  line-height: 1.4 !important;
-  padding-bottom: 4px !important;
+  margin: 6px 0;
   letter-spacing: -0.5px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.total-subtext {
-  font-size: 0.78rem;
+/* Styling for the (approx.) tag */
+.approx-tag {
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--text-light);
-  line-height: 1.4;
 }
 
 .sidebar-action-red-btn {
@@ -735,13 +638,6 @@
   transform: translateY(-1px);
 }
 
-.sidebar-action-red-btn:active {
-  transform: translateY(0);
-}
-
-/* ==========================================================================
-   SIDEBAR SECONDARY CONTACT BUTTON
-   ========================================================================== */
 .home-nav-btn {
   display: flex;
   align-items: center;
@@ -754,53 +650,90 @@
   color: var(--brand-red) !important;
 }
 
-.sidebar-secondary-contact-btn {
+/* ==========================================================================
+   PDF DOWNLOAD SUCCESS POPUP
+   ========================================================================== */
+.pdf-success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(20, 30, 25, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.pdf-success-modal {
   width: 100%;
-  margin-top: 15px;
-  padding: 12px;
-  background: transparent;
-  border: 1px solid var(--brand-red); /* Uses brand red for border */
-  color: var(--brand-red);             /* Uses brand red for text */
-  border-radius: 6px;
-  font-weight: 600;
+  max-width: 440px;
+  padding: 35px 28px;
+  background: #ffffff;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: pdfSuccessAppear 0.25s ease-out;
+}
+
+.pdf-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #e5f7eb;
+  color: #cc1b1b;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.pdf-success-modal h2 {
+  margin: 0 0 12px;
+  color: #cc1b1b;
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.pdf-success-modal p {
+  margin: 0 0 25px;
+  color: #647067;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.pdf-success-continue {
+  width: 100%;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 9px;
+  background: #cc1b1b;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease;
 }
 
-.sidebar-secondary-contact-btn:hover {
-  background: var(--brand-red);
-  color: #fff;
+.pdf-success-continue:hover {
+  background: #cc1b1b;
 }
 
-/* Hide HTML5 input number arrows (spinners) */
-.input-with-unit input[type="number"]::-webkit-outer-spin-button,
-.input-with-unit input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.input-with-unit input[type="number"] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-
-/* Styling for the new Total Built Area row in the sidebar */
-.sidebar-metrics-list .metric-item[style*="border-top"] {
-  background-color: rgba(204, 27, 27, 0.04); /* Light red tint backdrop */
-  padding: 8px 10px !important;
-  margin: 6px -10px 6px -10px !important;
-  border-radius: 4px;
-}
-
-/* Enhances the alignment behavior of text tags in the sidebar layout */
-.capitalize-text {
-  text-transform: capitalize;
-  font-weight: 600;
-  color: var(--text-dark, #111111);
+@keyframes pdfSuccessAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ==========================================================================
-   CROSS-SYSTEM RESPONSIVE MEDIA QUERIES (DESKTOP TO PHONE)
+   RESPONSIVE MEDIA QUERIES & MOBILE OPTIMIZATIONS
    ========================================================================== */
 @media (max-width: 1200px) {
   .planner-wrapper {
@@ -810,9 +743,6 @@
     grid-template-columns: 1fr 360px;
     gap: 20px;
   }
-  .form-card-section {
-    padding: 24px;
-  }
 }
 
 @media (max-width: 992px) {
@@ -821,124 +751,185 @@
   }
   .premium-sticky-sidebar {
     position: static;
-    margin-top: 10px;
-  }
-  .planner-main-header {
-    padding: 20px;
   }
 }
 
 @media (max-width: 768px) {
+  .planner-wrapper {
+    padding: 12px;
+  }
+
   .planner-main-header {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: 20px 16px;
+    padding: 18px 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
   }
+
+  .header-left h1 {
+    font-size: 1.5rem;
+  }
+
   .header-right-badge {
     text-align: center;
     width: 100%;
-    box-sizing: border-box;
-    margin-top: 12px;
+    margin-top: 10px;
+    padding: 10px 16px;
   }
-  .full-clean-dropdowns {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-  .toggle-tabs {
-    height: 48px;
-  }
-  .tab-btn {
-    font-size: 0.9rem;
-  }
-  .packages-premium-grid,
-  .quality-premium-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-  .specifications-inline-grid {
-    grid-template-columns: 1fr;
-  }
-  .dropdown-no-results-row {
-    padding: 16px 14px;
-  }
-  .no-location-found h4 {
-    font-size: 15px;
-  }
-  .no-location-found p {
-    font-size: 13px;
-  }
-  .no-location-found small {
-    font-size: 11px;
-  }
-}
 
-@media (max-width: 480px) {
-  .planner-wrapper {
-    padding: 12px 8px;
-  }
   .form-card-section {
-    padding: 16px;
+    padding: 18px;
     border-radius: 12px;
-  }
-  .section-step-title {
-    font-size: 1.15rem;
     margin-bottom: 16px;
   }
+
+  /* 2-Column layout for Project Details, Packages, and Quality Cards */
+  .full-clean-dropdowns {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .span-full {
+    grid-column: span 2 !important;
+  }
+
   .packages-premium-grid,
   .quality-premium-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
   }
+
   .package-image-frame {
-    height: 140px;
-  }
-  .addons-premium-grid {
-    grid-template-columns: 1fr;
-  }
-  .addon-tile-content {
-    font-size: 0.85rem;
-  }
-  .premium-sticky-sidebar {
-    padding: 20px 16px;
-  }
-  .total-val-fixed {
-    font-size: 22px;
-  }
-  .dropdown-no-results-row {
-    padding: 14px 12px;
-  }
-  .no-location-found h4 {
-    font-size: 14px;
-  }
-  .no-location-found p {
-    font-size: 12px;
-  }
-  .no-location-found small {
-    font-size: 10px;
+    height: 90px;
   }
 }
 
-/* ==========================================================================
-   PRINT / PDF EXPORT ENGINE CORE CONFIGS
-   ========================================================================== */
-@media print {
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+/* Small Gadgets & Mobile Phones (Max-Width: 480px) */
+@media (max-width: 480px) {
+  .planner-wrapper {
+    padding: 10px;
   }
-  .planner-main-grid {
-    display: block !important;
+
+  .header-left h1 {
+    font-size: 1.35rem;
   }
-  .sidebar-action-red-btn,
-  .sidebar-secondary-contact-btn,
-  .dropdown-options-list,
+
+  .badge-amount {
+    font-size: 1.5rem;
+  }
+
+  /* Force 2 columns for project details, packages, quality cards, and add-ons */
+  .full-clean-dropdowns {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .span-full {
+    grid-column: span 2 !important;
+  }
+
+  .packages-premium-grid,
+  .quality-premium-grid,
+  .addons-premium-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+
+  .package-image-frame {
+    height: 75px;
+    margin-bottom: 8px;
+  }
+
+  .package-premium-card {
+    padding: 10px;
+  }
+
+  .package-premium-card h3 {
+    font-size: 0.95rem;
+    margin: 6px 0 2px 0;
+  }
+
+  .pkg-desc {
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pkg-cost-range {
+    font-size: 0.95rem;
+  }
+
+  .pkg-unit {
+    font-size: 0.7rem;
+  }
+
+  .quality-premium-card {
+    padding: 12px;
+  }
+
+  .quality-premium-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .quality-premium-card p {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+
+  .addon-premium-tile {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .addon-tile-content {
+    font-size: 0.8rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .form-card-section {
+    padding: 14px;
+  }
+
+  .section-step-title {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+  }
+
+  .input-with-unit input,
+  .custom-select,
   .search-input {
-    display: none !important;
+    padding: 10px 12px;
+    font-size: 0.9rem;
   }
-  .form-card-section,
-  .package-premium-card,
-  .quality-premium-card,
+
   .premium-sticky-sidebar {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  .sidebar-metrics-list {
+    padding: 12px;
+  }
+
+  .total-val-fixed {
+    font-size: 26px;
+  }
+
+  .approx-tag {
+    font-size: 0.85rem;
+  }
+
+  .sidebar-action-red-btn {
+    padding: 14px;
+    font-size: 0.95rem;
   }
 }

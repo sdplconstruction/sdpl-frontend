@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 
 import Hero from "../components/Hero";
+import WhyChooseUs from "../components/WhyChooseUs";
 import About from "../components/About";
 import ProjectSection from "../components/ProjectSection";
 import Testimonials from '../components/Testimonials';
@@ -30,6 +31,7 @@ function App() {
 
 
       <Hero />
+      <WhyChooseUs />
       <About />
 
       {/* WRAPPED IN AN ID CONTAINER FOR SMOOTH LINK TARGETING */}

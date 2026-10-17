@@ -107,7 +107,8 @@ export default function About() {
             <span>Projects Delivered</span>
           </div>
 
-          <div className="stat-card">
+          {/* Added span-full-mobile so it takes full width across 2 columns */}
+          <div className="stat-card span-full-mobile">
             <h3>{clients}%</h3>
             <span>Client Satisfaction</span>
           </div>

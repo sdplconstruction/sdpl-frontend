@@ -86,7 +86,6 @@
 
 .dropdown {
   position: relative;
-  /* Invisible padding bridge structure connects navigation link elements directly to options */
   padding-bottom: 20px;
   margin-bottom: -20px;
 }
@@ -102,11 +101,6 @@
   transition: transform .3s ease-in-out;
 }
 
-/* When parent container is focused, trigger micro rotation tracking mechanics */
-/* .dropdown:hover .arrow {
-  transform: rotate(180deg);
-  color: #D62828;
-} */
 .dropdown:hover .arrow,
 .dropdown.active .arrow {
   transform: rotate(180deg);
@@ -117,10 +111,9 @@
 /* Dropdown child list card box overlay definitions */
 .dropdown-menu {
   position: absolute;
-  top: 100%; /* Sits flush with your tracking padding block to stop focus drops */
+  top: 100%;
   left: 50%;
 
-  /* Hidden state baseline values */
   transform: translateX(-50%) translateY(-15px);
   opacity: 0;
   visibility: hidden;
@@ -135,7 +128,6 @@
   transition: opacity .3s ease-in-out, transform .3s cubic-bezier(0.16, 1, 0.3, 1), visibility .3s;
 }
 
-/* Stable Pure CSS State Execution Engine */
 .dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
@@ -143,7 +135,6 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Links inside dropdown overlay menus */
 .dropdown-menu a {
   display: block;
   padding: 16px 24px;
@@ -153,7 +144,6 @@
   transition: .3s;
 }
 
-/* Interactive link hovering effects definitions */
 .dropdown-menu a:hover {
   background: none;
   color: #D62828;
@@ -163,55 +153,111 @@
 
 
 /* ==========================================================================
-   ACTION CTA CALLS
+   ACTION CTA CALLS (LARGE FONT & ANIMATED INLINE CONTACT)
    ========================================================================== */
-
-.enquire-btn {
-  padding: 13px 34px;
-  background: #D62828;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .3s;
-  white-space: nowrap;
-}
-
-.enquire-btn:hover {
-  background: #B71C1C;
-}
 
 .right-actions {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+}
+
+.header-contact-plain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+}
+
+/* Popup / Attention-Grabbing Pulse Animation */
+@keyframes attentionPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animated-contact {
+  animation: attentionPulse 2.5s infinite ease-in-out;
+}
+
+.header-contact-plain:hover {
+  animation: none;
+  transform: scale(1.08);
+}
+
+/* Red Ringing Phone Icon */
+.header-phone-icon {
+  color: #D62828;
+  font-size: 26px;
+  flex-shrink: 0;
+  animation: phoneRing 2s infinite ease-in-out;
+}
+
+@keyframes phoneRing {
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(12deg); }
+  20% { transform: rotate(-12deg); }
+  30% { transform: rotate(8deg); }
+  40% { transform: rotate(-8deg); }
+  50% { transform: rotate(0deg); }
+}
+
+.header-contact-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.header-contact-title {
+  font-size: 13px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.header-contact-number {
+  font-size: 17px;
+  color: #000000;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Clean spacing for Mobile Drawer Contact Link */
+.mobile-contact-plain {
+  margin-top: 25px;
+  padding: 0;
 }
 /* ==========================================================================
    RESPONSIVE LAYOUT FRAMEWORK
    ========================================================================== */
 
-/* Laptop & Mid-size display bounds formatting rules */
 @media (max-width: 1200px) {
   .nav {
-    gap: 24px; /* Compress content row padding dimensions */
+    gap: 24px;
   }
 }
 
-/* Mobile responsive breakpoints mapping rules */
 @media (max-width: 992px) {
   .header-container {
-    height: 75px; /* Shorter structural canvas height footprint for phones */
+    height: 75px;
   }
 
   .logo img {
-    height: 48px; /* Scales down graphic proportions safely */
+    height: 48px;
   }
 
-  /* Hides horizontal list stream block layouts on smaller widths.
-     Prepares structural styling vectors for toggle interaction additions.
-  */
   .nav {
     display: none;
     flex-direction: column;
@@ -226,7 +272,6 @@
     border-top: 1px solid #f1f5f9;
   }
 
-  /* Restructure dropdown parameters cleanly into block flows for responsive sizing modes */
   .dropdown {
     padding-bottom: 0;
     margin-bottom: 0;
@@ -264,7 +309,7 @@
   }
 
   .dropdown-menu a:hover {
-    padding-left: 24px; /* Disables slide padding behaviors on lower view widths */
+    padding-left: 24px;
   }
 }
 
@@ -273,176 +318,105 @@
    HAMBURGER
 =========================== */
 
-.menu-btn{
-
-display:none;
-
-background:none;
-
-border:none;
-
-font-size:28px;
-
-cursor:pointer;
-
-color:#222;
-
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #222;
 }
 
 /* ===========================
    MOBILE MENU
 =========================== */
 
-.mobile-menu{
-
-position:fixed;
-
-top:0;
-
-right:-100%;
-
- width:280px;
-
-height:100vh;
-
-background:#fff;
-
-box-shadow:-8px 0 30px rgba(0,0,0,.15);
-
-padding:100px 30px;
-
-display:flex;
-
-flex-direction:column;
-
-gap:22px;
-
-transition:.35s;
-
-z-index:999999;
- max-width:80%;
-
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -8px 0 30px rgba(0,0,0,.15);
+  padding: 100px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  transition: .35s;
+  z-index: 999999;
+  max-width: 80%;
 }
 
-.mobile-menu.active{
-
-right:0;
-
+.mobile-menu.active {
+  right: 0;
 }
 
-.mobile-menu a{
-
-font-size:17px;
-
-font-weight:500;
-
-color:#222;
-
+.mobile-menu a {
+  font-size: 17px;
+  font-weight: 500;
+  color: #222;
 }
 
-.mobile-project-btn{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-background:none;
-
-border:none;
-
-font-size:17px;
-
-font-weight:500;
-
-cursor:pointer;
-
-padding:0;
-
+.mobile-project-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
 }
 
-.mobile-submenu{
-
-display:flex;
-
-flex-direction:column;
-
-gap:14px;
-
-padding-left:20px;
-
+.mobile-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-left: 20px;
 }
 
-.rotate{
-
-transform:rotate(180deg);
-
-transition:.3s;
-
+.rotate {
+  transform: rotate(180deg);
+  transition: .3s;
 }
 
-.mobile-quote{
-
-margin-top:20px;
-
-height:52px;
-
-border:none;
-
-background:#D62828;
-
-color:#fff;
-
-border-radius:8px;
-
-font-size:16px;
-
-font-weight:600;
-
-cursor:pointer;
-
+.mobile-quote {
+  margin-top: 20px;
+  height: 52px;
+  border: none;
+  background: #D62828;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-/* ===========================
-   TABLET
-=========================== */
-
-@media(max-width:992px){
-
-.nav{
-
-display:none;
-
-}
-
-.enquire-btn {
-    display: block;
-    padding: 9px 16px;
-    font-size: 13px;
+@media(max-width:992px) {
+  .nav {
+    display: none;
   }
-
-.menu-btn{
-
-display:block;
-
+  .menu-btn {
+    display: block;
+  }
 }
 
-}
-.close-btn{
-    position:absolute;
-    top:20px;
-    right:20px;
-    width:40px;
-    height:40px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:none;
-    border:none;
-    cursor:pointer;
-    font-size:24px;
-    color:#222;
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #222;
 }
 
 @media (max-width: 480px) {
@@ -450,8 +424,10 @@ display:block;
     width: 92%;
   }
 
-  .enquire-btn {
-    padding: 8px 12px;
-    font-size: 12px;
+  .header-contact-title {
+    display: none; /* Hide subtitle on tiny mobile screens */
+  }
+  .header-contact-number {
+    font-size: 13px;
   }
 }
