@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { jsPDF } from "jspdf";
 import "../styles/verifyotp.css";
 
 // API CONFIGURATION STRINGS
@@ -9,12 +10,17 @@ const FAST2SMS_API_KEY = "lyX20DwrcKkT9QUYjAiGo1Rsuqa7PSJH3vEpZez85tnNWFdCBxUXEW
 export default function VerifyOTP() {
   const navigate = useNavigate();
   const location = useLocation();
+  const returnTo =
+  location.state?.returnTo || "/";
 
   // Retrieve the variables forwarded from the login page
   const contactInfo = location.state?.contact || "+91 98XXXXXX45";
   const method = location.state?.method || "mobile";
   const initialOTP = location.state?.actualOTP || "";
   const estimateData = location.state?.estimateData || null;
+  const fullName = location.state?.fullName || "Valued Client";
+  const autoDownloadBudgetPDF =
+  location.state?.autoDownloadBudgetPDF === true;
 
   // State variables
   const [currentOTP, setCurrentOTP] = useState(initialOTP);
@@ -72,6 +78,9 @@ export default function VerifyOTP() {
     }
   };
 
+
+
+
   // Handle backspace deleting & focus moving backward
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
@@ -85,7 +94,7 @@ export default function VerifyOTP() {
     }
   };
 
-  // Dynamic Resend Dispatcher
+  // Dynamic Resend Dispatcher (No Alerts)
   const handleResendOTP = async () => {
     setError("");
     setIsResending(true);
@@ -104,7 +113,6 @@ export default function VerifyOTP() {
         if (data.return) {
           setCurrentOTP(newGeneratedOTP);
           setTimeLeft(60);
-          alert(`Success! A fresh verification code has been dispatched to +91 ${cleanMobile}`);
         } else {
           setError("SMS Gateway failed: " + (data.message || "Limit exceeded."));
         }
@@ -131,7 +139,6 @@ export default function VerifyOTP() {
 
         setCurrentOTP(newGeneratedOTP);
         setTimeLeft(60);
-        alert(`Verification email resent successfully to ${contactInfo}`);
       } catch (err) {
         console.error("Email Resend error:", err);
         setError("Failed to resend confirmation email.");
@@ -139,6 +146,63 @@ export default function VerifyOTP() {
         setIsResending(false);
       }
     }
+  };
+
+  // PDF Generator Function
+  const downloadBudgetPDF = () => {
+    const doc = new jsPDF();
+
+    // Document Header
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(22);
+    doc.setTextColor(214, 40, 40); // #D62828 Brand Color
+    doc.text("SDPL CONSTRUCTIONS", 20, 20);
+
+    doc.setFontSize(12);
+    doc.setTextColor(100, 100, 100);
+    doc.text("Official Construction Budget Estimation Report", 20, 28);
+
+    doc.setLineWidth(0.5);
+    doc.line(20, 34, 190, 34);
+
+    // Client Details
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.setTextColor(26, 26, 26);
+    doc.text("Client Information:", 20, 46);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text(`Full Name: ${fullName}`, 20, 54);
+    doc.text(`Contact: ${contactInfo}`, 20, 62);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 70);
+
+    // Estimate Breakdown
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Estimation Breakdown:", 20, 86);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+
+    let startY = 96;
+    if (estimateData) {
+      Object.entries(estimateData).forEach(([key, value]) => {
+        doc.text(`${key}: ${value}`, 20, startY);
+        startY += 8;
+      });
+    } else {
+      doc.text("Standard Residential Package Estimation Configured.", 20, startY);
+      startY += 8;
+    }
+
+    // Footer
+    doc.setFontSize(10);
+    doc.setTextColor(150, 150, 150);
+    doc.text("Thank you for choosing SDPL Constructions. For queries, contact support@sdpl.com", 20, 275);
+
+    // Trigger file download
+    doc.save(`SDPL_Budget_Estimate_${fullName.replace(/\s+/g, "_")}.pdf`);
   };
 
   // Reusable verification runner for both Auto-Submit and Button Submit
@@ -154,22 +218,18 @@ export default function VerifyOTP() {
     }
 
     if (enteredOTP !== stateRef.current.currentOTP) {
-  setError("Invalid OTP code. Please try again.");
+      setError("Invalid OTP code. Please try again.");
+      setOtp(["", "", "", "", "", ""]);
+      setTimeout(() => {
+        document.getElementById("otp-0")?.focus();
+      }, 0);
+      return;
+    }
 
-  // Clear OTP boxes
-  setOtp(["", "", "", "", "", ""]);
-
-  // Focus back to first input
-  setTimeout(() => {
-    document.getElementById("otp-0")?.focus();
-  }, 0);
-
-  return;
-}
     setIsVerifying(true);
 
-    // ROBUST DATA MAPPING
     const payload = {
+      Name: fullName,
       Location: estimateData?.location || estimateData?.city || "Direct Visit",
       PlotUnit: estimateData?.plotUnit || estimateData?.unit || "N/A",
       BuiltUpArea: estimateData?.builtUpArea || estimateData?.area || "N/A",
@@ -180,23 +240,43 @@ export default function VerifyOTP() {
     };
 
     try {
-      // Convert mapping directly into URL parameters
       const formData = new URLSearchParams();
       Object.keys(payload).forEach((key) => {
         formData.append(key, payload[key]);
       });
 
-      // FIX: Keeps native form fields for your original script, but strips
-      // strict headers/modes that trigger local adblock drops.
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         body: formData,
       });
 
-      // Login validation tracking flag setup
-      localStorage.setItem("isLoggedIn", "true");
-      alert("Verification successful! Your budget estimation has been logged.");
-      navigate("/budget-planner");
+// Mark the user as logged in only after OTP verification succeeds.
+// Keep login for the current browser session only.
+sessionStorage.setItem("isLoggedIn", "true");
+
+if (autoDownloadBudgetPDF) {
+  // Preserve the one-time PDF download request.
+  sessionStorage.setItem(
+    "pendingBudgetPDFDownload",
+    "true"
+  );
+
+  // BudgetPlanner.jsx will generate the full PDF.
+  navigate(returnTo, {
+    replace: true,
+    state: null
+  });
+} else {
+  // Preserve the existing PDF behavior for other login flows.
+  downloadBudgetPDF();
+
+  setTimeout(() => {
+    navigate(returnTo, {
+      replace: true,
+      state: null
+    });
+  }, 1000);
+}
 
     } catch (err) {
       console.error("Database connection failure: ", err);
@@ -222,37 +302,35 @@ export default function VerifyOTP() {
 
         <form onSubmit={handleVerifySubmit}>
           <div className="otp-container">
-  {otp.map((digit, index) => (
-    <input
-      key={index}
-      id={`otp-${index}`}
-      maxLength="1"
-      type="text"
-      inputMode="numeric"
-      value={digit}
-      onChange={(e) => handleChange(e.target.value, index)}
-      onKeyDown={(e) => handleKeyDown(e, index)}
-      required
-    />
-  ))}
-</div>
+            {otp.map((digit, index) => (
+              <input
+                key={index}
+                id={`otp-${index}`}
+                maxLength="1"
+                type="text"
+                inputMode="numeric"
+                value={digit}
+                onChange={(e) => handleChange(e.target.value, index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                required
+              />
+            ))}
+          </div>
 
-<button
-  type="submit"
-  className="verify-btn"
-  disabled={isVerifying || isResending}
->
-  {isVerifying ? "Loading Budget Planner..." : "Verify & Continue"}
-</button>
+          <button
+            type="submit"
+            className="verify-btn"
+            disabled={isVerifying || isResending}
+          >
+            {isVerifying ? "Processing & Downloading..." : "Verify & Download PDF"}
+          </button>
 
-{error && (
-  <div className="validation-error-msg">
-    ⚠️ {error}
-  </div>
-)}
+          {error && (
+            <div className="validation-error-msg">
+              ⚠️ {error}
+            </div>
+          )}
         </form>
-
-
 
         <button
           className="resend-btn"
@@ -275,14 +353,17 @@ export default function VerifyOTP() {
           className="change-btn"
           type="button"
           onClick={() =>
-            navigate("/login", {
-              state: {
-                estimateData,
-                contact: contactInfo,
-                method,
-              },
-            })
-          }
+  navigate("/login", {
+    state: {
+      estimateData,
+      contact: contactInfo,
+      method,
+      fullName,
+      autoDownloadBudgetPDF,
+      returnTo
+    }
+  })
+}
         >
           &larr; Change Details
         </button>

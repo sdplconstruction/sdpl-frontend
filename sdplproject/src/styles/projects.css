@@ -4,34 +4,66 @@
 .projects-section {
   padding: 80px 8%;
   background: #f8f9fa;
+  overflow: hidden;
 }
 
 .projects-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: 40px;
 }
 
-.projects-header h2 {
-  font-size: 2rem;
+.projects-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.projects-subtitle {
+  font-size: 13px;
   font-weight: 700;
-  color: #222;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #d32f2f;
+}
+
+.projects-header h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #1a202c;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
 .view-all-btn {
-  color: #d32f2f;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2d3748;
   text-decoration: none;
-  font-weight: 600;
-  transition: .3s;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #ffffff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
 }
 
 .view-all-btn:hover {
-  color: #b71c1c;
+  background: #d32f2f;
+  color: #ffffff;
+  border-color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(211, 47, 47, 0.25);
 }
 
 /* ==========================
-   Grid (Responsive)
+   Grid / Carousel Engine
 ========================== */
 .projects-grid {
   display: grid;
@@ -49,7 +81,7 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   transition: .35s;
   display: flex;
-  flex-direction: column; /* Allows internal alignment */
+  flex-direction: column;
   height: 100%;
 }
 
@@ -101,6 +133,7 @@
 .project-content h3 {
   margin-bottom: 12px;
   color: #222;
+  font-size: 1.25rem;
 }
 
 .project-location {
@@ -111,7 +144,7 @@
   margin-bottom: 20px;
 }
 
-/* Progress bar wrapper - pushed to bottom via margin-top: auto */
+/* Progress bar wrapper */
 .project-progress-wrapper {
   margin-top: auto;
 }
@@ -136,41 +169,48 @@
   margin-bottom: 15px;
 }
 
-/* Button */
-.project-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: #d32f2f;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.project-btn:hover {
-  gap: 12px;
-}
-
 /* ==========================
-   Responsive Breakpoints
+   Responsive Breakpoints & Mobile Carousel
 ========================== */
 @media (max-width: 1024px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
 @media (max-width: 768px) {
   .projects-section {
-    padding: 60px 5%;
+    padding: 60px 0;
   }
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+
   .projects-header {
+    padding: 0 5% 15px 5%;
     flex-direction: column;
-    gap: 15px;
     align-items: flex-start;
+    gap: 16px;
+  }
+
+  .projects-header::after {
+    left: 5%;
+  }
+
+  .projects-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding: 10px 5% 20px 5%;
+    scrollbar-width: none;
+  }
+
+  .projects-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-card {
+    min-width: 82%;
+    scroll-snap-align: start;
+    flex-shrink: 0;
   }
 }

@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import { FiPhoneCall } from "react-icons/fi";
 import logo from "../assets/logo.png";
 import "../styles/header.css";
 import { useState } from "react";
@@ -56,14 +57,15 @@ export default function Header() {
           <NavLink to="/contact-us">Contact Us</NavLink>
         </nav>
 
-        {/* Header Right Actions Container */}
+        {/* Header Right Actions Container (Desktop) */}
         <div className="right-actions">
-          <button
-            className="enquire-btn"
-            onClick={() => navigate("/login")}
-          >
-            Budget Calculator
-          </button>
+          <a href="tel:9777162067" className="header-contact-plain animated-contact">
+            <FiPhoneCall className="header-phone-icon" />
+            <div className="header-contact-text">
+              <span className="header-contact-title">Speak With Our Team</span>
+              <span className="header-contact-number">+91 9777-162-067</span>
+            </div>
+          </a>
 
           <button
             className="menu-btn"
@@ -108,15 +110,18 @@ export default function Header() {
         <NavLink to="/about" onClick={() => setMenuOpen(false)}>About Us</NavLink>
         <NavLink to="/contact-us" onClick={() => setMenuOpen(false)}>Contact Us</NavLink>
 
-        <button
-          className="mobile-quote"
-          onClick={() => {
-            navigate("/login");
-            setMenuOpen(false);
-          }}
+        {/* Updated Mobile Contact matching header style */}
+        <a
+          href="tel:9777162067"
+          className="header-contact-plain mobile-contact-plain"
+          onClick={() => setMenuOpen(false)}
         >
-          Budget Calculator
-        </button>
+          <FiPhoneCall className="header-phone-icon" />
+          <div className="header-contact-text">
+            <span className="header-contact-title">Speak With Our Team</span>
+            <span className="header-contact-number">+91 9777-162-067</span>
+          </div>
+        </a>
       </div>
     </header>
   );

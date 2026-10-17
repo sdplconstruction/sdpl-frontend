@@ -80,7 +80,7 @@
     background: #ffffff;
     border-radius: 12px;
     padding: 16px 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02), 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02),
                 0 10px 20px rgba(0,0,0,0.04);
     border: 1px solid #f2f2f2;
     display: flex;
@@ -155,7 +155,7 @@
 }
 
 /* ==========================================================================
-   MEDIA QUERIES (BREAKPOINTS)
+   MEDIA QUERIES (BREAKPOINTS & MOBILE OPTIMIZATION)
    ========================================================================== */
 
 @media (max-width: 1200px) {
@@ -170,28 +170,46 @@
 
 @media (max-width: 992px) {
     .about {
-        grid-template-columns: 1fr; 
-        gap: 40px;
-        padding: 50px 6%;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 40px 5%;
     }
     .about-image {
-        height: 380px;
+        height: 320px;
     }
 }
 
+/* Mobile View: Force 2 Columns for Stats */
 @media (max-width: 680px) {
     .about-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px;
+    }
+
+    /* Third stat card spans both columns for clean balance */
+    .stat-card.span-full-mobile {
+        grid-column: span 2;
+    }
+
+    .stat-card {
+        padding: 12px 10px;
+    }
+
+    .about-stats h3 {
+        font-size: 24px;
+    }
+
+    .about-stats span {
+        font-size: 11px;
     }
 }
 
 @media (max-width: 576px) {
     .about {
-        padding: 40px 4%;
+        padding: 30px 4%;
     }
     .about-content h2 {
-        font-size: 28px;
+        font-size: 26px;
     }
     .about-btn {
         width: 100%;
