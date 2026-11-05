@@ -47,3 +47,53 @@ export const EXTRA_WORK_ITEMS = [
   "7. The final rate must be agreed based on the work. Any extra.",
   "8. Changed or Omitted work not listed in the agreed scope."
 ];
+
+export const CORE_HOUSE_SPECS = {
+  basic: {
+    cement: MATERIAL_SPECS.basic.cement,
+    steel: MATERIAL_SPECS.basic.steel,
+    bricks: MATERIAL_SPECS.basic.bricks,
+    concrete: "PCC and RCC as per approved structural design",
+    foundation: "Site excavation, PCC, footings and plinth beam",
+    structure: "RCC columns, beams and slabs",
+    masonry: "Fly ash brick / block masonry",
+    electrical: "Basic concealed electrical conduits",
+    plumbing: "Basic plumbing sleeves and drainage provisions"
+  },
+
+  classic: {
+    cement: MATERIAL_SPECS.classic.cement,
+    steel: MATERIAL_SPECS.classic.steel,
+    bricks: MATERIAL_SPECS.classic.bricks,
+    concrete: "PCC and RCC as per approved structural design",
+    foundation: "Site excavation, PCC, footings and plinth beam",
+    structure: "RCC columns, beams and slabs",
+    masonry: "Fly ash brick / block masonry",
+    electrical: "Concealed electrical conduits",
+    plumbing: "Plumbing sleeves and drainage provisions"
+  },
+
+  premium: {
+    cement: MATERIAL_SPECS.premium.cement,
+    steel: MATERIAL_SPECS.premium.steel,
+    bricks: MATERIAL_SPECS.premium.bricks,
+    concrete: "PCC and RCC as per approved structural design",
+    foundation: "Site excavation, PCC, footings and plinth beam",
+    structure: "RCC columns, beams and slabs",
+    masonry: "Approved brick / block masonry",
+    electrical: "Concealed electrical conduits",
+    plumbing: "Plumbing sleeves and drainage provisions"
+  }
+};
+
+export const CORE_HOUSE_LABELS = {
+  cement: "Cement",
+  steel: "Steel",
+  bricks: "Bricks / Blocks",
+  concrete: "Concrete",
+  foundation: "Foundation Work",
+  structure: "RCC Structure",
+  masonry: "Masonry Work",
+  electrical: "Electrical Provisions",
+  plumbing: "Plumbing Provisions"
+};
