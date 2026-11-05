@@ -3,7 +3,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import html2pdf from 'html2pdf.js';
 import { CALCULATION_RATES } from '../data/rates';
-import { MATERIAL_SPECS, EXTRA_WORK_ITEMS } from '../data/material';
+// import { MATERIAL_SPECS, EXTRA_WORK_ITEMS } from '../data/material';
+import {
+  MATERIAL_SPECS,
+  EXTRA_WORK_ITEMS,
+  CORE_HOUSE_SPECS,
+  CORE_HOUSE_LABELS
+} from '../data/material';
 import './BudgetPlanner.css';
 
 // Import local assets
@@ -342,7 +348,11 @@ const handleSelect = (field, value) => {
 
   const currentPackage = PACKAGE_DETAILS[formData.packageType];
   const activeQualityData = QUALITY_TIERS[formData.qualityTier];
-  const activeMaterialSpecs = MATERIAL_SPECS[formData.qualityTier];
+ const activeMaterialSpecs =
+  formData.packageType === 'coreHouse'
+    ? CORE_HOUSE_SPECS[formData.qualityTier]
+    : MATERIAL_SPECS[formData.qualityTier];
+  // const activeMaterialSpecs = MATERIAL_SPECS[formData.qualityTier];
 
   const selectedRate =
     CALCULATION_RATES[formData.packageType]?.[formData.qualityTier] || 1200;
@@ -390,6 +400,44 @@ if (!isLoggedIn && !skipLoginCheck) {
     const activeAddOnsList = Object.keys(formData.addOns)
       .filter((key) => formData.addOns[key])
       .map((key) => key.replace(/([A-Z])/g, ' $1'));
+
+      const pdfMaterialRows =
+  formData.packageType === 'coreHouse'
+    ? Object.entries(activeMaterialSpecs)
+        .map(([key, value]) => `
+          <tr>
+            <td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">
+              ${CORE_HOUSE_LABELS[key] || key}
+            </td>
+            <td style="padding: 6px; border: 1px solid #e0e0e0;">
+              ${value || '—'}
+            </td>
+          </tr>
+        `)
+        .join('')
+    : [
+        ['Cement', activeMaterialSpecs.cement],
+        ['Steel', activeMaterialSpecs.steel],
+        ['Bricks', activeMaterialSpecs.bricks],
+        ['Sanitary & Fittings', activeMaterialSpecs.sanitary],
+        ['Electrical', activeMaterialSpecs.electrical],
+        ['Tiles', activeMaterialSpecs.tiles],
+        ['Paintings', activeMaterialSpecs.painting],
+        ['Door Frame / Chaukatha', activeMaterialSpecs.doorFrame],
+        ['Window Frame', activeMaterialSpecs.windowFrame],
+        ['Doors & Locks', activeMaterialSpecs.doorsAndLocks || activeMaterialSpecs.locks]
+      ]
+        .map(([label, value]) => `
+          <tr>
+            <td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">
+              ${label}
+            </td>
+            <td style="padding: 6px; border: 1px solid #e0e0e0;">
+              ${value || '—'}
+            </td>
+          </tr>
+        `)
+        .join('');
 
     const element = document.createElement('div');
 
@@ -455,26 +503,28 @@ if (!isLoggedIn && !skipLoginCheck) {
           </table>
         </div>
 
-        <!-- Section 2: Material Specifications -->
-        <div style="margin-bottom: 20px;">
-          <h3 style="margin: 0 0 10px 0; font-size: 13px; color: #D62828; text-transform: uppercase; letter-spacing: 0.5px;">2. Included Material Specifications</h3>
-          <table style="width: 100%; border-collapse: collapse; font-size: 11px; border: 1px solid #e0e0e0;">
-            <tr style="background-color: #f8fafc;">
-              <th style="padding: 7px; border: 1px solid #e0e0e0; text-align: left; color: #333; width: 35%;">Category</th>
-              <th style="padding: 7px; border: 1px solid #e0e0e0; text-align: left; color: #333;">Brand / Quality Specifications</th>
-            </tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Cement</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.cement}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Steel</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.steel}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Bricks</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.bricks}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Sanitary & Fittings</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.sanitary}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Electrical</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.electrical}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Tiles</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.tiles}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Paintings</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.painting}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Door Frame / Chaukatha</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.doorFrame}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Window Frame</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.windowFrame}</td></tr>
-            <tr><td style="padding: 6px; border: 1px solid #e0e0e0; font-weight: 600;">Doors & Locks</td><td style="padding: 6px; border: 1px solid #e0e0e0;">${activeMaterialSpecs.doorsAndLocks || activeMaterialSpecs.locks}</td></tr>
-          </table>
-        </div>
+
+<!-- Section 2: Material Specifications -->
+<div style="margin-bottom: 20px;">
+  <h3 style="margin: 0 0 10px 0; font-size: 13px; color: #D62828; text-transform: uppercase; letter-spacing: 0.5px;">
+    2. ${formData.packageType === 'coreHouse' ? 'Core House – Grey Structure Specifications' : 'Included Material Specifications'}
+  </h3>
+
+  <table style="width: 100%; border-collapse: collapse; font-size: 11px; border: 1px solid #e0e0e0;">
+    <tr style="background-color: #f8fafc;">
+      <th style="padding: 7px; border: 1px solid #e0e0e0; text-align: left; color: #333; width: 35%;">
+        Category
+      </th>
+      <th style="padding: 7px; border: 1px solid #e0e0e0; text-align: left; color: #333;">
+        Brand / Quality Specifications
+      </th>
+    </tr>
+
+    ${pdfMaterialRows}
+
+  </table>
+</div>
+
 
         <!-- Section 3: Add-On Infrastructure -->
         <div style="margin-bottom: 20px;">
@@ -894,231 +944,317 @@ if (!isLoggedIn && !skipLoginCheck) {
               })}
             </div>
 
-            {/* Dynamic Material Specifications Preview */}
-            <div
-              className="material-spec-box-container"
-              style={{
-                marginTop: '24px',
-                padding: '20px',
-                background: '#fdfdfd',
-                border: '1px solid #eaebf0',
-                borderRadius: '12px',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginBottom: '16px',
-                  borderBottom: '1px solid #f0f0f0',
-                  paddingBottom: '12px'
-                }}
-              >
-                <h4
-                  style={{
-                    margin: 0,
-                    color: 'var(--brand-red)',
-                    fontSize: '15px',
-                    fontWeight: '700',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px'
-                  }}
-                >
-                  📦 Included Material Specifications ({activeQualityData.name} Quality)
-                </h4>
 
-                <span
-                  style={{
-                    fontSize: '11px',
-                    background: '#fff1f1',
-                    color: 'var(--brand-red)',
-                    padding: '4px 10px',
-                    borderRadius: '20px',
-                    fontWeight: '600'
-                  }}
-                >
-                  {activeQualityData.badge}
-                </span>
-              </div>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                  gap: '14px'
-                }}
-              >
+{/* Dynamic Material Specifications Preview */}
+<div
+  className="material-spec-box-container"
+  style={{
+    marginTop: '24px',
+    padding: '20px',
+    background: '#fdfdfd',
+    border: '1px solid #eaebf0',
+    borderRadius: '12px',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+  }}
+>
+  {/* Material Section Header */}
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      gap: '10px',
+      marginBottom: '16px',
+      borderBottom: '1px solid #f0f0f0',
+      paddingBottom: '12px'
+    }}
+  >
+    <h4
+      style={{
+        margin: 0,
+        color: 'var(--brand-red)',
+        fontSize: '15px',
+        fontWeight: '700',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px'
+      }}
+    >
+      {formData.packageType === 'coreHouse'
+        ? `Core House – Grey Structure Specifications (${activeQualityData.name})`
+        : `Included Material Specifications (${activeQualityData.name} Quality)`}
+    </h4>
 
-                <div
-                  className="spec-card-item"
-                  style={{
-                    background: '#fff',
-                    border: '1px solid #eef0f3',
-                    borderRadius: '8px',
-                    padding: '12px 14px'
-                  }}
-                >
-                  <div style={{
-                    fontSize: '12px',
-                    color: '#888',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    marginBottom: '4px'
-                  }}>
-                    🧱 Structure & Masonry
-                  </div>
+    <span
+      style={{
+        fontSize: '11px',
+        background: '#fff1f1',
+        color: 'var(--brand-red)',
+        padding: '4px 10px',
+        borderRadius: '20px',
+        fontWeight: '600'
+      }}
+    >
+      {activeQualityData.badge}
+    </span>
+  </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600'
-                  }}>
-                    Cement: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.cement}</span>
-                  </div>
+  {/* SAME FOUR-CARD DESIGN FOR ALL PACKAGES */}
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+      gap: '14px'
+    }}
+  >
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600',
-                    marginTop: '4px'
-                  }}>
-                    Steel: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.steel}</span>
-                  </div>
+    {/* Card 1: Structure & Masonry */}
+    <div
+      className="spec-card-item"
+      style={{
+        background: '#fff',
+        border: '1px solid #eef0f3',
+        borderRadius: '8px',
+        padding: '12px 14px'
+      }}
+    >
+      <div style={{
+        fontSize: '12px',
+        color: '#888',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        marginBottom: '8px'
+      }}>
+        🧱 Structure & Masonry
+      </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600',
-                    marginTop: '4px'
-                  }}>
-                    Bricks: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.bricks}</span>
-                  </div>
-                </div>
+      {[
+        ['Cement', activeMaterialSpecs.cement],
+        ['Steel', activeMaterialSpecs.steel],
+        ['Bricks / Blocks', activeMaterialSpecs.bricks]
+      ].map(([label, value]) => (
+        <div
+          key={label}
+          style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600',
+            marginTop: '5px'
+          }}
+        >
+          {label}:{' '}
+          <span style={{ fontWeight: '400', color: '#555' }}>
+            {value || '—'}
+          </span>
+        </div>
+      ))}
+    </div>
 
-                <div
-                  className="spec-card-item"
-                  style={{
-                    background: '#fff',
-                    border: '1px solid #eef0f3',
-                    borderRadius: '8px',
-                    padding: '12px 14px'
-                  }}
-                >
-                  <div style={{
-                    fontSize: '12px',
-                    color: '#888',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    marginBottom: '4px'
-                  }}>
-                    🚿 Plumbing & Sanitary
-                  </div>
+    {/* Card 2: Foundation & RCC / Plumbing & Sanitary */}
+    <div
+      className="spec-card-item"
+      style={{
+        background: '#fff',
+        border: '1px solid #eef0f3',
+        borderRadius: '8px',
+        padding: '12px 14px'
+      }}
+    >
+      <div style={{
+        fontSize: '12px',
+        color: '#888',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        marginBottom: '8px'
+      }}>
+        {formData.packageType === 'coreHouse'
+          ? '🏗️ Foundation & RCC'
+          : '🚿 Plumbing & Sanitary'}
+      </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600'
-                  }}>
-                    Fittings & Sanitary: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.sanitary}</span>
-                  </div>
+      {formData.packageType === 'coreHouse' ? (
+        <>
+          <div style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600'
+          }}>
+            Foundation:{' '}
+            <span style={{ fontWeight: '400', color: '#555' }}>
+              {activeMaterialSpecs.foundation || '—'}
+            </span>
+          </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600',
-                    marginTop: '4px'
-                  }}>
-                    Tiles: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.tiles}</span>
-                  </div>
-                </div>
+          <div style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600',
+            marginTop: '5px'
+          }}>
+            RCC Structure:{' '}
+            <span style={{ fontWeight: '400', color: '#555' }}>
+              {activeMaterialSpecs.structure || '—'}
+            </span>
+          </div>
+        </>
+      ) : (
+        <>
+          <div style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600'
+          }}>
+            Fittings & Sanitary:{' '}
+            <span style={{ fontWeight: '400', color: '#555' }}>
+              {activeMaterialSpecs.sanitary || '—'}
+            </span>
+          </div>
 
-                <div
-                  className="spec-card-item"
-                  style={{
-                    background: '#fff',
-                    border: '1px solid #eef0f3',
-                    borderRadius: '8px',
-                    padding: '12px 14px'
-                  }}
-                >
-                  <div style={{
-                    fontSize: '12px',
-                    color: '#888',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    marginBottom: '4px'
-                  }}>
-                    ⚡ Electrical & Fitting
-                  </div>
+          <div style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600',
+            marginTop: '5px'
+          }}>
+            Tiles:{' '}
+            <span style={{ fontWeight: '400', color: '#555' }}>
+              {activeMaterialSpecs.tiles || '—'}
+            </span>
+          </div>
+        </>
+      )}
+    </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600'
-                  }}>
-                    Wiring & Switches: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.electrical}</span>
-                  </div>
+    {/* Card 3: Electrical & Fitting / Electrical Provisions */}
+    <div
+      className="spec-card-item"
+      style={{
+        background: '#fff',
+        border: '1px solid #eef0f3',
+        borderRadius: '8px',
+        padding: '12px 14px'
+      }}
+    >
+      <div style={{
+        fontSize: '12px',
+        color: '#888',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        marginBottom: '8px'
+      }}>
+        ⚡ {formData.packageType === 'coreHouse'
+          ? 'Electrical Provisions'
+          : 'Electrical & Fitting'}
+      </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600',
-                    marginTop: '4px'
-                  }}>
-                    Painting: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.painting}</span>
-                  </div>
-                </div>
+      <div style={{
+        fontSize: '13px',
+        color: '#2c3e50',
+        fontWeight: '600'
+      }}>
+        {formData.packageType === 'coreHouse'
+          ? 'Electrical Conduits:'
+          : 'Wiring & Switches:'}{' '}
+        <span style={{ fontWeight: '400', color: '#555' }}>
+          {formData.packageType === 'coreHouse'
+            ? activeMaterialSpecs.electrical
+            : activeMaterialSpecs.electrical}
+        </span>
+      </div>
 
-                <div
-                  className="spec-card-item"
-                  style={{
-                    background: '#fff',
-                    border: '1px solid #eef0f3',
-                    borderRadius: '8px',
-                    padding: '12px 14px'
-                  }}
-                >
-                  <div style={{
-                    fontSize: '12px',
-                    color: '#888',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    marginBottom: '4px'
-                  }}>
-                    🚪 Doors, Frames & Windows
-                  </div>
+      {formData.packageType !== 'coreHouse' && (
+        <div style={{
+          fontSize: '13px',
+          color: '#2c3e50',
+          fontWeight: '600',
+          marginTop: '5px'
+        }}>
+          Painting:{' '}
+          <span style={{ fontWeight: '400', color: '#555' }}>
+            {activeMaterialSpecs.painting || '—'}
+          </span>
+        </div>
+      )}
+    </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600'
-                  }}>
-                    Chaukatha: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.doorFrame}</span>
-                  </div>
+    {/* Card 4: Plumbing Provisions / Doors, Frames & Windows */}
+    <div
+      className="spec-card-item"
+      style={{
+        background: '#fff',
+        border: '1px solid #eef0f3',
+        borderRadius: '8px',
+        padding: '12px 14px'
+      }}
+    >
+      <div style={{
+        fontSize: '12px',
+        color: '#888',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        marginBottom: '8px'
+      }}>
+        {formData.packageType === 'coreHouse'
+          ? '🚿 Plumbing Provisions'
+          : '🚪 Doors, Frames & Windows'}
+      </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600',
-                    marginTop: '4px'
-                  }}>
-                    Window Frame: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.windowFrame}</span>
-                  </div>
+      {formData.packageType === 'coreHouse' ? (
+        <div style={{
+          fontSize: '13px',
+          color: '#2c3e50',
+          fontWeight: '600'
+        }}>
+          Plumbing & Drainage:{' '}
+          <span style={{ fontWeight: '400', color: '#555' }}>
+            {activeMaterialSpecs.plumbing || '—'}
+          </span>
+        </div>
+      ) : (
+        <>
+          <div style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600'
+          }}>
+            Chaukatha:{' '}
+            <span style={{ fontWeight: '400', color: '#555' }}>
+              {activeMaterialSpecs.doorFrame || '—'}
+            </span>
+          </div>
 
-                  <div style={{
-                    fontSize: '13px',
-                    color: '#2c3e50',
-                    fontWeight: '600',
-                    marginTop: '4px'
-                  }}>
-                    Doors & Locks: <span style={{ fontWeight: '400', color: '#555' }}>{activeMaterialSpecs.doorsAndLocks || activeMaterialSpecs.locks}</span>
-                  </div>
-                </div>
+          <div style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600',
+            marginTop: '5px'
+          }}>
+            Window Frame:{' '}
+            <span style={{ fontWeight: '400', color: '#555' }}>
+              {activeMaterialSpecs.windowFrame || '—'}
+            </span>
+          </div>
 
-              </div>
-            </div>
+          <div style={{
+            fontSize: '13px',
+            color: '#2c3e50',
+            fontWeight: '600',
+            marginTop: '5px'
+          }}>
+            Doors & Locks:{' '}
+            <span style={{ fontWeight: '400', color: '#555' }}>
+              {activeMaterialSpecs.doorsAndLocks ||
+                activeMaterialSpecs.locks || '—'}
+            </span>
+          </div>
+        </>
+      )}
+    </div>
+
+  </div>
+</div>
+
 
             {/* Step 4: Add-On Features */}
             <section
